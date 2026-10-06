@@ -90,7 +90,7 @@
             opacity: 0.9;
         }
 
-        /* Dashboard */
+        /* Full Screen Dashboard */
         .dashboard {
             display: none;
             width: 100%;
@@ -137,7 +137,7 @@
             width: auto;
         }
 
-        /* Class Selector Cards */
+        /* Stylish Class Selector Cards */
         .section-title {
             font-size: 16px;
             color: #94a3b8;
@@ -188,7 +188,6 @@
             padding: 15px 20px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            flex-wrap: wrap;
         }
 
         .subject-filter select {
@@ -197,10 +196,10 @@
             border-radius: 8px;
             background: #0f172a;
             border-color: #334155;
-            min-width: 250px;
+            min-width: 240px;
         }
 
-        /* Folder System */
+        /* Folder System (Main Categories) */
         .folder-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -245,7 +244,7 @@
             color: #94a3b8;
         }
 
-        /* Chapter View */
+        /* Chapter & Content View */
         .chapter-view {
             display: none;
             background: rgba(30, 41, 59, 0.5);
@@ -298,4 +297,327 @@
             border-top: 1px dashed rgba(255, 255, 255, 0.15);
             font-size: 14px;
             color: #cbd5e1;
-            line-height:
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div class="login-wrapper" id="login-screen">
+        <div class="card">
+            <h2 id="login-title-text">Topper Study - Login</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label id="lbl-user" for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required>
+                </div>
+                <div class="input-group">
+                    <label id="lbl-pass" for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn" id="login-btn-text">Login to Hub</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Full Screen Dashboard -->
+    <div class="dashboard" id="dashboard-screen">
+        <div class="dashboard-header">
+            <h2 id="dash-title">📚 Topper Study - NCERT Portal</h2>
+            <div class="header-controls">
+                <select id="lang-selector" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                </select>
+                <button class="btn logout-btn" id="logout-btn-text" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <!-- Stylish Class Selector -->
+        <div class="section-title" id="title-select-class">SELECT CLASS (KAKSHA)</div>
+        <div class="class-container">
+            <div class="class-pill" onclick="selectClass(6)">Class 6</div>
+            <div class="class-pill" onclick="selectClass(7)">Class 7</div>
+            <div class="class-pill" onclick="selectClass(8)">Class 8</div>
+            <div class="class-pill" onclick="selectClass(9)">Class 9</div>
+            <div class="class-pill" onclick="selectClass(10)">Class 10</div>
+            <div class="class-pill active" onclick="selectClass(11)" id="default-class">Class 11</div>
+            <div class="class-pill" onclick="selectClass(12)">Class 12</div>
+        </div>
+
+        <!-- Subject Filter with Hindi & English Names -->
+        <div class="subject-filter">
+            <label id="lbl-subject" style="color: #94a3b8; font-weight: 600;">Subject:</label>
+            <select id="subject-select" onchange="onSubjectChange()">
+                <option value="bio">Biology (जीव विज्ञान)</option>
+                <option value="physics">Physics (भौतिक विज्ञान)</option>
+                <option value="chemistry">Chemistry (रसायन विज्ञान)</option>
+                <option value="math">Mathematics (गणित)</option>
+                <option value="science">Science / Vigyan (विज्ञान)</option>
+                <option value="sst">Social Science (सामाजिक विज्ञान)</option>
+            </select>
+        </div>
+
+        <!-- Folder View -->
+        <div id="main-folders-view">
+            <div class="section-title" id="title-explore">EXPLORE CATEGORIES (FOLDERS)</div>
+            <div class="folder-grid">
+                <div class="folder-card" onclick="openFolder('notes')">
+                    <div class="folder-icon">📂</div>
+                    <div class="folder-info">
+                        <h3 id="folder-notes-title">NCERT Revision Notes</h3>
+                        <p id="folder-notes-desc">Chapter-wise summary & formulas</p>
+                    </div>
+                </div>
+
+                <div class="folder-card" onclick="openFolder('objective')">
+                    <div class="folder-icon">🎯</div>
+                    <div class="folder-info">
+                        <h3 id="folder-obj-title">Objective Questions (MCQs)</h3>
+                        <p id="folder-obj-desc">Interactive quizzes & multiple choice</p>
+                    </div>
+                </div>
+
+                <div class="folder-card" onclick="openFolder('subjective')">
+                    <div class="folder-icon">✍️</div>
+                    <div class="folder-info">
+                        <h3 id="folder-subj-title">Subjective Questions</h3>
+                        <p id="folder-subj-desc">Short & long answer questions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter View -->
+        <div class="chapter-view" id="chapter-view-section">
+            <button class="back-btn" onclick="goBackToFolders()" id="back-btn-text">← Back to Folders</button>
+            <h3 class="chapter-title" id="active-folder-title">Folder Name</h3>
+            <div id="chapters-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const loginScreen = document.getElementById('login-screen');
+        const dashboardScreen = document.getElementById('dashboard-screen');
+        const loginForm = document.getElementById('login-form');
+        let currentClass = 11;
+        let activeFolderType = '';
+
+        // Dynamic Database for all classes and subjects with Hindi names
+        const ncertData = {
+            11: {
+                bio: [
+                    "Chapter 1: The Living World (जीव जगत)",
+                    "Chapter 2: Biological Classification (जीव जगत का वर्गीकरण)",
+                    "Chapter 3: Plant Kingdom (वनस्पति जगत)",
+                    "Chapter 4: Animal Kingdom (प्राणि जगत)",
+                    "Chapter 5: Morphology of Flowering Plants (पुष्पी पादपों की आकारिकी)",
+                    "Chapter 6: Anatomy of Flowering Plants (पुष्पी पादपों का शरीर)",
+                    "Chapter 7: Structural Organisation in Animals (प्राणियों में संरचनात्मक संगठन)",
+                    "Chapter 8: Cell: The Unit of Life (कोशिका: जीवन की इकाई)",
+                    "Chapter 9: Biomolecules (जैव अणु)",
+                    "Chapter 10: Cell Cycle and Cell Division (कोशिका चक्र और कोशिका विभाजन)",
+                    "Chapter 11: Photosynthesis in Higher Plants (उच्च पादपों में प्रकाश संश्लेषण)",
+                    "Chapter 12: Respiration in Plants (पादपों में श्वसन)",
+                    "Chapter 13: Plant Growth and Development (पादप वृद्धि एवं परिवर्धन)",
+                    "Chapter 14: Breathing and Exchange of Gases (श्वसन और गैसों का विनिमय)",
+                    "Chapter 15: Body Fluids and Circulation (शरीर द्रव तथा परिसंचरण)",
+                    "Chapter 16: Excretory Products and Their Elimination (उत्सर्जी उत्पाद एवं उनका निष्कासन)",
+                    "Chapter 17: Locomotion and Movement (गमन एवं संचलन)",
+                    "Chapter 18: Neural Control and Coordination (तंत्रिकीय नियंत्रण एवं समन्वय)",
+                    "Chapter 19: Chemical Coordination and Integration (रासायनिक समन्वय तथा एकीकरण)",
+                    "Chapter 20: Reproduction in Organisms",
+                    "Chapter 21: Sexual Reproduction in Flowering Plants",
+                    "Chapter 22: Human Reproduction"
+                ],
+                physics: [
+                    "Chapter 1: Physical World (भौतिक जगत)", "Chapter 2: Units and Measurements (मात्रक और मापन)",
+                    "Chapter 3: Motion in a Straight Line (सरल रेखा में गति)", "Chapter 4: Motion in a Plane (समतल में गति)",
+                    "Chapter 5: Laws of Motion (गति के नियम)", "Chapter 6: Work, Energy and Power (कार्य, ऊर्जा और शक्ति)",
+                    "Chapter 7: System of Particles and Rotational Motion (कणों के निकाय तथा घूर्णी गति)", "Chapter 8: Gravitation (गुरुत्वाकर्षण)"
+                ],
+                chemistry: [
+                    "Chapter 1: Some Basic Concepts of Chemistry (रसायन विज्ञान की कुछ मूल अवधारणाएँ)",
+                    "Chapter 2: Structure of Atom (परमाणु की संरचना)",
+                    "Chapter 3: Classification of Elements and Periodicity (तत्वों का वर्गीकरण एवं आवर्तिता)",
+                    "Chapter 4: Chemical Bonding and Molecular Structure (रासायनिक आबंधन तथा आणविक संरचना)"
+                ],
+                math: [
+                    "Chapter 1: Sets (समुच्चय)", "Chapter 2: Relations and Functions (संबंध एवं फलन)",
+                    "Chapter 3: Trigonometric Functions (त्रिकोणमितीय फलन)", "Chapter 4: Complex Numbers (सम्मिश्र संख्याएँ)"
+                ]
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                loginScreen.style.display = 'none';
+                dashboardScreen.style.display = 'block';
+            }
+        });
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            localStorage.setItem('isLoggedIn', 'true');
+            loginScreen.style.display = 'none';
+            dashboardScreen.style.display = 'block';
+        });
+
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            dashboardScreen.style.display = 'none';
+            loginScreen.style.display = 'flex';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        function selectClass(cls) {
+            currentClass = cls;
+            document.querySelectorAll('.class-pill').forEach(pill => pill.classList.remove('active'));
+            event.target.classList.add('active');
+            if(activeFolderType) {
+                openFolder(activeFolderType);
+            }
+        }
+
+        function onSubjectChange() {
+            if(activeFolderType) {
+                openFolder(activeFolderType);
+            }
+        }
+
+        function openFolder(type) {
+            activeFolderType = type;
+            document.getElementById('main-folders-view').style.display = 'none';
+            document.getElementById('chapter-view-section').style.display = 'block';
+
+            const lang = document.getElementById('lang-selector').value;
+            const subject = document.getElementById('subject-select').value;
+            const titleEl = document.getElementById('active-folder-title');
+            const container = document.getElementById('chapters-container');
+            container.innerHTML = '';
+
+            let folderName = '';
+            if(type === 'notes') folderName = lang === 'hi' ? `📖 कक्षा ${currentClass} - रिविजन नोट्स` : `📖 Class ${currentClass} - Revision Notes`;
+            if(type === 'objective') folderName = lang === 'hi' ? `🎯 कक्षा ${currentClass} - वस्तुनिष्ठ प्रश्न (MCQs)` : `🎯 Class ${currentClass} - Objective Questions (MCQs)`;
+            if(type === 'subjective') folderName = lang === 'hi' ? `✍️ कक्षा ${currentClass} - सब्जेक्टिव प्रश्न` : `✍️ Class ${currentClass} - Subjective Questions`;
+            
+            titleEl.innerText = folderName;
+
+            let classObj = ncertData[currentClass] || {};
+            let chapters = classObj[subject] || [
+                "Chapter 1: General Topics (सामान्य अध्याय)", 
+                "Chapter 2: Core Concepts (मुख्य अवधारणाएँ)"
+            ];
+
+            chapters.forEach((chapTitle) => {
+                let itemDiv = document.createElement('div');
+                itemDiv.className = 'chapter-item';
+                
+                if(type === 'notes') {
+                    itemDiv.innerHTML = `
+                        <div onclick="toggleContent(this)">📌 ${chapTitle}</div>
+                        <div class="chapter-content-box">
+                            <strong>Notes:</strong> Detailed NCERT notes for ${chapTitle}. (Aap yahan apne notes add karenge!)
+                        </div>
+                    `;
+                } else if(type === 'objective') {
+                    itemDiv.innerHTML = `
+                        <div onclick="toggleContent(this)">🎯 ${chapTitle} (MCQs)</div>
+                        <div class="chapter-content-box">
+                            <p><strong>Q1: Practice question for ${chapTitle}?</strong></p>
+                            <div style="margin-top:8px; color: #38bdf8;">(Aapke custom objective questions yahan set honge!)</div>
+                        </div>
+                    `;
+                } else if(type === 'subjective') {
+                    itemDiv.innerHTML = `
+                        <div onclick="toggleContent(this)">✍️ ${chapTitle} (Q & A)</div>
+                        <div class="chapter-content-box">
+                            <strong>Subjective Solution:</strong> Detailed descriptive answers for ${chapTitle}.
+                        </div>
+                    `;
+                }
+                container.appendChild(itemDiv);
+            });
+        }
+
+        function goBackToFolders() {
+            activeFolderType = '';
+            document.getElementById('chapter-view-section').style.display = 'none';
+            document.getElementById('main-folders-view').style.display = 'block';
+        }
+
+        function toggleContent(el) {
+            const contentBox = el.nextElementSibling;
+            contentBox.style.display = (contentBox.style.display === 'block') ? 'none' : 'block';
+        }
+
+        const texts = {
+            en: {
+                loginTitle: "Topper Study - Login",
+                lblUser: "Username",
+                lblPass: "Password",
+                loginBtn: "Login to Hub",
+                dashTitle: "📚 Topper Study - NCERT Portal",
+                logoutBtn: "Logout",
+                titleSelectClass: "SELECT CLASS (KAKSHA)",
+                lblSubject: "Subject:",
+                titleExplore: "EXPLORE CATEGORIES (FOLDERS)",
+                folderNotesTitle: "NCERT Revision Notes",
+                folderNotesDesc: "Chapter-wise summary & formulas",
+                folderObjTitle: "Objective Questions (MCQs)",
+                folderObjDesc: "Interactive quizzes & multiple choice",
+                folderSubjTitle: "Subjective Questions",
+                folderSubjDesc: "Short & long answer questions",
+                backBtnText: "← Back to Folders"
+            },
+            hi: {
+                loginTitle: "Topper Study - Login",
+                lblUser: "यूजरनेम (Username)",
+                lblPass: "पासवर्ड (Password)",
+                loginBtn: "लॉगिन करें",
+                dashTitle: "📚 टॉपर स्टडी - एनसीईआरटी पोर्टल",
+                logoutBtn: "लॉग आउट",
+                titleSelectClass: "कक्षा चुनें (CLASS)",
+                lblSubject: "विषय (Subject):",
+                titleExplore: "कैटेगरी चुनें (FOLDERS)",
+                folderNotesTitle: "एनसीईआरटी रिविजन नोट्स",
+                folderNotesDesc: "अध्याय-वार सारांश और सूत्र",
+                folderObjTitle: "वस्तुनिष्ठ प्रश्न (MCQs)",
+                folderObjDesc: "क्विज़ और बहुविकल्पीय प्रश्न",
+                folderSubjTitle: "सब्जेक्टिव प्रश्न",
+                folderSubjDesc: "लघु एवं दीर्घ उत्तरीय प्रश्न",
+                backBtnText: "← वापस फोल्डर पर जाएं"
+            }
+        };
+
+        function changeLanguage() {
+            const lang = document.getElementById('lang-selector').value;
+            const t = texts[lang];
+
+            document.getElementById('login-title-text').innerText = t.loginTitle;
+            document.getElementById('lbl-user').innerText = t.lblUser;
+            document.getElementById('lbl-pass').innerText = t.lblPass;
+            document.getElementById('login-btn-text').innerText = t.loginBtn;
+            document.getElementById('dash-title').innerText = t.dashTitle;
+            document.getElementById('logout-btn-text').innerText = t.logoutBtn;
+            document.getElementById('title-select-class').innerText = t.titleSelectClass;
+            document.getElementById('lbl-subject').innerText = t.lblSubject;
+            document.getElementById('title-explore').innerText = t.titleExplore;
+            document.getElementById('folder-notes-title').innerText = t.folderNotesTitle;
+            document.getElementById('folder-notes-desc').innerText = t.folderNotesDesc;
+            document.getElementById('folder-obj-title').innerText = t.folderObjTitle;
+            document.getElementById('folder-obj-desc').innerText = t.folderObjDesc;
+            document.getElementById('folder-subj-title').innerText = t.folderSubjTitle;
+            document.getElementById('folder-subj-desc').innerText = t.folderSubjDesc;
+            document.getElementById('back-btn-text').innerText = t.backBtnText;
+
+            if(activeFolderType) {
+                openFolder(activeFolderType);
+            }
+        }
+    </script>
+
+</body>
+</html>
