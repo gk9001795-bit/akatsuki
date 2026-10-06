@@ -234,26 +234,26 @@
     <div id="login-screen" class="login-wrapper">
         <div class="card">
             <h2>Topper Study Hub</h2>
-            <div class="subtitle">Secure Bihar & Bihar Board Portal</div>
+            <div class="subtitle" id="login-sub">Secure Bihar & Bihar Board Portal</div>
             
-            <button type="button" class="google-btn" onclick="loginSuccess()">
+            <button type="button" class="google-btn" onclick="handleLogin()">
                 <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google">
-                Sign in with Google
+                <span id="google-btn-text">Sign in with Google</span>
             </button>
             
-            <div class="divider">or login with email</div>
+            <div class="divider" id="divider-text">or login with email</div>
             
             <div class="input-group">
-                <label for="email">Email Address</label>
+                <label for="email" id="email-label">Email Address</label>
                 <input type="email" id="email" placeholder="student@gmail.com">
             </div>
             
             <div class="input-group">
-                <label for="password">Password</label>
+                <label for="password" id="pass-label">Password</label>
                 <input type="password" id="password" placeholder="••••••••">
             </div>
             
-            <button type="button" class="btn" onclick="loginSuccess()">Access Portal</button>
+            <button type="button" class="btn" id="access-btn" onclick="handleLogin()">Access Portal</button>
         </div>
     </div>
 
@@ -263,7 +263,7 @@
             <h2 id="dash-title">Topper Study Hub - NCERT Portal</h2>
             <div class="header-controls">
                 <!-- Class Selection (6 to 12) -->
-                <select id="class-select" onchange="changeClass(this.value)">
+                <select id="class-select" onchange="onClassChange(this.value)">
                     <option value="6">Class 6</option>
                     <option value="7">Class 7</option>
                     <option value="8">Class 8</option>
@@ -273,18 +273,18 @@
                     <option value="12">Class 12</option>
                 </select>
 
-                <!-- Subject Selection -->
-                <select id="subject-select" onchange="changeSubject(this.value)">
-                    <!-- Populated dynamically -->
+                <!-- Subject Selection (Dynamic from ncertData) -->
+                <select id="subject-select" onchange="onSubjectChange(this.value)">
+                    <!-- Populated via JS -->
                 </select>
 
                 <!-- Language Selection -->
-                <select id="language-select" onchange="changeLanguage(this.value)">
+                <select id="language-select" onchange="onLanguageChange(this.value)">
                     <option value="hi" selected>Hindi (हिंदी)</option>
                     <option value="en">English</option>
                 </select>
 
-                <button class="logout-btn" onclick="logout()">Logout</button>
+                <button class="logout-btn" id="logout-btn-text" onclick="handleLogout()">Logout</button>
             </div>
         </div>
 
@@ -292,17 +292,17 @@
         <div id="main-folders-view">
             <div class="section-title" id="explore-title">EXPLORE CATEGORIES (FOLDERS)</div>
             <div class="folder-grid">
-                <div class="folder-card" onclick="openfolder('notes')">
+                <div class="folder-card" onclick="openFolder('notes')">
                     <div class="folder-icon">📝</div>
                     <h3 id="card-notes-title">Revision Notes</h3>
                     <p style="font-size: 13px; color: #94a3b8;" id="card-notes-desc">Chapter-wise summary & formulas</p>
                 </div>
-                <div class="folder-card" onclick="openfolder('objective')">
+                <div class="folder-card" onclick="openFolder('objective')">
                     <div class="folder-icon">🎯</div>
                     <h3 id="card-obj-title">Objective Questions (MCQs)</h3>
                     <p style="font-size: 13px; color: #94a3b8;" id="card-obj-desc">Interactive quizzes & multiple choice</p>
                 </div>
-                <div class="folder-card" onclick="openfolder('subjective')">
+                <div class="folder-card" onclick="openFolder('subjective')">
                     <div class="folder-icon">📖</div>
                     <h3 id="card-sub-title">Subjective Solution</h3>
                     <p style="font-size: 13px; color: #94a3b8;" id="card-sub-desc">Detailed descriptive answers</p>
@@ -322,34 +322,123 @@
     <script src="quiz-data.js"></script>
     <script src="data.js"></script>
     <script>
-        let activeClass = '11';
-        let activeSubject = 'bio';
-        let activeLanguage = 'hi';
+        // Global State Variables
+        let currentClass = '11';
+        let currentSubject = '';
+        let currentLanguage = 'hi';
 
+        // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
-            updateSubjectsDropdown();
-            updateUIText();
+            populateSubjects();
+            updateUIStrings();
         });
 
-        function loginSuccess() {
+        function handleLogin() {
             let loginScreen = document.getElementById('login-screen');
             let dashScreen = document.getElementById('dashboard-screen');
             if (loginScreen && dashScreen) {
                 loginScreen.style.display = 'none';
                 dashScreen.style.display = 'block';
             }
-            updateSubjectsDropdown();
-            updateUIText();
+            populateSubjects();
+            updateUIStrings();
         }
 
-        function logout() {
+        function handleLogout() {
             document.getElementById('dashboard-screen').style.display = 'none';
             document.getElementById('login-screen').style.display = 'flex';
         }
 
-        function changeClass(cls) {
-            activeClass = cls;
-            updateSubjectsDropdown();
+        function onClassChange(val) {
+            currentClass = val;
+            populateSubjects();
         }
 
-        function changeSubject(
+        function onSubjectChange(val) {
+            currentSubject = val;
+        }
+
+        function onLanguageChange(val) {
+            currentLanguage = val;
+            updateUIStrings();
+        }
+
+        // Dropdown populate based on ncertData from data.js
+        function populateSubjects() {
+            const subSelect = document.getElementById('subject-select');
+            if (!subSelect) return;
+            subSelect.innerHTML = '';
+
+            if (typeof ncertData !== 'undefined' && ncertData[currentClass]) {
+                let subjectsMap = ncertData[currentClass];
+                let firstKey = '';
+                let isFirst = true;
+
+                for (let subKey in subjectsMap) {
+                    if (isFirst) {
+                        firstKey = subKey;
+                        isFirst = false;
+                    }
+                    let opt = document.createElement('option');
+                    opt.value = subKey;
+                    opt.innerText = subKey.toUpperCase();
+                    subSelect.appendChild(opt);
+                }
+                currentSubject = firstKey;
+            } else {
+                let opt = document.createElement('option');
+                opt.value = 'science';
+                opt.innerText = 'SCIENCE';
+                subSelect.appendChild(opt);
+                currentSubject = 'science';
+            }
+        }
+
+        // Update UI text according to language
+        function updateUIStrings() {
+            if (currentLanguage === 'hi') {
+                document.getElementById('dash-title').innerText = "टू्पर स्टडी हब - NCERT पोर्टल";
+                document.getElementById('explore-title').innerText = "श्रेणियाँ (फोल्डर) देखें";
+                document.getElementById('card-notes-title').innerText = "संशोधन नोट्स (Revision Notes)";
+                document.getElementById('card-notes-desc').innerText = "अध्याय-वार सारांश और सूत्र";
+                document.getElementById('card-obj-title').innerText = "वस्तुनिष्ठ प्रश्न (Objective MCQs)";
+                document.getElementById('card-obj-desc').innerText = "इंटरैक्टिव क्विज़ और बहुविकल्पीय प्रश्न";
+                document.getElementById('card-sub-title').innerText = "विषयपरक समाधान (Subjective)";
+                document.getElementById('card-sub-desc').innerText = "विस्तृत वर्णनात्मक उत्तर";
+                document.getElementById('back-btn-text').innerText = "← फोल्डर पर वापस जाएं";
+                document.getElementById('logout-btn-text').innerText = "लॉग आउट";
+            } else {
+                document.getElementById('dash-title').innerText = "Topper Study Hub - NCERT Portal";
+                document.getElementById('explore-title').innerText = "EXPLORE CATEGORIES (FOLDERS)";
+                document.getElementById('card-notes-title').innerText = "Revision Notes";
+                document.getElementById('card-notes-desc').innerText = "Chapter-wise summary & formulas";
+                document.getElementById('card-obj-title').innerText = "Objective Questions (MCQs)";
+                document.getElementById('card-obj-desc').innerText = "Interactive quizzes & multiple choice";
+                document.getElementById('card-sub-title').innerText = "Subjective Solution";
+                document.getElementById('card-sub-desc').innerText = "Detailed descriptive answers";
+                document.getElementById('back-btn-text').innerText = "← Back to Folders";
+                document.getElementById('logout-btn-text').innerText = "Logout";
+            }
+        }
+
+        function goBackToFolders() {
+            document.getElementById('chapter-view-section').style.display = 'none';
+            document.getElementById('main-folders-view').style.display = 'block';
+        }
+
+        // Folder click handler (Notes, Objective, Subjective)
+        function openFolder(folderType) {
+            document.getElementById("main-folders-view").style.display = "none";
+            document.getElementById("chapter-view-section").style.display = "block";
+            
+            let container = document.getElementById("chapters-container");
+            container.innerHTML = "";
+
+            // Objective quiz only for Class 11 Biology
+            if (folderType === 'objective' && currentClass === '11' && (currentSubject === 'bio' || currentSubject === 'biology')) {
+                let titleEl = document.getElementById("chapter-view-title");
+                titleEl.innerText = currentLanguage === 'hi' ? 
+                    `कक्षा 11 - जीवविज्ञान अध्याय 1: वस्तुनिष्ठ प्रश्न (1-100 MCQs)` : 
+                    `Class 11 - Biology Chapter 1: Objective Questions (1-100 MCQs)`;
+
+                if (typeof chapter1Quiz !== 'undefined' &&
