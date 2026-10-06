@@ -341,19 +341,25 @@
             <div class="class-pill" onclick="selectClass(7)">Class 7</div>
             <div class="class-pill" onclick="selectClass(8)">Class 8</div>
             <div class="class-pill" onclick="selectClass(9)">Class 9</div>
-            <div class="class-pill" onclick="selectClass(10)">Class 10</div>
+            <div class="class-pill active" onclick="selectClass(10)" id="default-class-10">Class 10</div>
             <div class="class-pill" onclick="selectClass(11)">Class 11</div>
-            <div class="class-pill active" onclick="selectClass(12)">Class 12</div>
+            <div class="class-pill" onclick="selectClass(12)">Class 12</div>
         </div>
 
-        <!-- Subject Filter with Hindi & English Names -->
+        <!-- Subject Filter with Separated Science and SST Parts -->
         <div class="subject-filter">
             <label id="lbl-subject" style="color: #94a3b8; font-weight: 600;">Subject:</label>
             <select id="subject-select" onchange="onSubjectChange()">
-                <option value="bio">Biology (जीव विज्ञान)</option>
-                <option value="physics">Physics (भौतिक विज्ञान)</option>
-                <option value="chemistry">Chemistry (रसायन विज्ञान)</option>
-                <option value="math">Mathematics (गणित)</option>
+                <optgroup label="Class 10 / General">
+                    <option value="physics">Physics (भौतिक विज्ञान)</option>
+                    <option value="chemistry">Chemistry (रसायन विज्ञान)</option>
+                    <option value="bio">Biology (जीव विज्ञान)</option>
+                    <option value="math">Mathematics (गणित)</option>
+                    <option value="history">History (इतिहास - SST)</option>
+                    <option value="civics">Civics / Political Science (नागरिक शास्त्र)</option>
+                    <option value="geography">Geography (भूगोल - SST)</option>
+                    <option value="economics">Economics (अर्थशास्त्र - SST)</option>
+                </optgroup>
             </select>
         </div>
 
@@ -378,7 +384,7 @@
                 </div>
 
                 <div class="folder-card" onclick="openFolder('subjective')">
-                    <div class="folder-icon">✍️️</div>
+                    <div class="folder-icon">✍️</div>
                     <div class="folder-info">
                         <h3 id="folder-subj-title">Subjective Questions</h3>
                         <p id="folder-subj-desc">Short & long answer questions</p>
@@ -395,114 +401,14 @@
         </div>
     </div>
 
+    <!-- External Data File Linking -->
+    <script src="data.js"></script>
     <script>
         const loginScreen = document.getElementById('login-screen');
         const dashboardScreen = document.getElementById('dashboard-screen');
         const loginForm = document.getElementById('login-form');
-        let currentClass = 12;
+        let currentClass = 10;
         let activeFolderType = '';
-
-        // Complete NCERT Database for Class 11 and Class 12 Science with Hindi Names
-        const ncertData = {
-            11: {
-                bio: [
-                    "Chapter 1: The Living World (जीव जगत)", "Chapter 2: Biological Classification (जीव जगत का वर्गीकरण)",
-                    "Chapter 3: Plant Kingdom (वनस्पति जगत)", "Chapter 4: Animal Kingdom (प्राणि जगत)",
-                    "Chapter 5: Morphology of Flowering Plants (पुष्पी पादपों की आकारिकी)", "Chapter 6: Anatomy of Flowering Plants (पुष्पी पादपों का शरीर)",
-                    "Chapter 7: Structural Organisation in Animals (प्राणियों में संरचनात्मक संगठन)", "Chapter 8: Cell: The Unit of Life (कोशिका: जीवन की इकाई)",
-                    "Chapter 9: Biomolecules (जैव अणु)", "Chapter 10: Cell Cycle and Cell Division (कोशिका चक्र और कोशिका विभाजन)",
-                    "Chapter 11: Photosynthesis in Higher Plants (उच्च पादपों में प्रकाश संश्लेषण)", "Chapter 12: Respiration in Plants (पादपों में श्वसन)",
-                    "Chapter 13: Plant Growth and Development (पादप वृद्धि एवं परिवर्धन)", "Chapter 14: Breathing and Exchange of Gases (श्वसन और गैसों का विनिमय)",
-                    "Chapter 15: Body Fluids and Circulation (शरीर द्रव तथा परिसंचरण)", "Chapter 16: Excretory Products and Their Elimination (उत्सर्जी उत्पाद एवं उनका निष्कासन)",
-                    "Chapter 17: Locomotion and Movement (गमन एवं संचलन)", "Chapter 18: Neural Control and Coordination (तंत्रिकीय नियंत्रण एवं समन्वय)",
-                    "Chapter 19: Chemical Coordination and Integration (रासायनिक समन्वय तथा एकीकरण)", "Chapter 20: Reproduction in Organisms",
-                    "Chapter 21: Sexual Reproduction in Flowering Plants", "Chapter 22: Human Reproduction"
-                ],
-                physics: [
-                    "Chapter 1: Physical World (भौतिक जगत)", "Chapter 2: Units and Measurements (मात्रक और मापन)",
-                    "Chapter 3: Motion in a Straight Line (सरल रेखा में गति)", "Chapter 4: Motion in a Plane (समतल में गति)",
-                    "Chapter 5: Laws of Motion (गति के नियम)", "Chapter 6: Work, Energy and Power (कार्य, ऊर्जा और शक्ति)",
-                    "Chapter 7: System of Particles and Rotational Motion (कणों के निकाय तथा घूर्णी गति)", "Chapter 8: Gravitation (गुरुत्वाकर्षण)"
-                ],
-                chemistry: [
-                    "Chapter 1: Some Basic Concepts of Chemistry (रसायन विज्ञान की कुछ मूल अवधारणाएँ)", "Chapter 2: Structure of Atom (परमाणु की संरचना)",
-                    "Chapter 3: Classification of Elements and Periodicity (तत्वों का वर्गीकरण)", "Chapter 4: Chemical Bonding (रासायनिक आबंधन)"
-                ],
-                math: [
-                    "Chapter 1: Sets (समुच्चय)", "Chapter 2: Relations and Functions (संबंध एवं फलन)",
-                    "Chapter 3: Trigonometric Functions (त्रिकोणमितीय फलन)", "Chapter 4: Complex Numbers (सम्मिश्र संख्याएँ)"
-                ]
-            },
-            12: {
-                bio: [
-                    "Chapter 1: Reproduction in Organisms (जीवों में जनन)",
-                    "Chapter 2: Sexual Reproduction in Flowering Plants (पुष्पी पादपों में लैंगिक जनन)",
-                    "Chapter 3: Human Reproduction (मानव जनन)",
-                    "Chapter 4: Reproductive Health (जनन स्वास्थ्य)",
-                    "Chapter 5: Principles of Inheritance and Variation (वंशगति तथा विविधता के सिद्धांत)",
-                    "Chapter 6: Molecular Basis of Inheritance (वंशगति का आणविक आधार)",
-                    "Chapter 7: Evolution (विकास)",
-                    "Chapter 8: Human Health and Disease (मानव स्वास्थ्य तथा रोग)",
-                    "Chapter 9: Strategies for Enhancement in Food Production (खाद्य उत्पादन में वृद्धि की कार्यनीति)",
-                    "Chapter 10: Microbes in Human Welfare (मानव कल्याण में सूक्ष्मजीव)",
-                    "Chapter 11: Biotechnology: Principles and Processes (जैव प्रौद्योगिकी-सिद्धान्त व प्रक्रम)",
-                    "Chapter 12: Biotechnology and its Applications (जैव प्रौद्योगिकी एवं its उपयोग)",
-                    "Chapter 13: Organisms and Populations (जीव और समष्टियाँ)",
-                    "Chapter 14: Ecosystem (पारितंत्र)",
-                    "Chapter 15: Biodiversity and Conservation (जीव विविधता एवं संरक्षण)",
-                    "Chapter 16: Environmental Issues (पर्यावरण के मुद्दे)"
-                ],
-                physics: [
-                    "Chapter 1: Electric Charges and Fields (वैद्युत आवेश तथा क्षेत्र)",
-                    "Chapter 2: Electrostatic Potential and Capacitance (स्थिरवैद्युत विभव तथा धारिता)",
-                    "Chapter 3: Current Electricity (विद्युत धारा)",
-                    "Chapter 4: Moving Charges and Magnetism (गतिमान आवेश और चुंबकत्व)",
-                    "Chapter 5: Magnetism and Matter (चुंबकत्व एवं द्रव्य)",
-                    "Chapter 6: Electromagnetic Induction (वैद्युत चुम्बकीय प्रेरण)",
-                    "Chapter 7: Alternating Current (प्रत्यवर्ती धारा)",
-                    "Chapter 8: Electromagnetic Waves (वैद्युत चुम्बकीय तरंगें)",
-                    "Chapter 9: Ray Optics and Optical Instruments (किरण प्रकाशिकी एवं प्रकाशिक यंत्र)",
-                    "Chapter 10: Wave Optics (तरंग प्रकाशिकी)",
-                    "Chapter 11: Dual Nature of Radiation and Matter (विकिरण तथा द्रव्य की द्वैत प्रकृति)",
-                    "Chapter 12: Atoms (परमाणु)",
-                    "Chapter 13: Nuclei (नाभिक)",
-                    "Chapter 14: Semiconductor Electronics (अर्धचालक इलेक्ट्रॉनिकी)"
-                ],
-                chemistry: [
-                    "Chapter 1: Solid State (ठोस अवस्था)",
-                    "Chapter 2: Solutions (विलयन)",
-                    "Chapter 3: Electrochemistry (वैद्युत रसायन)",
-                    "Chapter 4: Chemical Kinetics (रासायनिक बलगतिकी)",
-                    "Chapter 5: Surface Chemistry (पृष्ठ रसायन)",
-                    "Chapter 6: General Principles and Processes of Isolation of Elements (तत्वों के निष्कर्षण के सिद्धांत)",
-                    "Chapter 7: p-Block Elements (p-ब्लॉक के तत्व)",
-                    "Chapter 8: d- and f-Block Elements (d- एवं f-ब्लॉक के तत्व)",
-                    "Chapter 9: Coordination Compounds (उपसहसंयोजन यौगिक)",
-                    "Chapter 10: Haloalkanes and Haloarenes (हैलोऐल्केन तथा हैलोऐरीन)",
-                    "Chapter 11: Alcohols, Phenols and Ethers (ऐल्कोहॉल, फ़ीノール एवं ईथर)",
-                    "Chapter 12: Aldehydes, Ketones and Carboxylic Acids (ऐल्डिहाइड, कीटोन एवं कार्बोक्सिलिक अम्ल)",
-                    "Chapter 13: Amines (ऐमीन)",
-                    "Chapter 14: Biomolecules (जैव-अणु)",
-                    "Chapter 15: Polymers (बहुलक)",
-                    "Chapter 16: Chemistry in Everyday Life (दैनिक जीवन में रसायन)"
-                ],
-                math: [
-                    "Chapter 1: Relations and Functions (संबंध एवं फलन)",
-                    "Chapter 2: Inverse Trigonometric Functions (प्रतिलोम त्रिकोणमितीय फलन)",
-                    "Chapter 3: Matrices (आव्यूह)",
-                    "Chapter 4: Determinants (सारणिक)",
-                    "Chapter 5: Continuity and Differentiability (सांतत्य तथा अवकलनीयता)",
-                    "Chapter 6: Application of Derivatives (अवकलज के अनुप्रयोग)",
-                    "Chapter 7: Integrals (समाकलन)",
-                    "Chapter 8: Application of Integrals (समाकलनों के अनुप्रयोग)",
-                    "Chapter 9: Differential Equations (अवकल समीकरण)",
-                    "Chapter 10: Vector Algebra (सदिश बीजगणित)",
-                    "Chapter 11: Three Dimensional Geometry (त्रिविमीय ज्यामिति)",
-                    "Chapter 12: Linear Programming (रैखिक प्रोग्रामन)",
-                    "Chapter 13: Probability (प्रायिकता)"
-                ]
-            }
-        };
 
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('isLoggedIn') === 'true') {
