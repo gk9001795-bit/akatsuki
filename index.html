@@ -19,41 +19,106 @@
             color: #fff;
         }
 
-        /* Login Screen */
+        /* Modern Glassmorphism & Cyber Glow Login Screen */
         .login-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             width: 100%;
+            padding: 20px;
         }
 
         .card {
             background: rgba(30, 41, 59, 0.7);
             padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
             width: 100%;
             max-width: 450px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card h2 {
-            margin-bottom: 24px;
-            font-size: 26px;
+            margin-bottom: 8px;
+            font-size: 28px;
             text-align: center;
-            color: #f8fafc;
+            background: linear-gradient(135deg, #6366f1, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .input-group {
+        .card p.subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        /* Google Sign-In Button Style */
+        .google-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ffffff;
+            color: #1e293b;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .google-btn:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .google-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            margin: 20px 0;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .divider::before { margin-right: 10px; }
+        .divider::after { margin-left: 10px; }
+
+        .input-group {
+            margin-bottom: 18px;
         }
 
         .input-group label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
+            margin-bottom: 6px;
+            font-size: 13px;
             color: #94a3b8;
         }
 
@@ -62,15 +127,33 @@
             padding: 12px 16px;
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid #334155;
-            border-radius: 8px;
+            border-radius: 10px;
             color: #fff;
-            font-size: 16px;
+            font-size: 15px;
             outline: none;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
         }
 
         .input-group input:focus {
             border-color: #6366f1;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        .remember-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .remember-row input {
+            accent-color: #6366f1;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
         }
 
         .btn {
@@ -78,16 +161,19 @@
             padding: 12px;
             background: linear-gradient(135deg, #6366f1, #4f46e5);
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             color: white;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
         }
 
         .btn:hover {
-            opacity: 0.9;
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
         }
 
         /* Dashboard */
@@ -110,7 +196,7 @@
         }
 
         .dashboard-header h2 {
-            color: #6366f1;
+            color: #38bdf8;
             font-size: 24px;
         }
 
@@ -135,6 +221,12 @@
             padding: 8px 16px;
             font-size: 14px;
             width: auto;
+            box-shadow: none;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
         }
 
         .section-title {
@@ -299,23 +391,38 @@
 </head>
 <body>
 
+    <!-- Cyber Glow Login Screen -->
     <div class="login-wrapper" id="login-screen">
         <div class="card">
-            <h2 id="login-title-text">Topper Study - Login</h2>
+            <h2 id="login-title-text">Topper Study Hub</h2>
+            <p class="subtitle">Secure NCERT & Bihar Board Portal</p>
+            
+            <!-- Google Sign-In Simulation Button -->
+            <button type="button" class="google-btn" onclick="handleGoogleLogin()">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                Sign in with Google
+            </button>
+
+            <div class="divider">or login with email</div>
+
             <form id="login-form">
                 <div class="input-group">
-                    <label id="lbl-user" for="username">Username</label>
-                    <input type="text" id="username" placeholder="Enter username" required>
+                    <label id="lbl-user" for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="student@example.com" required>
                 </div>
                 <div class="input-group">
                     <label id="lbl-pass" for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter password" required>
+                    <input type="password" id="password" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn" id="login-btn-text">Login to Hub</button>
+                <label class="remember-row">
+                    <input type="checkbox" id="remember-me" checked> Remember me (Stay logged in)
+                </label>
+                <button type="submit" class="btn" id="login-btn-text">Access Portal</button>
             </form>
         </div>
     </div>
 
+    <!-- Dashboard Screen -->
     <div class="dashboard" id="dashboard-screen">
         <div class="dashboard-header">
             <h2 id="dash-title">📚 Topper Study - NCERT Portal</h2>
@@ -384,204 +491,4 @@
     <script>
         const loginScreen = document.getElementById('login-screen');
         const dashboardScreen = document.getElementById('dashboard-screen');
-        const loginForm = document.getElementById('login-form');
-        let currentClass = 10;
-        let activeFolderType = '';
-
-        window.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('isLoggedIn') === 'true') {
-                loginScreen.style.display = 'none';
-                dashboardScreen.style.display = 'block';
-                updateSubjectDropdown();
-            }
-        });
-
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            localStorage.setItem('isLoggedIn', 'true');
-            loginScreen.style.display = 'none';
-            dashboardScreen.style.display = 'block';
-            updateSubjectDropdown();
-        });
-
-        function logout() {
-            localStorage.removeItem('isLoggedIn');
-            dashboardScreen.style.display = 'none';
-            loginScreen.style.display = 'flex';
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
-        }
-
-        function selectClass(cls) {
-            currentClass = cls;
-            document.querySelectorAll('.class-pill').forEach(pill => pill.classList.remove('active'));
-            event.target.classList.add('active');
-            updateSubjectDropdown();
-            if(activeFolderType) {
-                openFolder(activeFolderType);
-            }
-        }
-
-        function updateSubjectDropdown() {
-            const subjectSelect = document.getElementById('subject-select');
-            subjectSelect.innerHTML = '';
-            const classObj = ncertData[currentClass] || {};
-            const subjects = Object.keys(classObj);
-
-            const subjectNames = {
-                science: "Science (विज्ञान)",
-                physics: "Physics (भौतिक विज्ञान)",
-                chemistry: "Chemistry (रसायन विज्ञान)",
-                bio: "Biology (जीव विज्ञान)",
-                math: "Mathematics (गणित)",
-                sst: "Social Science (सामाजिक विज्ञान)",
-                history: "History (इतिहास)",
-                civics: "Civics / Political Science (नागरिक शास्त्र)",
-                geography: "Geography (भूगोल)",
-                economics: "Economics (अर्थशास्त्र)"
-            };
-
-            subjects.forEach(sub => {
-                let opt = document.createElement('option');
-                opt.value = sub;
-                opt.innerText = subjectNames[sub] || sub.toUpperCase();
-                subjectSelect.appendChild(opt);
-            });
-        }
-
-        function onSubjectChange() {
-            if(activeFolderType) {
-                openFolder(activeFolderType);
-            }
-        }
-
-        function openFolder(type) {
-            activeFolderType = type;
-            document.getElementById('main-folders-view').style.display = 'none';
-            document.getElementById('chapter-view-section').style.display = 'block';
-
-            const lang = document.getElementById('lang-selector').value;
-            const subject = document.getElementById('subject-select').value;
-            const titleEl = document.getElementById('active-folder-title');
-            const container = document.getElementById('chapters-container');
-            container.innerHTML = '';
-
-            let folderName = '';
-            if(type === 'notes') folderName = lang === 'hi' ? `📖 कक्षा ${currentClass} - रिविजन नोट्स` : `📖 Class ${currentClass} - Revision Notes`;
-            if(type === 'objective') folderName = lang === 'hi' ? `🎯 कक्षा ${currentClass} - वस्तुनिष्ठ प्रश्न (MCQs)` : `🎯 Class ${currentClass} - Objective Questions (MCQs)`;
-            if(type === 'subjective') folderName = lang === 'hi' ? `✍️ कक्षा ${currentClass} - सब्जेक्टिव प्रश्न` : `✍️ Class ${currentClass} - Subjective Questions`;
-            
-            titleEl.innerText = folderName;
-
-            let classObj = ncertData[currentClass] || {};
-            let chapters = classObj[subject] || ["Chapter 1: General Topics"];
-
-            chapters.forEach((chapTitle) => {
-                let itemDiv = document.createElement('div');
-                itemDiv.className = 'chapter-item';
-                
-                if(type === 'notes') {
-                    itemDiv.innerHTML = `
-                        <div onclick="toggleContent(this)">📌 ${chapTitle}</div>
-                        <div class="chapter-content-box">
-                            <strong>Notes:</strong> Detailed NCERT notes for ${chapTitle}. (Aap yahan apne notes add karenge!)
-                        </div>
-                    `;
-                } else if(type === 'objective') {
-                    itemDiv.innerHTML = `
-                        <div onclick="toggleContent(this)">🎯 ${chapTitle} (MCQs)</div>
-                        <div class="chapter-content-box">
-                            <p><strong>Q1: Practice question for ${chapTitle}?</strong></p>
-                            <div style="margin-top:8px; color: #38bdf8;">(Aapke custom objective questions yahan set honge!)</div>
-                        </div>
-                    `;
-                } else if(type === 'subjective') {
-                    itemDiv.innerHTML = `
-                        <div onclick="toggleContent(this)">✍️ ${chapTitle} (Q & A)</div>
-                        <div class="chapter-content-box">
-                            <strong>Subjective Solution:</strong> Detailed descriptive answers for ${chapTitle}.
-                        </div>
-                    `;
-                }
-                container.appendChild(itemDiv);
-            });
-        }
-
-        function goBackToFolders() {
-            activeFolderType = '';
-            document.getElementById('chapter-view-section').style.display = 'none';
-            document.getElementById('main-folders-view').style.display = 'block';
-        }
-
-        function toggleContent(el) {
-            const contentBox = el.nextElementSibling;
-            contentBox.style.display = (contentBox.style.display === 'block') ? 'none' : 'block';
-        }
-
-        const texts = {
-            en: {
-                loginTitle: "Topper Study - Login",
-                lblUser: "Username",
-                lblPass: "Password",
-                loginBtn: "Login to Hub",
-                dashTitle: "📚 Topper Study - NCERT Portal",
-                logoutBtn: "Logout",
-                titleSelectClass: "SELECT CLASS (KAKSHA)",
-                lblSubject: "Subject:",
-                titleExplore: "EXPLORE CATEGORIES (FOLDERS)",
-                folderNotesTitle: "NCERT Revision Notes",
-                folderNotesDesc: "Chapter-wise summary & formulas",
-                folderObjTitle: "Objective Questions (MCQs)",
-                folderObjDesc: "Interactive quizzes & multiple choice",
-                folderSubjTitle: "Subjective Questions",
-                folderSubjDesc: "Short & long answer questions",
-                backBtnText: "← Back to Folders"
-            },
-            hi: {
-                loginTitle: "Topper Study - Login",
-                lblUser: "यूजरनेम (Username)",
-                lblPass: "पासवर्ड (Password)",
-                loginBtn: "लॉगिन करें",
-                dashTitle: "📚 टॉपर स्टडी - एनसीईआरटी पोर्टल",
-                logoutBtn: "लॉग आउट",
-                titleSelectClass: "कक्षा चुनें (CLASS)",
-                lblSubject: "विषय (Subject):",
-                titleExplore: "कैटेगरी चुनें (FOLDERS)",
-                folderNotesTitle: "एनसीईआरटी रिविजन नोट्स",
-                folderNotesDesc: "अध्याय-वार सारांश और सूत्र",
-                folderObjTitle: "वस्तुनिष्ठ प्रश्न (MCQs)",
-                folderObjDesc: "क्विज़ और बहुविकल्पीय प्रश्न",
-                folderSubjTitle: "सब्जेक्टिव प्रश्न",
-                folderSubjDesc: "लघु एवं दीर्घ उत्तरीय प्रश्न",
-                backBtnText: "← वापस फोल्डर पर जाएं"
-            }
-        };
-
-        function changeLanguage() {
-            const lang = document.getElementById('lang-selector').value;
-            const t = texts[lang];
-
-            document.getElementById('login-title-text').innerText = t.loginTitle;
-            document.getElementById('lbl-user').innerText = t.lblUser;
-            document.getElementById('lbl-pass').innerText = t.lblPass;
-            document.getElementById('login-btn-text').innerText = t.loginBtn;
-            document.getElementById('dash-title').innerText = t.dashTitle;
-            document.getElementById('logout-btn-text').innerText = t.logoutBtn;
-            document.getElementById('title-select-class').innerText = t.titleSelectClass;
-            document.getElementById('lbl-subject').innerText = t.lblSubject;
-            document.getElementById('title-explore').innerText = t.titleExplore;
-            document.getElementById('folder-notes-title').innerText = t.folderNotesTitle;
-            document.getElementById('folder-notes-desc').innerText = t.folderNotesDesc;
-            document.getElementById('folder-obj-title').innerText = t.folderObjTitle;
-            document.getElementById('folder-obj-desc').innerText = t.folderObjDesc;
-            document.getElementById('folder-subj-title').innerText = t.folderSubjTitle;
-            document.getElementById('folder-subj-desc').innerText = t.folderSubjDesc;
-            document.getElementById('back-btn-text').innerText = t.backBtnText;
-
-            if(activeFolderType) {
-                openFolder(activeFolderType);
-            }
-        }
-    </script>
-</body>
-</html>
+        const
