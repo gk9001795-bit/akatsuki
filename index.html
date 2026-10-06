@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akatsuki - Login</title>
-    <!-- Google verification tag jo pehle lagaya tha -->
+    <title>Topper Study - Portal</title>
+    <!-- Google verification tag -->
     <meta name="google-site-verification" content="kwWf-UwqtbjnhoZjiQqc07R3UaZwznP_SaNIku51jh0" />
     <style>
         * {
@@ -16,14 +16,21 @@
 
         body {
             background: linear-gradient(135deg, #0f172a, #1e1b4b);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #fff;
         }
 
-        .login-card {
+        .container {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+        }
+
+        /* Card Styling */
+        .card {
             background: rgba(30, 41, 59, 0.7);
             padding: 40px;
             border-radius: 16px;
@@ -31,12 +38,11 @@
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             width: 100%;
-            max-width: 400px;
         }
 
-        .login-card h2 {
+        .card h2 {
             margin-bottom: 24px;
-            font-size: 28px;
+            font-size: 26px;
             text-align: center;
             color: #f8fafc;
             letter-spacing: 1px;
@@ -69,7 +75,7 @@
             border-color: #6366f1;
         }
 
-        .login-btn {
+        .btn {
             width: 100%;
             padding: 12px;
             background: linear-gradient(135deg, #6366f1, #4f46e5);
@@ -83,37 +89,172 @@
             margin-top: 10px;
         }
 
-        .login-btn:hover {
+        .btn:hover {
             opacity: 0.9;
         }
 
-        .footer-text {
-            text-align: center;
-            margin-top: 20px;
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+            max-width: 700px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .dashboard-header h2 {
+            margin: 0;
+            font-size: 22px;
+            color: #6366f1;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            padding: 6px 14px;
             font-size: 14px;
-            color: #94a3b8;
+            width: auto;
+            margin: 0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #38bdf8;
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+
+        .note-box {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6366f1;
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #cbd5e1;
+        }
+
+        .quiz-box {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .option-btn {
+            background: #334155;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            color: #fff;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-btn:hover {
+            background: #475569;
+        }
+
+        #quiz-result {
+            margin-top: 12px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <div class="login-card">
-        <h2>Akatsuki Login</h2>
-        <form>
-            <div class="input-group">
-                <label for="username">Username / Email</label>
-                <input type="text" id="username" placeholder="Enter your username" required>
+    <div class="container">
+        <!-- Login Card -->
+        <div id="login-card" class="card">
+            <h2>Topper Study</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter any username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter any password" required>
+                </div>
+                <button type="submit" class="btn">Login to Vault</button>
+            </form>
+        </div>
+
+        <!-- Dashboard / Study Vault -->
+        <div id="dashboard-card" class="card dashboard">
+            <div class="dashboard-header">
+                <h2>📚 Topper Study Hub</h2>
+                <button class="btn logout-btn" id="logout-btn">Logout</button>
             </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
+
+            <div class="section-title">📖 Quick Study Notes</div>
+            <div class="note-box">
+                <strong>Tip of the Day:</strong> Consistent revision and writing down concepts helps retain memory up to 2x faster!
             </div>
-            <button type="submit" class="login-btn">Login</button>
-        </form>
-        <div class="footer-text">
-            <p>Welcome back to your space</p>
+            <div class="note-box">
+                <strong>Core Subject Focus:</strong> Keep your formulas and important definitions organized right here for quick access.
+            </div>
+
+            <div class="section-title">🧠 Practice Quiz Corner</div>
+            <div class="quiz-box">
+                <p><strong>Q: What is the powerhouse of the cell?</strong></p>
+                <div class="quiz-options">
+                    <button class="option-btn" onclick="checkAnswer(false)">A) Nucleus</button>
+                    <button class="option-btn" onclick="checkAnswer(true)">B) Mitochondria</button>
+                    <button class="option-btn" onclick="checkAnswer(false)">C) Ribosome</button>
+                </div>
+                <p id="quiz-result"></p>
+            </div>
         </div>
     </div>
+
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const loginCard = document.getElementById('login-card');
+        const dashboardCard = document.getElementById('dashboard-card');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        // Login Action
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            loginCard.style.display = 'none';
+            dashboardCard.style.display = 'block';
+        });
+
+        // Logout Action
+        logoutBtn.addEventListener('click', function() {
+            dashboardCard.style.display = 'none';
+            loginCard.style.display = 'block';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('quiz-result').innerText = '';
+        });
+
+        // Quiz Logic
+        function checkAnswer(isCorrect) {
+            const resultText = document.getElementById('quiz-result');
+            if (isCorrect) {
+                resultText.style.color = '#4ade80';
+                resultText.innerText = 'Correct! 🎉 Great job.';
+            } else {
+                resultText.style.color = '#f87171';
+                resultText.innerText = 'Incorrect. Try again! ❌';
+            }
+        }
+    </script>
 
 </body>
 </html>
