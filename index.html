@@ -226,7 +226,7 @@
             border-radius: 8px;
             margin-bottom: 15px;
         }
-        .class-container, .chapters-list {
+        .class-container {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
@@ -282,22 +282,28 @@
         <div class="dashboard-header">
             <h2 id="dash-title">Topper Study Hub - NCERT Portal</h2>
             <div class="header-controls">
+                <!-- Class Selection Dropdown (6 to 12) -->
                 <select id="class-select" onchange="changeClass(this.value)">
-                    <option value="11">Class 11</option>
+                    <option value="6">Class 6</option>
+                    <option value="7">Class 7</option>
+                    <option value="8">Class 8</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                    <option value="11" selected>Class 11</option>
                     <option value="12">Class 12</option>
                 </select>
+
+                <!-- Subject Selection Dropdown -->
                 <select id="subject-select" onchange="changeSubject(this.value)">
-                    <option value="science">Science (विज्ञान)</option>
-                    <option value="math">Mathematics (गणित)</option>
-                    <option value="history">History (इतिहास)</option>
-                    <option value="geography">Geography (भूगोल)</option>
-                    <option value="physics">Physics (भौतिकी)</option>
-                    <option value="chemistry">Chemistry (रसायन)</option>
+                    <!-- Dynamically populated from data.js -->
                 </select>
+
+                <!-- Language Selection Dropdown -->
                 <select id="language-select" onchange="changeLanguage(this.value)">
-                    <option value="hi">Hindi (हिंदी)</option>
+                    <option value="hi" selected>Hindi (हिंदी)</option>
                     <option value="en">English</option>
                 </select>
+
                 <button class="logout-btn" onclick="logout()">Logout</button>
             </div>
         </div>
@@ -341,9 +347,14 @@
         let activeClass = '11';
         let activeLanguage = 'hi';
 
+        window.addEventListener('DOMContentLoaded', () => {
+            updateDropdowns();
+        });
+
         function loginSuccess() {
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('dashboard-screen').style.display = 'block';
+            updateDropdowns();
         }
 
         function logout() {
@@ -393,7 +404,7 @@
 
             if (folderType === 'objective') {
                 let titleEl = document.getElementById("chapter-view-title");
-                if(titleEl) titleEl.innerText = "Class 11 Biology - Chapter 1: Objective Questions (1-100 MCQs)";
+                if(titleEl) titleEl.innerText = `Class ${activeClass} - Chapter 1: Objective Questions (1-100 MCQs)`;
 
                 if (typeof chapter1Quiz !== 'undefined' && Array.isArray(chapter1Quiz)) {
                     chapter1Quiz.forEach((item) => {
@@ -473,7 +484,7 @@
                     let data = ncertData[activeSubject]['Chapter 1'][folderType];
                     if (data) {
                         let titleEl = document.getElementById("chapter-view-title");
-                        if(titleEl) titleEl.innerText = `Chapter 1 - ${folderType.toUpperCase()}`;
+                        if(titleEl) titleEl.innerText = `Class ${activeClass} - Chapter 1 - ${folderType.toUpperCase()}`;
                         
                         let contentBox = document.createElement('div');
                         contentBox.className = 'chapter-item';
