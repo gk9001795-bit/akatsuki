@@ -90,7 +90,7 @@
             opacity: 0.9;
         }
 
-        /* Full Screen Dashboard */
+        /* Dashboard */
         .dashboard {
             display: none;
             width: 100%;
@@ -137,7 +137,6 @@
             width: auto;
         }
 
-        /* Stylish Class Selector Cards */
         .section-title {
             font-size: 16px;
             color: #94a3b8;
@@ -178,7 +177,6 @@
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
         }
 
-        /* Subject Filter */
         .subject-filter {
             margin-bottom: 25px;
             display: flex;
@@ -199,7 +197,6 @@
             min-width: 260px;
         }
 
-        /* Folder System (Main Categories) */
         .folder-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -244,7 +241,6 @@
             color: #94a3b8;
         }
 
-        /* Chapter & Content View */
         .chapter-view {
             display: none;
             background: rgba(30, 41, 59, 0.5);
@@ -303,7 +299,6 @@
 </head>
 <body>
 
-    <!-- Login Screen -->
     <div class="login-wrapper" id="login-screen">
         <div class="card">
             <h2 id="login-title-text">Topper Study - Login</h2>
@@ -321,7 +316,6 @@
         </div>
     </div>
 
-    <!-- Full Screen Dashboard -->
     <div class="dashboard" id="dashboard-screen">
         <div class="dashboard-header">
             <h2 id="dash-title">📚 Topper Study - NCERT Portal</h2>
@@ -334,7 +328,6 @@
             </div>
         </div>
 
-        <!-- Stylish Class Selector -->
         <div class="section-title" id="title-select-class">SELECT CLASS (KAKSHA)</div>
         <div class="class-container">
             <div class="class-pill" onclick="selectClass(6)">Class 6</div>
@@ -346,24 +339,11 @@
             <div class="class-pill" onclick="selectClass(12)">Class 12</div>
         </div>
 
-        <!-- Subject Filter with Separated Science and SST Parts -->
         <div class="subject-filter">
             <label id="lbl-subject" style="color: #94a3b8; font-weight: 600;">Subject:</label>
-            <select id="subject-select" onchange="onSubjectChange()">
-                <optgroup label="Class 10 / General">
-                    <option value="physics">Physics (भौतिक विज्ञान)</option>
-                    <option value="chemistry">Chemistry (रसायन विज्ञान)</option>
-                    <option value="bio">Biology (जीव विज्ञान)</option>
-                    <option value="math">Mathematics (गणित)</option>
-                    <option value="history">History (इतिहास - SST)</option>
-                    <option value="civics">Civics / Political Science (नागरिक शास्त्र)</option>
-                    <option value="geography">Geography (भूगोल - SST)</option>
-                    <option value="economics">Economics (अर्थशास्त्र - SST)</option>
-                </optgroup>
-            </select>
+            <select id="subject-select" onchange="onSubjectChange()"></select>
         </div>
 
-        <!-- Folder View -->
         <div id="main-folders-view">
             <div class="section-title" id="title-explore">EXPLORE CATEGORIES (FOLDERS)</div>
             <div class="folder-grid">
@@ -393,7 +373,6 @@
             </div>
         </div>
 
-        <!-- Chapter View -->
         <div class="chapter-view" id="chapter-view-section">
             <button class="back-btn" onclick="goBackToFolders()" id="back-btn-text">← Back to Folders</button>
             <h3 class="chapter-title" id="active-folder-title">Folder Name</h3>
@@ -401,7 +380,6 @@
         </div>
     </div>
 
-    <!-- External Data File Linking -->
     <script src="data.js"></script>
     <script>
         const loginScreen = document.getElementById('login-screen');
@@ -414,6 +392,7 @@
             if (localStorage.getItem('isLoggedIn') === 'true') {
                 loginScreen.style.display = 'none';
                 dashboardScreen.style.display = 'block';
+                updateSubjectDropdown();
             }
         });
 
@@ -422,6 +401,7 @@
             localStorage.setItem('isLoggedIn', 'true');
             loginScreen.style.display = 'none';
             dashboardScreen.style.display = 'block';
+            updateSubjectDropdown();
         });
 
         function logout() {
@@ -436,9 +416,37 @@
             currentClass = cls;
             document.querySelectorAll('.class-pill').forEach(pill => pill.classList.remove('active'));
             event.target.classList.add('active');
+            updateSubjectDropdown();
             if(activeFolderType) {
                 openFolder(activeFolderType);
             }
+        }
+
+        function updateSubjectDropdown() {
+            const subjectSelect = document.getElementById('subject-select');
+            subjectSelect.innerHTML = '';
+            const classObj = ncertData[currentClass] || {};
+            const subjects = Object.keys(classObj);
+
+            const subjectNames = {
+                science: "Science (विज्ञान)",
+                physics: "Physics (भौतिक विज्ञान)",
+                chemistry: "Chemistry (रसायन विज्ञान)",
+                bio: "Biology (जीव विज्ञान)",
+                math: "Mathematics (गणित)",
+                sst: "Social Science (सामाजिक विज्ञान)",
+                history: "History (इतिहास)",
+                civics: "Civics / Political Science (नागरिक शास्त्र)",
+                geography: "Geography (भूगोल)",
+                economics: "Economics (अर्थशास्त्र)"
+            };
+
+            subjects.forEach(sub => {
+                let opt = document.createElement('option');
+                opt.value = sub;
+                opt.innerText = subjectNames[sub] || sub.toUpperCase();
+                subjectSelect.appendChild(opt);
+            });
         }
 
         function onSubjectChange() {
@@ -466,10 +474,7 @@
             titleEl.innerText = folderName;
 
             let classObj = ncertData[currentClass] || {};
-            let chapters = classObj[subject] || [
-                "Chapter 1: General Topics (सामान्य अध्याय)", 
-                "Chapter 2: Core Concepts (मुख्य अवधारणाएँ)"
-            ];
+            let chapters = classObj[subject] || ["Chapter 1: General Topics"];
 
             chapters.forEach((chapTitle) => {
                 let itemDiv = document.createElement('div');
@@ -578,6 +583,5 @@
             }
         }
     </script>
-
 </body>
 </html>
