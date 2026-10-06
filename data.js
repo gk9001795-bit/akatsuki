@@ -43,7 +43,7 @@ const ncertData = {
         ],
         geography: [
             "Chapter 1: The Earth in the Solar System (सौरमंडल में पृथ्वी)",
-            "Chapter 2: Globe: Latitudes and Longitudes (ग्लोบ: अक्षांश एवं देशान्तर)",
+            "Chapter 2: Globe: Latitudes and Longitudes (ग्लोब: अक्षांश एवं देशान्तर)",
             "Chapter 3: Motions of the Earth (पृथ्वी की गतियाँ)",
             "Chapter 4: Maps (मानचित्र)",
             "Chapter 5: Major Domains of the Earth (पृथ्वी के प्रमुख परिमंडल)"
@@ -63,7 +63,7 @@ const ncertData = {
             "Chapter 4: Heat (ऊष्मा)",
             "Chapter 5: Acids, Bases and Salts (अम्ल, क्षारक और लवण)",
             "Chapter 6: Physical and Chemical Changes (भौतिक एवं रासायनिक परिवर्तन)",
-            "Chapter 7: Weather, Climate and Adaptations of Animals to Climate",
+            "Chapter 7: Weather, Climate and Adaptations of Animals",
             "Chapter 8: Winds, Storms and Cyclones (पवन, तूफ़ान और चक्रवात)",
             "Chapter 9: Soil (मृदा)",
             "Chapter 10: Respiration in Organisms (जीवों में श्वसन)",
@@ -92,6 +92,24 @@ const ncertData = {
             "Chapter 13: Exponents and Powers (घातांक और घात)",
             "Chapter 14: Symmetry (सममिति)",
             "Chapter 15: Visualising Solid Shapes (ठोस आकारों का चित्रण)"
+        ],
+        history: [
+            "Chapter 1: Tracing Changes Through a Thousand Years",
+            "Chapter 2: New Kings and Kingdoms (नए राजा और उनके राज्य)",
+            "Chapter 3: The Delhi Sultans (दिल्ली के सुल्तान)",
+            "Chapter 4: The Mughal Empire (मुगल साम्राज्य)"
+        ],
+        geography: [
+            "Chapter 1: Environment (पर्यावरण)",
+            "Chapter 2: Inside Our Earth (हमारी पृथ्वी के अंदर)",
+            "Chapter 3: Our Changing Earth (हमारी बदलती पृथ्वी)",
+            "Chapter 4: Air (वायु)",
+            "Chapter 5: Water (जल)"
+        ],
+        civics: [
+            "Chapter 1: On Equality (समानता)",
+            "Chapter 2: Role of the Government in Health (स्वास्थ्य में सरकार की भूमिका)",
+            "Chapter 3: How the State Government Works (राज्य शासन कैसे काम करता है)"
         ]
     },
     8: {
@@ -102,8 +120,8 @@ const ncertData = {
             "Chapter 4: Materials: Metals and Non-Metals (पदार्थ: धातु और अधातु)",
             "Chapter 5: Coal and Petroleum (कोयला और पेट्रोलियम)",
             "Chapter 6: Combustion and Flame (दहन और ज्वाला)",
-            "Chapter 7: Conservation of Plants and Animals (पौधे and जंतुओं का संरक्षण)",
-            "Chapter 8: Cell - Structure and Functions (कोशिका - संरचना एवं प्रकार್ಯ)",
+            "Chapter 7: Conservation of Plants and Animals (पौधे और जंतुओं का संरक्षण)",
+            "Chapter 8: Cell - Structure and Functions (कोशिका - संरचना एवं प्रकार्य)",
             "Chapter 9: Reproduction in Animals (जंतुओं में जनन)",
             "Chapter 10: Reaching the Age of Adolescence (किशोरावस्था की ओर)",
             "Chapter 11: Force and Pressure (बल तथा दाब)",
@@ -122,14 +140,29 @@ const ncertData = {
             "Chapter 6: Squares and Square Roots (वर्ग और वर्गमूल)",
             "Chapter 7: Cubes and Cube Roots (घन और घनमूल)",
             "Chapter 8: Comparing Quantities (राशियों की तुलना)",
-            "Chapter 9: Algebraic Expressions and Identities (बीजगणितीय व्यंजक एवं सर्वसमिकाएँ)",
+            "Chapter 9: Algebraic Expressions and Identities (बीजगणितीय व्यंजक)",
             "Chapter 10: Visualising Solid Shapes (ठोस आकारों का चित्रण)",
             "Chapter 11: Mensuration (क्षेत्रमिति)",
             "Chapter 12: Exponents and Powers (घातांक और घात)",
-            "Chapter 13: Direct and Inverse Proportions (सीधा और प्रतिलोम समानुपात)",
+            "Chapter 13: Direct and Inverse Proportions (समानुपात)",
             "Chapter 14: Factorisation (गुणनखंडन)",
             "Chapter 15: Introduction to Graphs (आलेखों से परिचय)",
             "Chapter 16: Playing with Numbers (संख्याओं के साथ खेलना)"
+        ],
+        history: [
+            "Chapter 1: How, When and Where (कैसे, कब और कहाँ)",
+            "Chapter 2: From Trade to Territory (व्यापार से साम्राज्य तक)",
+            "Chapter 3: Ruling the Countryside (ग्रामीण क्षेत्र पर शासन चलाना)"
+        ],
+        geography: [
+            "Chapter 1: Resources (संसाधन)",
+            "Chapter 2: Land, Soil, Water, Natural Vegetation and Wildlife",
+            "Chapter 3: Mineral and Power Resources (खनिज और शक्ति संसाधन)"
+        ],
+        civics: [
+            "Chapter 1: The Indian Constitution (भारतीय संविधान)",
+            "Chapter 2: Understanding Secularism (धर्मनिरपेक्षता की समझ)",
+            "Chapter 3: Why Do We Need a Parliament? (हमें संसद क्यों चाहिए?)"
         ]
     },
     9: {
@@ -155,7 +188,7 @@ const ncertData = {
             "Chapter 2: Polynomials (बहुपद)",
             "Chapter 3: Coordinate Geometry (निर्देशांक ज्यामिति)",
             "Chapter 4: Linear Equations in Two Variables (दो चरों वाले रैखिक समीकरण)",
-            "Chapter 5: Introduction to Euclid’s Geometry (यूक्लिड की ज्यामिति का परिचय)",
+            "Chapter 5: Introduction to Euclid’s Geometry (यूक्लिड की ज्यामिति)",
             "Chapter 6: Lines and Angles (रेखाएँ और कोण)",
             "Chapter 7: Triangles (त्रिभुज)",
             "Chapter 8: Quadrilaterals (चतुर्भुज)",
@@ -166,6 +199,26 @@ const ncertData = {
             "Chapter 13: Surface Areas and Volumes (पृष्ठीय क्षेत्रफल और आयतन)",
             "Chapter 14: Statistics (सांख्यिकी)",
             "Chapter 15: Probability (प्रायिकता)"
+        ],
+        history: [
+            "Chapter 1: The French Revolution (फ्रांसीसी क्रांति)",
+            "Chapter 2: Socialism in Europe and the Russian Revolution",
+            "Chapter 3: Nazism and the Rise of Hitler (नात्सीवाद और हिटलर का उदय)"
+        ],
+        geography: [
+            "Chapter 1: India - Size and Location (भारत - आकार और स्थिति)",
+            "Chapter 2: Physical Features of India (भारत का भौतिक स्वरूप)",
+            "Chapter 3: Drainage (अपवाह)"
+        ],
+        civics: [
+            "Chapter 1: What is Democracy? Why Democracy? (लोकतंत्र क्या? क्यों?)",
+            "Chapter 2: Constitutional Design (संविधान निर्माण)",
+            "Chapter 3: Electoral Politics (चुनावी राजनीति)"
+        ],
+        economics: [
+            "Chapter 1: The Story of Village Palampur (पालमपुर गाँव की कहानी)",
+            "Chapter 2: People as Resource (संसाधन के रूप में लोग)",
+            "Chapter 3: Poverty as a Challenge (निर्धनता: एक चुनौती)"
         ]
     },
     10: {
@@ -233,37 +286,141 @@ const ncertData = {
             "Chapter 1: The Living World (जीव जगत)", 
             "Chapter 2: Biological Classification (जीव जगत का वर्गीकरण)",
             "Chapter 3: Plant Kingdom (वनस्पति जगत)", 
-            "Chapter 4: Animal Kingdom (प्राणि जगत)"
+            "Chapter 4: Animal Kingdom (प्राणि जगत)",
+            "Chapter 5: Morphology of Flowering Plants (पुष्पी पादपों की आकारिकी)",
+            "Chapter 6: Anatomy of Flowering Plants (पुष्पी पादपों का शरीर)",
+            "Chapter 7: Structural Organisation in Animals (प्राणियों में संरचनात्मक संगठन)",
+            "Chapter 8: Cell: The Unit of Life (कोशिका: जीवन की इकाई)",
+            "Chapter 9: Biomolecules (जैव अणु)",
+            "Chapter 10: Cell Cycle and Cell Division (कोशिका चक्र और कोशिका विभाजन)",
+            "Chapter 11: Photosynthesis in Higher Plants (उच्च पादपों में प्रकाश संश्लेषण)",
+            "Chapter 12: Respiration in Plants (पादपों में श्वसन)",
+            "Chapter 13: Plant Growth and Development (पादप वृद्धि एवं परिवर्धन)",
+            "Chapter 14: Breathing and Exchange of Gases (श्वसन और गैसों का विनिमय)",
+            "Chapter 15: Body Fluids and Circulation (शरीर द्रव तथा परिसंचरण)",
+            "Chapter 16: Excretory Products and Their Elimination (उत्सर्जी उत्पाद)",
+            "Chapter 17: Locomotion and Movement (गमन एवं संचलन)",
+            "Chapter 18: Neural Control and Coordination (तंत्रिकीय नियंत्रण एवं समन्वय)",
+            "Chapter 19: Chemical Coordination and Integration (रासायनिक समन्वय)"
         ],
         physics: [
-            "Chapter 1: Physical World (भौतिक जगत)", 
-            "Chapter 2: Units and Measurements (मात्रक और मापन)"
+            "Chapter 1: Physical World (भौतिक जगत)",
+            "Chapter 2: Units and Measurements (मात्रक और मापन)",
+            "Chapter 3: Motion in a Straight Line (सरल रेखा में गति)",
+            "Chapter 4: Motion in a Plane (समतल में गति)",
+            "Chapter 5: Laws of Motion (गति के नियम)",
+            "Chapter 6: Work, Energy and Power (कार्य, ऊर्जा और शक्ति)",
+            "Chapter 7: System of Particles and Rotational Motion (घूर्णी गति)",
+            "Chapter 8: Gravitation (गुरुत्वाकर्षण)",
+            "Chapter 9: Mechanical Properties of Solids",
+            "Chapter 10: Mechanical Properties of Fluids",
+            "Chapter 11: Thermal Properties of Matter",
+            "Chapter 12: Thermodynamics (ऊष्मागतिकी)",
+            "Chapter 13: Kinetic Theory (अणुगति सिद्धांत)",
+            "Chapter 14: Oscillations (दोलन)",
+            "Chapter 15: Waves (तरंगें)"
         ],
         chemistry: [
-            "Chapter 1: Some Basic Concepts of Chemistry",
-            "Chapter 2: Structure of Atom (परमाणु की संरचना)"
+            "Chapter 1: Some Basic Concepts of Chemistry (रसायन की मूल अवधारणाएँ)",
+            "Chapter 2: Structure of Atom (परमाणु की संरचना)",
+            "Chapter 3: Classification of Elements and Periodicity",
+            "Chapter 4: Chemical Bonding and Molecular Structure",
+            "Chapter 5: States of Matter (द्रव्य की अवस्थाएँ)",
+            "Chapter 6: Thermodynamics (ऊष्मागतिकी)",
+            "Chapter 7: Equilibrium (साम्यावस्था)",
+            "Chapter 8: Redox Reactions (अपचयोपचय अभिक्रियाएँ)",
+            "Chapter 9: Hydrogen (हाइड्रोजन)",
+            "Chapter 10: s-Block Elements (s-ब्लॉक तत्व)",
+            "Chapter 11: p-Block Elements (p-ब्लॉक तत्व)",
+            "Chapter 12: Organic Chemistry: Some Basic Principles",
+            "Chapter 13: Hydrocarbons (हाइड्रकार्बन)"
         ],
         math: [
             "Chapter 1: Sets (समुच्चय)",
-            "Chapter 2: Relations and Functions (संबंध एवं फलन)"
+            "Chapter 2: Relations and Functions (संबंध एवं फलन)",
+            "Chapter 3: Trigonometric Functions (त्रिकोणमितीय फलन)",
+            "Chapter 4: Principle of Mathematical Induction",
+            "Chapter 5: Complex Numbers and Quadratic Equations",
+            "Chapter 6: Linear Inequalities (रैखिक असमिकाएँ)",
+            "Chapter 7: Permutations and Combinations (क्रमचय और संचय)",
+            "Chapter 8: Binomial Theorem (द्विपद प्रमेय)",
+            "Chapter 9: Sequences and Series (अनुक्रम तथा श्रेणी)",
+            "Chapter 10: Straight Lines (सरल रेखाएँ)",
+            "Chapter 11: Conic Sections (शंकु परिच्छेद)",
+            "Chapter 12: Introduction to Three Dimensional Geometry",
+            "Chapter 13: Limits and Derivatives (सीमा और अवकलज)",
+            "Chapter 14: Mathematical Reasoning (गणितीय विवेचन)",
+            "Chapter 15: Statistics (सांख्यिकी)",
+            "Chapter 16: Probability (प्रायिकता)"
         ]
     },
     12: {
         bio: [
             "Chapter 1: Reproduction in Organisms (जीवों में जनन)",
-            "Chapter 2: Sexual Reproduction in Flowering Plants"
+            "Chapter 2: Sexual Reproduction in Flowering Plants",
+            "Chapter 3: Human Reproduction (मानव जनन)",
+            "Chapter 4: Reproductive Health (जनन स्वास्थ्य)",
+            "Chapter 5: Principles of Inheritance and Variation",
+            "Chapter 6: Molecular Basis of Inheritance (वंशगति का आणविक आधार)",
+            "Chapter 7: Evolution (विकास)",
+            "Chapter 8: Human Health and Disease (मानव स्वास्थ्य तथा रोग)",
+            "Chapter 9: Strategies for Enhancement in Food Production",
+            "Chapter 10: Microbes in Human Welfare (मानव कल्याण में सूक्ष्मजीव)",
+            "Chapter 11: Biotechnology: Principles and Processes",
+            "Chapter 12: Biotechnology and its Applications",
+            "Chapter 13: Organisms and Populations (जीव और समष्टियाँ)",
+            "Chapter 14: Ecosystem (पारितंत्र)",
+            "Chapter 15: Biodiversity and Conservation (जीव विविधता एवं संरक्षण)",
+            "Chapter 16: Environmental Issues (पर्यावरण के मुद्दे)"
         ],
         physics: [
             "Chapter 1: Electric Charges and Fields (वैद्युत आवेश तथा क्षेत्र)",
-            "Chapter 2: Electrostatic Potential and Capacitance"
+            "Chapter 2: Electrostatic Potential and Capacitance",
+            "Chapter 3: Current Electricity (विद्युत धारा)",
+            "Chapter 4: Moving Charges and Magnetism (गतिमान आवेश और चुंबकत्व)",
+            "Chapter 5: Magnetism and Matter (चुंबकत्व एवं द्रव्य)",
+            "Chapter 6: Electromagnetic Induction (वैद्युत चुम्बकीय प्रेरण)",
+            "Chapter 7: Alternating Current (प्रत्यवर्ती धारा)",
+            "Chapter 8: Electromagnetic Waves (वैद्युत चुम्बकीय तरंगें)",
+            "Chapter 9: Ray Optics and Optical Instruments (किरण प्रकाशिकी)",
+            "Chapter 10: Wave Optics (तरंग प्रकाशिकी)",
+            "Chapter 11: Dual Nature of Radiation and Matter",
+            "Chapter 12: Atoms (परमाणु)",
+            "Chapter 13: Nuclei (नाभिक)",
+            "Chapter 14: Semiconductor Electronics (अर्धचालक इलेक्ट्रॉनिकी)"
         ],
         chemistry: [
             "Chapter 1: Solid State (ठोस अवस्था)",
-            "Chapter 2: Solutions (विलयन)"
+            "Chapter 2: Solutions (विलयन)",
+            "Chapter 3: Electrochemistry (वैद्युत रसायन)",
+            "Chapter 4: Chemical Kinetics (रासायनिक बलगतिकी)",
+            "Chapter 5: Surface Chemistry (पृष्ठ रसायन)",
+            "Chapter 6: General Principles of Isolation of Elements",
+            "Chapter 7: p-Block Elements (p-ब्लॉक के तत्व)",
+            "Chapter 8: d- and f-Block Elements (d- एवं f-ब्लॉक के तत्व)",
+            "Chapter 9: Coordination Compounds (उपसहसंयोजन यौगिक)",
+            "Chapter 10: Haloalkanes and Haloarenes (हैलोऐल्केन)",
+            "Chapter 11: Alcohols, Phenols and Ethers (ऐल्कोहॉल, फ़ीノール)",
+            "Chapter 12: Aldehydes, Ketones and Carboxylic Acids",
+            "Chapter 13: Amines (ऐमीन)",
+            "Chapter 14: Biomolecules (जैव-अणु)",
+            "Chapter 15: Polymers (बहुलक)",
+            "Chapter 16: Chemistry in Everyday Life (दैनिक जीवन में रसायन)"
         ],
         math: [
             "Chapter 1: Relations and Functions (संबंध एवं फलन)",
-            "Chapter 2: Inverse Trigonometric Functions"
+            "Chapter 2: Inverse Trigonometric Functions",
+            "Chapter 3: Matrices (आव्यूह)",
+            "Chapter 4: Determinants (सारणिक)",
+            "Chapter 5: Continuity and Differentiability (सांतत्य तथा अवकलनीयता)",
+            "Chapter 6: Application of Derivatives (अवकलज के अनुप्रयोग)",
+            "Chapter 7: Integrals (समाकलन)",
+            "Chapter 8: Application of Integrals (समाकलनों के अनुप्रयोग)",
+            "Chapter 9: Differential Equations (अवकल समीकरण)",
+            "Chapter 10: Vector Algebra (सदिश बीजगणित)",
+            "Chapter 11: Three Dimensional Geometry (त्रिविमीय ज्यामिति)",
+            "Chapter 12: Linear Programming (रैखिक प्रोग्रामन)",
+            "Chapter 13: Probability (प्रायिकता)"
         ]
     }
 };
