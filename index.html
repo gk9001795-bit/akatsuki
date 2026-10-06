@@ -226,26 +226,6 @@
             border-radius: 8px;
             margin-bottom: 15px;
         }
-        .class-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .class-pill {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid #475569;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            color: #cbd5e1;
-        }
-        .class-pill.class-pill-active {
-            background: linear-gradient(135deg, #6366f1, #3b82f6);
-            border-color: transparent;
-            color: #fff;
-        }
     </style>
 </head>
 <body>
@@ -254,26 +234,26 @@
     <div id="login-screen" class="login-wrapper">
         <div class="card">
             <h2>Topper Study Hub</h2>
-            <div class="subtitle">Secure Bihar & Bihar Board Portal</div>
+            <div class="subtitle" id="login-sub">Secure Bihar & Bihar Board Portal</div>
             
             <button type="button" class="google-btn" onclick="loginSuccess()">
                 <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google">
-                Sign in with Google
+                <span id="google-btn-text">Sign in with Google</span>
             </button>
             
-            <div class="divider">or login with email</div>
+            <div class="divider" id="divider-text">or login with email</div>
             
             <div class="input-group">
-                <label for="email">Email Address</label>
+                <label for="email" id="email-label">Email Address</label>
                 <input type="email" id="email" placeholder="student@gmail.com">
             </div>
             
             <div class="input-group">
-                <label for="password">Password</label>
+                <label for="password" id="pass-label">Password</label>
                 <input type="password" id="password" placeholder="••••••••">
             </div>
             
-            <button type="button" class="btn" onclick="loginSuccess()">Access Portal</button>
+            <button type="button" class="btn" id="access-btn" onclick="loginSuccess()">Access Portal</button>
         </div>
     </div>
 
@@ -282,7 +262,7 @@
         <div class="dashboard-header">
             <h2 id="dash-title">Topper Study Hub - NCERT Portal</h2>
             <div class="header-controls">
-                <!-- Class Selection Dropdown (6 to 12) -->
+                <!-- Class Selection -->
                 <select id="class-select" onchange="changeClass(this.value)">
                     <option value="6">Class 6</option>
                     <option value="7">Class 7</option>
@@ -293,18 +273,18 @@
                     <option value="12">Class 12</option>
                 </select>
 
-                <!-- Subject Selection Dropdown -->
+                <!-- Subject Selection -->
                 <select id="subject-select" onchange="changeSubject(this.value)">
-                    <!-- Dynamically populated from data.js -->
+                    <!-- Dynamically populated -->
                 </select>
 
-                <!-- Language Selection Dropdown -->
+                <!-- Language Selection -->
                 <select id="language-select" onchange="changeLanguage(this.value)">
                     <option value="hi" selected>Hindi (हिंदी)</option>
                     <option value="en">English</option>
                 </select>
 
-                <button class="logout-btn" onclick="logout()">Logout</button>
+                <button class="logout-btn" id="logout-btn-text" onclick="logout()">Logout</button>
             </div>
         </div>
 
@@ -332,7 +312,7 @@
 
         <!-- Chapter View Section -->
         <div id="chapter-view-section" class="chapter-view">
-            <button class="back-btn" onclick="goBackToFolders()">← Back to Folders</button>
+            <button class="back-btn" id="back-btn-text" onclick="goBackToFolders()">← Back to Folders</button>
             <h3 id="chapter-view-title" class="chapter-title">Content View</h3>
             <div id="chapters-container"></div>
         </div>
@@ -349,12 +329,14 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             updateDropdowns();
+            updateUIText();
         });
 
         function loginSuccess() {
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('dashboard-screen').style.display = 'block';
             updateDropdowns();
+            updateUIText();
         }
 
         function logout() {
@@ -364,6 +346,7 @@
 
         function changeClass(cls) {
             activeClass = cls;
+            updateDropdowns();
         }
 
         function changeSubject(sub) {
@@ -373,131 +356,45 @@
         function changeLanguage(lang) {
             activeLanguage = lang;
             updateDropdowns();
+            updateUIText();
         }
 
         function updateDropdowns() {
             const subSelect = document.getElementById('subject-select');
-            if (typeof subjects !== 'undefined' && subjects[activeLanguage]) {
-                subSelect.innerHTML = '';
-                for (let key in subjects[activeLanguage]) {
+            subSelect.innerHTML = '';
+            
+            // Check if subjects object exists from data.js
+            if (typeof subjects !== 'undefined') {
+                let subObj = subjects[activeLanguage] || subjects['en'];
+                for (let key in subObj) {
                     let opt = document.createElement('option');
                     opt.value = key;
-                    opt.innerText = subjects[activeLanguage][key];
+                    opt.innerText = subObj[key];
+                    if(key === activeSubject) opt.selected = true;
+                    subSelect.appendChild(opt);
+                }
+            } else {
+                // Fallback subjects if data.js doesn't load them directly in this format
+                let fallback = activeLanguage === 'hi' ? 
+                    {science: "विज्ञान (Science)", math: "गणित (Mathematics)", history: "इतिहास (History)", geography: "भूगोल (Geography)"} :
+                    {science: "Science", math: "Mathematics", history: "History", geography: "Geography"};
+                for (let key in fallback) {
+                    let opt = document.createElement('option');
+                    opt.value = key;
+                    opt.innerText = fallback[key];
                     if(key === activeSubject) opt.selected = true;
                     subSelect.appendChild(opt);
                 }
             }
         }
 
-        function goBackToFolders() {
-            document.getElementById('chapter-view-section').style.display = 'none';
-            document.getElementById('main-folders-view').style.display = 'block';
-        }
-
-        function openfolder(folderType) {
-            activeFolderType = folderType;
-            document.getElementById("main-folders-view").style.display = "none";
-            document.getElementById("chapter-view-section").style.display = "block";
-            
-            let container = document.getElementById("chapters-container");
-            container.innerHTML = "";
-
-            if (folderType === 'objective') {
-                let titleEl = document.getElementById("chapter-view-title");
-                if(titleEl) titleEl.innerText = `Class ${activeClass} - Chapter 1: Objective Questions (1-100 MCQs)`;
-
-                if (typeof chapter1Quiz !== 'undefined' && Array.isArray(chapter1Quiz)) {
-                    chapter1Quiz.forEach((item) => {
-                        let card = document.createElement('div');
-                        card.className = 'chapter-item';
-                        card.style.marginBottom = "20px";
-                        card.style.padding = "20px";
-                        card.style.background = "rgba(15, 23, 42, 0.9)";
-                        card.style.borderRadius = "10px";
-                        card.style.border = "1px solid #334155";
-
-                        let qTitle = document.createElement('div');
-                        qTitle.innerText = item.q;
-                        qTitle.style.fontWeight = "600";
-                        qTitle.style.fontSize = "15px";
-                        qTitle.style.marginBottom = "15px";
-                        qTitle.style.color = "#f8fafc";
-                        card.appendChild(qTitle);
-
-                        let optionsGrid = document.createElement('div');
-                        optionsGrid.style.display = "grid";
-                        optionsGrid.style.gridTemplateColumns = "1fr 1fr";
-                        optionsGrid.style.gap = "10px";
-
-                        item.options.forEach((opt, optIdx) => {
-                            let btn = document.createElement('button');
-                            btn.innerText = opt;
-                            btn.style.padding = "10px 14px";
-                            btn.style.background = "#1e293b";
-                            btn.style.border = "1px solid #475569";
-                            btn.style.color = "#cbd5e1";
-                            btn.style.borderRadius = "6px";
-                            btn.style.cursor = "pointer";
-                            btn.style.textAlign = "left";
-                            btn.style.fontSize = "14px";
-
-                            btn.onclick = function() {
-                                let allBtns = optionsGrid.querySelectorAll('button');
-                                allBtns.forEach(b => b.disabled = true);
-
-                                if (optIdx === item.correct) {
-                                    btn.style.background = "#166534";
-                                    btn.style.borderColor = "#22c55e";
-                                    btn.style.color = "#fff";
-                                    feedback.innerText = "✅ Sahi Jawab! (Correct)";
-                                    feedback.style.color = "#22c55e";
-                                } else {
-                                    btn.style.background = "#991b1b";
-                                    btn.style.borderColor = "#ef4444";
-                                    btn.style.color = "#fff";
-                                    feedback.innerText = "❌ Galat Jawab! Sahi option yeh hai: " + item.options[item.correct];
-                                    feedback.style.color = "#ef4444";
-                                    
-                                    allBtns[item.correct].style.background = "#166534";
-                                    allBtns[item.correct].style.borderColor = "#22c55e";
-                                    allBtns[item.correct].style.color = "#fff";
-                                }
-                            };
-                            optionsGrid.appendChild(btn);
-                        });
-
-                        card.appendChild(optionsGrid);
-
-                        let feedback = document.createElement('div');
-                        feedback.style.marginTop = "10px";
-                        feedback.style.fontSize = "13px";
-                        feedback.style.fontWeight = "bold";
-                        card.appendChild(feedback);
-
-                        container.appendChild(card);
-                    });
-                } else {
-                    container.innerHTML = "<p style='color: #ef4444;'>Quiz data load nahi ho paya hai.</p>";
-                }
-            } else {
-                if (typeof ncertData !== 'undefined' && ncertData[activeSubject] && ncertData[activeSubject]['Chapter 1']) {
-                    let data = ncertData[activeSubject]['Chapter 1'][folderType];
-                    if (data) {
-                        let titleEl = document.getElementById("chapter-view-title");
-                        if(titleEl) titleEl.innerText = `Class ${activeClass} - Chapter 1 - ${folderType.toUpperCase()}`;
-                        
-                        let contentBox = document.createElement('div');
-                        contentBox.className = 'chapter-item';
-                        contentBox.innerHTML = `<strong>${folderType.toUpperCase()} Content:</strong><p style="margin-top:10px;">${data}</p>`;
-                        container.appendChild(contentBox);
-                    } else {
-                        container.innerHTML = "<p>Content not available yet.</p>";
-                    }
-                } else {
-                    container.innerHTML = "<p>Data not found in data.js.</p>";
-                }
-            }
-        }
-    </script>
-</body>
-</html>
+        function updateUIText() {
+            if (activeLanguage === 'hi') {
+                document.getElementById('dash-title').innerText = "टू्पर स्टडी हब - NCERT पोर्टल";
+                document.getElementById('explore-title').innerText = "श्रेणियाँ (फोल्डर) देखें";
+                document.getElementById('card-notes-title').innerText = "संशोधन नोट्स (Revision Notes)";
+                document.getElementById('card-notes-desc').innerText = "अध्याय-वार सारांश और सूत्र";
+                document.getElementById('card-obj-title').innerText = "वस्तुनिष्ठ प्रश्न (Objective MCQs)";
+                document.getElementById('card-obj-desc').innerText = "इंटरैक्टिव क्विज़ और बहुविकल्पीय प्रश्न";
+                document.getElementById('card-sub-title').innerText = "विषयपरक समाधान (Subjective)";
+                document.getElementById('card-sub-desc').innerText = "विस्तृत
