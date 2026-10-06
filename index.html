@@ -3,24 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Topper Study Hub</title>
+<title>Topper Study Hub - Bihar Portal</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Segoe UI,Tahoma,sans-serif;
+    font-family:"Segoe UI",Tahoma,sans-serif;
 }
 
 body{
-    background:linear-gradient(135deg,#090d16,#111827);
-    color:white;
+    background:linear-gradient(135deg,#070b14,#111827);
+    color:#fff;
     min-height:100vh;
 }
 
-/* LOGIN */
+/* ================= LOGIN ================= */
 
 #login-screen{
     min-height:100vh;
@@ -32,11 +31,11 @@ body{
 
 .login-card{
     width:100%;
-    max-width:430px;
-    padding:35px;
+    max-width:440px;
     background:rgba(30,41,59,.95);
     border:1px solid rgba(56,189,248,.2);
-    border-radius:22px;
+    border-radius:24px;
+    padding:40px;
     box-shadow:0 20px 50px rgba(0,0,0,.6);
 }
 
@@ -46,45 +45,56 @@ body{
     margin-bottom:8px;
 }
 
-.subtitle{
+.login-sub{
     text-align:center;
     color:#94a3b8;
-    margin-bottom:25px;
+    font-size:14px;
+    margin-bottom:28px;
 }
 
 .form-group{
-    margin-bottom:16px;
+    margin-bottom:18px;
 }
 
 .form-group label{
     display:block;
-    margin-bottom:6px;
+    margin-bottom:7px;
     color:#cbd5e1;
+    font-size:14px;
 }
 
 .form-group input{
     width:100%;
-    padding:13px;
+    padding:13px 15px;
     border-radius:10px;
     border:1px solid #334155;
     background:#0f172a;
-    color:white;
+    color:#fff;
     outline:none;
+    font-size:15px;
 }
 
-.submit-btn{
+.form-group input:focus{
+    border-color:#38bdf8;
+}
+
+.login-btn{
     width:100%;
     padding:14px;
-    border:0;
-    border-radius:10px;
-    background:linear-gradient(135deg,#3b82f6,#6366f1);
+    border:none;
+    border-radius:11px;
     color:white;
-    font-weight:bold;
+    background:linear-gradient(135deg,#3b82f6,#6366f1);
     font-size:16px;
+    font-weight:700;
     cursor:pointer;
 }
 
-/* DASHBOARD */
+.login-btn:hover{
+    opacity:.9;
+}
+
+/* ================= DASHBOARD ================= */
 
 #dashboard-screen{
     display:none;
@@ -93,107 +103,140 @@ body{
     padding:25px;
 }
 
-.header{
+.dashboard-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:15px;
     flex-wrap:wrap;
-    border-bottom:1px solid #334155;
     padding-bottom:20px;
     margin-bottom:25px;
+    border-bottom:1px solid rgba(255,255,255,.1);
 }
 
-.header h2{
+.dashboard-header h2{
     color:#38bdf8;
+    font-size:24px;
 }
 
 .controls{
     display:flex;
+    align-items:center;
     gap:10px;
     flex-wrap:wrap;
 }
 
-select{
+.controls select{
     background:#1e293b;
-    color:white;
+    color:#fff;
     border:1px solid #475569;
-    border-radius:8px;
     padding:10px 13px;
-    cursor:pointer;
-}
-
-.logout{
-    background:#ef4444;
-    color:white;
-    border:0;
     border-radius:8px;
-    padding:10px 15px;
+    outline:none;
     cursor:pointer;
-    font-weight:bold;
 }
 
-/* FOLDERS */
+.logout-btn{
+    border:none;
+    background:#ef4444;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+/* ================= MAIN FOLDERS ================= */
+
+#main-view{
+    display:block;
+}
 
 .section-title{
     font-size:20px;
-    margin-bottom:18px;
-    color:#f8fafc;
+    font-weight:700;
+    margin-bottom:20px;
 }
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
     gap:20px;
 }
 
-.card{
+.folder-card{
     background:rgba(30,41,59,.8);
-    border:1px solid #334155;
-    border-radius:16px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:17px;
     padding:25px;
     cursor:pointer;
     transition:.3s;
 }
 
-.card:hover{
+.folder-card:hover{
     transform:translateY(-5px);
     border-color:#38bdf8;
+    box-shadow:0 10px 30px rgba(56,189,248,.12);
 }
 
-.icon{
-    font-size:35px;
+.folder-icon{
+    width:58px;
+    height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(56,189,248,.1);
+    border-radius:13px;
+    font-size:32px;
     margin-bottom:15px;
 }
 
-.card h3{
+.folder-card h3{
     margin-bottom:8px;
 }
 
-.card p{
+.folder-card p{
     color:#94a3b8;
     font-size:14px;
 }
 
-/* CHAPTER VIEW */
+/* ================= CHAPTER VIEW ================= */
 
 #chapter-view{
     display:none;
 }
 
-.back-btn{
-    background:#334155;
-    color:white;
-    border:0;
-    padding:10px 17px;
-    border-radius:8px;
-    cursor:pointer;
+.top-nav{
     margin-bottom:20px;
 }
 
-.chapter-title{
+.back-btn{
+    background:#334155;
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.back-btn:hover{
+    background:#475569;
+}
+
+.view-title{
     color:#38bdf8;
+    font-size:23px;
     margin-bottom:20px;
+}
+
+.subject-info{
+    background:rgba(30,41,59,.6);
+    border:1px solid #334155;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:20px;
+    color:#cbd5e1;
 }
 
 .chapter-list{
@@ -201,27 +244,43 @@ select{
     gap:12px;
 }
 
-.chapter-item{
+.chapter-card{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
     background:#1e293b;
     border:1px solid #334155;
     border-radius:12px;
-    padding:16px;
+    padding:17px;
     cursor:pointer;
     transition:.25s;
 }
 
-.chapter-item:hover{
+.chapter-card:hover{
     border-color:#38bdf8;
     background:#243449;
+    transform:translateX(3px);
 }
 
 .chapter-number{
+    min-width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(56,189,248,.12);
     color:#38bdf8;
-    font-weight:bold;
-    margin-right:8px;
+    border-radius:9px;
+    font-weight:700;
 }
 
-/* CONTENT */
+.chapter-name{
+    line-height:1.5;
+    color:#f8fafc;
+    padding-top:7px;
+}
+
+/* ================= CONTENT ================= */
 
 #content-view{
     display:none;
@@ -230,49 +289,79 @@ select{
 .content-box{
     background:#0f172a;
     border:1px solid #334155;
-    border-radius:12px;
+    border-radius:13px;
     padding:20px;
     margin-bottom:15px;
 }
 
-.question{
-    font-weight:bold;
+.content-box h3{
+    color:#38bdf8;
+    margin-bottom:12px;
+}
+
+.content-text{
+    color:#cbd5e1;
+    line-height:1.7;
+}
+
+/* ================= MCQ ================= */
+
+.mcq-card{
+    background:#0f172a;
+    border:1px solid #334155;
+    border-radius:13px;
+    padding:20px;
+    margin-bottom:16px;
+}
+
+.mcq-question{
+    font-weight:700;
+    line-height:1.6;
     margin-bottom:15px;
 }
 
-.option{
-    display:block;
+.mcq-option{
     width:100%;
     text-align:left;
-    padding:12px;
-    margin:8px 0;
-    border-radius:8px;
+    padding:12px 14px;
+    margin-top:9px;
     border:1px solid #475569;
+    border-radius:9px;
     background:#1e293b;
-    color:white;
+    color:#e2e8f0;
     cursor:pointer;
+    transition:.2s;
 }
 
-.option.correct{
-    background:#166534;
-    border-color:#22c55e;
+.mcq-option:hover{
+    border-color:#38bdf8;
 }
 
-.option.wrong{
-    background:#991b1b;
-    border-color:#ef4444;
+.mcq-option.correct{
+    background:#166534 !important;
+    border-color:#22c55e !important;
+    color:white;
 }
 
-.answer{
-    display:none;
+.mcq-option.wrong{
+    background:#991b1b !important;
+    border-color:#ef4444 !important;
+    color:white;
+}
+
+.mcq-option:disabled{
+    cursor:default;
+}
+
+.result-message{
     margin-top:12px;
-    padding:10px;
-    border-radius:8px;
-    background:#172554;
-    color:#bfdbfe;
+    font-weight:700;
 }
 
-@media(max-width:600px){
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:650px){
+
     #dashboard-screen{
         padding:15px;
     }
@@ -280,13 +369,30 @@ select{
     .login-card{
         padding:25px;
     }
+
+    .dashboard-header h2{
+        font-size:20px;
+    }
+
+    .controls{
+        width:100%;
+    }
+
+    .controls select,
+    .logout-btn{
+        flex:1;
+    }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <div id="login-screen">
 
@@ -294,12 +400,13 @@ select{
 
         <h1>Topper Study Hub</h1>
 
-        <div class="subtitle">
+        <div class="login-sub">
             Bihar Board & NCERT Study Portal
         </div>
 
         <div class="form-group">
-            <label>Email</label>
+            <label id="email-label">Email Address</label>
+
             <input
                 type="email"
                 id="email"
@@ -307,15 +414,24 @@ select{
         </div>
 
         <div class="form-group">
-            <label>Password</label>
+
+            <label id="password-label">
+                Password
+            </label>
+
             <input
                 type="password"
                 id="password"
-                placeholder="Password">
+                placeholder="••••••••">
         </div>
 
-        <button class="submit-btn" onclick="performLogin()">
+        <button
+            class="login-btn"
+            onclick="performLogin()"
+            id="login-button">
+
             Access Portal
+
         </button>
 
     </div>
@@ -323,11 +439,13 @@ select{
 </div>
 
 
-<!-- DASHBOARD -->
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
 <div id="dashboard-screen">
 
-    <div class="header">
+    <div class="dashboard-header">
 
         <h2 id="dashboard-title">
             Topper Study Hub
@@ -335,8 +453,11 @@ select{
 
         <div class="controls">
 
-            <select id="class-select"
-                    onchange="changeClass(this.value)">
+            <!-- CLASS -->
+
+            <select
+                id="class-select"
+                onchange="onClassChange(this.value)">
 
                 <option value="6">Class 6</option>
                 <option value="7">Class 7</option>
@@ -349,13 +470,19 @@ select{
             </select>
 
 
-            <select id="subject-select"
-                    onchange="changeSubject(this.value)">
+            <!-- SUBJECT -->
+
+            <select
+                id="subject-select"
+                onchange="onSubjectChange(this.value)">
             </select>
 
 
-            <select id="language-select"
-                    onchange="changeLanguage(this.value)">
+            <!-- LANGUAGE -->
+
+            <select
+                id="language-select"
+                onchange="onLanguageChange(this.value)">
 
                 <option value="hi">
                     हिंदी
@@ -368,8 +495,12 @@ select{
             </select>
 
 
-            <button class="logout"
-                    onclick="performLogout()">
+            <!-- LOGOUT -->
+
+            <button
+                class="logout-btn"
+                onclick="performLogout()"
+                id="logout-text">
 
                 Logout
 
@@ -380,12 +511,15 @@ select{
     </div>
 
 
-    <!-- FOLDERS -->
+    <!-- =================================================
+         MAIN FOLDERS
+    ================================================== -->
 
-    <div id="folders-view">
+    <div id="main-view">
 
-        <div class="section-title"
-             id="explore-title">
+        <div
+            class="section-title"
+            id="explore-title">
 
             श्रेणियाँ देखें
 
@@ -394,49 +528,65 @@ select{
 
         <div class="cards">
 
-            <div class="card"
-                 onclick="openFolder('objective')">
 
-                <div class="icon">🎯</div>
+            <!-- OBJECTIVE -->
+
+            <div
+                class="folder-card"
+                onclick="openFolder('objective')">
+
+                <div class="folder-icon">
+                    🎯
+                </div>
 
                 <h3 id="objective-title">
                     वस्तुनिष्ठ प्रश्न
                 </h3>
 
                 <p id="objective-desc">
-                    Chapter-wise MCQ
+                    अध्यायवार MCQ
                 </p>
 
             </div>
 
 
-            <div class="card"
-                 onclick="openFolder('subjective')">
+            <!-- SUBJECTIVE -->
 
-                <div class="icon">📖</div>
+            <div
+                class="folder-card"
+                onclick="openFolder('subjective')">
+
+                <div class="folder-icon">
+                    📖
+                </div>
 
                 <h3 id="subjective-title">
                     विषयपरक प्रश्न
                 </h3>
 
                 <p id="subjective-desc">
-                    Detailed Questions & Answers
+                    विस्तृत प्रश्न एवं उत्तर
                 </p>
 
             </div>
 
 
-            <div class="card"
-                 onclick="openFolder('notes')">
+            <!-- NOTES -->
 
-                <div class="icon">📝</div>
+            <div
+                class="folder-card"
+                onclick="openFolder('notes')">
+
+                <div class="folder-icon">
+                    📝
+                </div>
 
                 <h3 id="notes-title">
                     नोट्स
                 </h3>
 
                 <p id="notes-desc">
-                    Chapter-wise Notes
+                    अध्यायवार नोट्स
                 </p>
 
             </div>
@@ -446,45 +596,75 @@ select{
     </div>
 
 
-    <!-- CHAPTER LIST -->
+    <!-- =================================================
+         CHAPTER VIEW
+    ================================================== -->
 
     <div id="chapter-view">
 
-        <button class="back-btn"
-                onclick="backToFolders()">
+        <div class="top-nav">
 
-            ← Back
+            <button
+                class="back-btn"
+                onclick="backToMain()"
+                id="back-main-text">
 
-        </button>
+                ← वापस जाएँ
 
-        <h2 class="chapter-title"
-            id="chapter-heading">
+            </button>
+
+        </div>
+
+
+        <h2
+            class="view-title"
+            id="chapter-view-title">
 
         </h2>
 
-        <div class="chapter-list"
-             id="chapter-list">
+
+        <div
+            class="subject-info"
+            id="subject-info">
+
+        </div>
+
+
+        <div
+            class="chapter-list"
+            id="chapter-list">
 
         </div>
 
     </div>
 
 
-    <!-- CONTENT -->
+    <!-- =================================================
+         CONTENT VIEW
+    ================================================== -->
 
     <div id="content-view">
 
-        <button class="back-btn"
-                onclick="backToChapters()">
+        <div class="top-nav">
 
-            ← Chapters
+            <button
+                class="back-btn"
+                onclick="backToChapters()"
+                id="back-chapter-text">
 
-        </button>
+                ← अध्याय
 
-        <h2 class="chapter-title"
-            id="content-heading">
+            </button>
+
+        </div>
+
+
+        <h2
+            class="view-title"
+            id="content-title">
 
         </h2>
+
 
         <div id="content-container">
 
@@ -495,8 +675,10 @@ select{
 </div>
 
 
-<!-- IMPORTANT:
-     पहले data.js और फिर quiz-data.js -->
+<!-- =====================================================
+     YOUR DATA FILES
+===================================================== -->
+
 <script src="data.js"></script>
 <script src="quiz-data.js"></script>
 
@@ -504,34 +686,57 @@ select{
 <script>
 
 /* =====================================================
-   GLOBAL STATE
+   GLOBAL VARIABLES
 ===================================================== */
 
 let activeClass = "6";
 let activeSubject = "";
 let activeLanguage = "hi";
+
 let activeFolder = "";
 let activeChapterIndex = 0;
+
+
+/* =====================================================
+   PAGE LOAD
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    const savedLogin =
+        localStorage.getItem("isLoggedIn");
+
+    if(savedLogin === "true"){
+
+        showDashboard();
+
+    }else{
+
+        document.getElementById("login-screen").style.display =
+            "flex";
+
+        document.getElementById("dashboard-screen").style.display =
+            "none";
+
+    }
+
+    populateSubjects();
+
+    updateLanguageUI();
+
+});
 
 
 /* =====================================================
    LOGIN
 ===================================================== */
 
-window.addEventListener("DOMContentLoaded", function(){
-
-    if(localStorage.getItem("isLoggedIn") === "true"){
-        showDashboard();
-    }
-
-    populateSubjects();
-
-});
-
-
 function performLogin(){
 
-    localStorage.setItem("isLoggedIn","true");
+    localStorage.setItem(
+        "isLoggedIn",
+        "true"
+    );
 
     showDashboard();
 
@@ -540,9 +745,11 @@ function performLogin(){
 
 function showDashboard(){
 
-    document.getElementById("login-screen").style.display = "none";
+    document.getElementById("login-screen").style.display =
+        "none";
 
-    document.getElementById("dashboard-screen").style.display = "block";
+    document.getElementById("dashboard-screen").style.display =
+        "block";
 
     populateSubjects();
 
@@ -555,40 +762,155 @@ function performLogout(){
 
     localStorage.removeItem("isLoggedIn");
 
-    document.getElementById("dashboard-screen").style.display = "none";
+    document.getElementById("dashboard-screen").style.display =
+        "none";
 
-    document.getElementById("login-screen").style.display = "flex";
+    document.getElementById("login-screen").style.display =
+        "flex";
 
 }
 
 
 /* =====================================================
-   SUBJECTS
+   GET CLASS DATA
+===================================================== */
+
+function getClassData(){
+
+    if(
+        typeof ncertData === "undefined"
+    ){
+
+        return {};
+
+    }
+
+    return ncertData[activeClass] || {};
+
+}
+
+
+/* =====================================================
+   SUBJECT NAMES
+===================================================== */
+
+const subjectNames = {
+
+    science:{
+        hi:"विज्ञान",
+        en:"Science"
+    },
+
+    math:{
+        hi:"गणित",
+        en:"Mathematics"
+    },
+
+    maths:{
+        hi:"गणित",
+        en:"Mathematics"
+    },
+
+    physics:{
+        hi:"भौतिक विज्ञान",
+        en:"Physics"
+    },
+
+    chemistry:{
+        hi:"रसायन विज्ञान",
+        en:"Chemistry"
+    },
+
+    bio:{
+        hi:"जीव विज्ञान",
+        en:"Biology"
+    },
+
+    biology:{
+        hi:"जीव विज्ञान",
+        en:"Biology"
+    },
+
+    history:{
+        hi:"इतिहास",
+        en:"History"
+    },
+
+    geography:{
+        hi:"भूगोल",
+        en:"Geography"
+    },
+
+    civics:{
+        hi:"नागरिक शास्त्र",
+        en:"Civics"
+    },
+
+    economics:{
+        hi:"अर्थशास्त्र",
+        en:"Economics"
+    }
+
+};
+
+
+function getSubjectDisplayName(subject){
+
+    if(subjectNames[subject]){
+
+        return subjectNames[subject][activeLanguage];
+
+    }
+
+    return subject
+        .replace(/[-_]/g," ")
+        .replace(/\b\w/g,function(c){
+            return c.toUpperCase();
+        });
+
+}
+
+
+/* =====================================================
+   POPULATE SUBJECTS
 ===================================================== */
 
 function populateSubjects(){
 
-    const subjectSelect =
+    const select =
         document.getElementById("subject-select");
 
-    subjectSelect.innerHTML = "";
+    if(!select){
+        return;
+    }
 
     const classData =
-        window.ncertData &&
-        window.ncertData[activeClass]
-        ? window.ncertData[activeClass]
-        : {};
+        getClassData();
 
     const subjects =
         Object.keys(classData);
+
+    select.innerHTML = "";
+
 
     if(subjects.length === 0){
 
         activeSubject = "";
 
+        const option =
+            document.createElement("option");
+
+        option.textContent =
+            activeLanguage === "hi"
+            ? "कोई विषय नहीं मिला"
+            : "No subject found";
+
+        select.appendChild(option);
+
         return;
 
     }
+
 
     subjects.forEach(function(subject){
 
@@ -598,87 +920,29 @@ function populateSubjects(){
         option.value = subject;
 
         option.textContent =
-            getSubjectName(subject);
+            getSubjectDisplayName(subject);
 
-        subjectSelect.appendChild(option);
+        select.appendChild(option);
 
     });
 
-    activeSubject = subjects[0];
 
-}
+    /*
+       अगर पहले वाला subject मौजूद है
+       तो वही रखें।
+    */
 
+    if(subjects.includes(activeSubject)){
 
-/* =====================================================
-   SUBJECT NAME
-===================================================== */
+        select.value = activeSubject;
 
-function getSubjectName(subject){
+    }else{
 
-    const names = {
+        activeSubject = subjects[0];
 
-        science:{
-            hi:"विज्ञान",
-            en:"Science"
-        },
+        select.value = activeSubject;
 
-        math:{
-            hi:"गणित",
-            en:"Mathematics"
-        },
-
-        maths:{
-            hi:"गणित",
-            en:"Mathematics"
-        },
-
-        physics:{
-            hi:"भौतिक विज्ञान",
-            en:"Physics"
-        },
-
-        chemistry:{
-            hi:"रसायन विज्ञान",
-            en:"Chemistry"
-        },
-
-        biology:{
-            hi:"जीव विज्ञान",
-            en:"Biology"
-        },
-
-        bio:{
-            hi:"जीव विज्ञान",
-            en:"Biology"
-        },
-
-        history:{
-            hi:"इतिहास",
-            en:"History"
-        },
-
-        geography:{
-            hi:"भूगोल",
-            en:"Geography"
-        },
-
-        civics:{
-            hi:"नागरिक शास्त्र",
-            en:"Civics"
-        },
-
-        economics:{
-            hi:"अर्थशास्त्र",
-            en:"Economics"
-        }
-
-    };
-
-    if(names[subject]){
-        return names[subject][activeLanguage];
     }
-
-    return subject.toUpperCase();
 
 }
 
@@ -687,11 +951,15 @@ function getSubjectName(subject){
    CLASS CHANGE
 ===================================================== */
 
-function changeClass(value){
+function onClassChange(value){
 
     activeClass = String(value);
 
+    activeFolder = "";
+
     populateSubjects();
+
+    backToMain();
 
 }
 
@@ -700,9 +968,13 @@ function changeClass(value){
    SUBJECT CHANGE
 ===================================================== */
 
-function changeSubject(value){
+function onSubjectChange(value){
 
     activeSubject = value;
+
+    activeFolder = "";
+
+    backToMain();
 
 }
 
@@ -711,7 +983,7 @@ function changeSubject(value){
    LANGUAGE CHANGE
 ===================================================== */
 
-function changeLanguage(value){
+function onLanguageChange(value){
 
     activeLanguage = value;
 
@@ -719,153 +991,231 @@ function changeLanguage(value){
 
     updateLanguageUI();
 
+    /*
+       अगर chapter page खुला है
+       तो उसे भी तुरंत update करें।
+    */
+
+    if(
+        document.getElementById("chapter-view").style.display ===
+        "block"
+    ){
+
+        showChapters();
+
+    }
+
+
+    if(
+        document.getElementById("content-view").style.display ===
+        "block"
+    ){
+
+        renderChapterContent();
+
+    }
+
 }
 
 
 /* =====================================================
-   LANGUAGE UI
+   UI LANGUAGE
 ===================================================== */
 
 function updateLanguageUI(){
 
-    if(activeLanguage === "hi"){
+    const hi =
+        activeLanguage === "hi";
 
-        document.getElementById("dashboard-title").textContent =
-            "टॉपर स्टडी हब";
 
-        document.getElementById("explore-title").textContent =
-            "श्रेणियाँ देखें";
+    document.getElementById("dashboard-title").textContent =
+        hi
+        ? "टॉपर स्टडी हब"
+        : "Topper Study Hub";
 
-        document.getElementById("objective-title").textContent =
-            "वस्तुनिष्ठ प्रश्न";
 
-        document.getElementById("objective-desc").textContent =
-            "अध्यायवार बहुविकल्पीय प्रश्न";
+    document.getElementById("explore-title").textContent =
+        hi
+        ? "श्रेणियाँ देखें"
+        : "Explore Categories";
 
-        document.getElementById("subjective-title").textContent =
-            "विषयपरक प्रश्न";
 
-        document.getElementById("subjective-desc").textContent =
-            "विस्तृत प्रश्न एवं उत्तर";
+    document.getElementById("objective-title").textContent =
+        hi
+        ? "वस्तुनिष्ठ प्रश्न"
+        : "Objective Questions";
 
-        document.getElementById("notes-title").textContent =
-            "नोट्स";
 
-        document.getElementById("notes-desc").textContent =
-            "अध्यायवार नोट्स";
+    document.getElementById("objective-desc").textContent =
+        hi
+        ? "अध्यायवार बहुविकल्पीय प्रश्न"
+        : "Chapter-wise Multiple Choice Questions";
 
-    }
 
-    else{
+    document.getElementById("subjective-title").textContent =
+        hi
+        ? "विषयपरक प्रश्न"
+        : "Subjective Questions";
 
-        document.getElementById("dashboard-title").textContent =
-            "Topper Study Hub";
 
-        document.getElementById("explore-title").textContent =
-            "Explore Categories";
+    document.getElementById("subjective-desc").textContent =
+        hi
+        ? "विस्तृत प्रश्न एवं उत्तर"
+        : "Detailed Questions & Answers";
 
-        document.getElementById("objective-title").textContent =
-            "Objective Questions";
 
-        document.getElementById("objective-desc").textContent =
-            "Chapter-wise Multiple Choice Questions";
+    document.getElementById("notes-title").textContent =
+        hi
+        ? "नोट्स"
+        : "Notes";
 
-        document.getElementById("subjective-title").textContent =
-            "Subjective Questions";
 
-        document.getElementById("subjective-desc").textContent =
-            "Detailed Questions & Answers";
+    document.getElementById("notes-desc").textContent =
+        hi
+        ? "अध्यायवार नोट्स"
+        : "Chapter-wise Notes";
 
-        document.getElementById("notes-title").textContent =
-            "Notes";
 
-        document.getElementById("notes-desc").textContent =
-            "Chapter-wise Notes";
+    document.getElementById("logout-text").textContent =
+        hi
+        ? "लॉग आउट"
+        : "Logout";
 
-    }
+
+    document.getElementById("back-main-text").textContent =
+        hi
+        ? "← वापस जाएँ"
+        : "← Back";
+
+
+    document.getElementById("back-chapter-text").textContent =
+        hi
+        ? "← अध्याय"
+        : "← Chapters";
+
+
+    document.getElementById("email-label").textContent =
+        hi
+        ? "ईमेल पता"
+        : "Email Address";
+
+
+    document.getElementById("password-label").textContent =
+        hi
+        ? "पासवर्ड"
+        : "Password";
+
+
+    document.getElementById("login-button").textContent =
+        hi
+        ? "पोर्टल खोलें"
+        : "Access Portal";
 
 }
 
 
 /* =====================================================
-   GET CHAPTER DATA
+   GET CHAPTERS
 ===================================================== */
 
 function getChapters(){
 
+    const classData =
+        getClassData();
+
     if(
-        !window.ncertData ||
-        !window.ncertData[activeClass] ||
-        !window.ncertData[activeClass][activeSubject]
+        !activeSubject ||
+        !classData[activeSubject]
     ){
 
         return [];
 
     }
 
-    return window.ncertData[activeClass][activeSubject];
+    /*
+       data.js में chapters array है
+    */
+
+    return classData[activeSubject];
 
 }
 
 
 /* =====================================================
-   PARSE CHAPTER NAME
+   PARSE CHAPTER
 ===================================================== */
-
-/*
-   data.js में:
-
-   "Chapter 1: Matter (पदार्थ)"
-
-   होगा।
-
-   English mode:
-   Matter
-
-   Hindi mode:
-   पदार्थ
-*/
 
 function parseChapter(chapter){
 
-    let text = String(chapter);
+    let text =
+        String(chapter || "").trim();
+
+
+    /*
+       Chapter 1:
+       Chapter 10:
+       etc.
+    */
 
     let numberMatch =
-        text.match(/^Chapter\s*(\d+)\s*:/i);
+        text.match(
+            /^Chapter\s*(\d+)\s*:/i
+        );
+
 
     let number =
         numberMatch
         ? numberMatch[1]
         : "";
 
+
     let title =
-        text.replace(/^Chapter\s*\d+\s*:\s*/i,"");
+        text.replace(
+            /^Chapter\s*\d+\s*:\s*/i,
+            ""
+        );
+
+
+    /*
+       आखिरी parentheses को Hindi माना जाएगा।
+    */
 
     let hindiMatch =
-        title.match(/\(([^()]*)\)\s*$/);
+        title.match(
+            /\(([^()]*)\)\s*$/
+        );
 
-    let englishTitle = title;
-    let hindiTitle = title;
+
+    let english =
+        title;
+
+    let hindi =
+        title;
+
 
     if(hindiMatch){
 
-        hindiTitle =
+        hindi =
             hindiMatch[1].trim();
 
-        englishTitle =
+        english =
             title
-            .replace(/\s*\([^()]*\)\s*$/,"")
+            .replace(
+                /\s*\([^()]*\)\s*$/,
+                ""
+            )
             .trim();
 
     }
+
 
     return {
 
         number:number,
 
-        english:englishTitle,
+        english:english,
 
-        hindi:hindiTitle
+        hindi:hindi
 
     };
 
@@ -876,11 +1226,11 @@ function parseChapter(chapter){
    OPEN FOLDER
 ===================================================== */
 
-function openFolder(folder){
+function openFolder(folderType){
 
-    activeFolder = folder;
+    activeFolder = folderType;
 
-    document.getElementById("folders-view").style.display =
+    document.getElementById("main-view").style.display =
         "none";
 
     document.getElementById("content-view").style.display =
@@ -900,21 +1250,65 @@ function openFolder(folder){
 
 function showChapters(){
 
-    const chapters = getChapters();
-
     const list =
         document.getElementById("chapter-list");
 
     list.innerHTML = "";
 
 
-    document.getElementById("chapter-heading").textContent =
-        getSubjectName(activeSubject) +
-        " - " +
+    const chapters =
+        getChapters();
+
+
+    const subjectName =
+        getSubjectDisplayName(activeSubject);
+
+
+    let folderName;
+
+
+    if(activeFolder === "objective"){
+
+        folderName =
+            activeLanguage === "hi"
+            ? "वस्तुनिष्ठ प्रश्न"
+            : "Objective Questions";
+
+    }
+
+    else if(activeFolder === "subjective"){
+
+        folderName =
+            activeLanguage === "hi"
+            ? "विषयपरक प्रश्न"
+            : "Subjective Questions";
+
+    }
+
+    else{
+
+        folderName =
+            activeLanguage === "hi"
+            ? "नोट्स"
+            : "Notes";
+
+    }
+
+
+    document.getElementById(
+        "chapter-view-title"
+    ).textContent =
+        folderName;
+
+
+    document.getElementById(
+        "subject-info"
+    ).textContent =
+
         (
             activeLanguage === "hi"
-            ? "अध्याय चुनें"
-            : "Select Chapter"
+            ? `कक्षा ${activeClass} • विषय: ${subjectName} • कुल अध्याय: ${chapters.length}`
+            : `Class ${activeClass} • Subject: ${subjectName} • Total Chapters: ${chapters.length}`
         );
 
 
@@ -924,8 +1318,8 @@ function showChapters(){
             `<div class="content-box">
                 ${
                     activeLanguage === "hi"
-                    ? "इस विषय का अध्याय उपलब्ध नहीं है।"
-                    : "Chapters are not available for this subject."
+                    ? "इस विषय के अध्याय उपलब्ध नहीं हैं।"
+                    : "No chapters available for this subject."
                 }
              </div>`;
 
@@ -934,40 +1328,67 @@ function showChapters(){
     }
 
 
+    /*
+       सभी chapters loop होंगे।
+       कोई chapter skip नहीं होगा।
+    */
+
     chapters.forEach(function(chapter,index){
 
         const parsed =
             parseChapter(chapter);
 
 
-        const item =
+        const card =
             document.createElement("div");
 
-        item.className = "chapter-item";
+        card.className =
+            "chapter-card";
 
 
-        const title =
+        const number =
+            document.createElement("div");
+
+        number.className =
+            "chapter-number";
+
+        number.textContent =
+            parsed.number || (index + 1);
+
+
+        const name =
+            document.createElement("div");
+
+        name.className =
+            "chapter-name";
+
+
+        /*
+           सबसे महत्वपूर्ण:
+           Hindi में Hindi title
+           English में English title
+        */
+
+        name.textContent =
             activeLanguage === "hi"
             ? parsed.hindi
             : parsed.english;
 
 
-        item.innerHTML =
+        card.appendChild(number);
 
-            `<span class="chapter-number">
-                Chapter ${parsed.number}
-             </span>
-             ${escapeHTML(title)}`;
+        card.appendChild(name);
 
 
-        item.onclick = function(){
+        card.onclick =
+            function(){
 
-            openChapter(index);
+                openChapter(index);
 
-        };
+            };
 
 
-        list.appendChild(item);
+        list.appendChild(card);
 
     });
 
@@ -980,13 +1401,19 @@ function showChapters(){
 
 function openChapter(index){
 
-    activeChapterIndex = index;
+    activeChapterIndex =
+        index;
 
-    document.getElementById("chapter-view").style.display =
-        "none";
 
-    document.getElementById("content-view").style.display =
-        "block";
+    document.getElementById(
+        "chapter-view"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "content-view"
+    ).style.display = "block";
+
 
     renderChapterContent();
 
@@ -994,19 +1421,26 @@ function openChapter(index){
 
 
 /* =====================================================
-   RENDER CONTENT
+   CONTENT
 ===================================================== */
 
 function renderChapterContent(){
 
-    const chapters = getChapters();
+    const chapters =
+        getChapters();
+
 
     if(!chapters[activeChapterIndex]){
+
         return;
+
     }
 
+
     const parsed =
-        parseChapter(chapters[activeChapterIndex]);
+        parseChapter(
+            chapters[activeChapterIndex]
+        );
 
 
     const title =
@@ -1015,32 +1449,30 @@ function renderChapterContent(){
         : parsed.english;
 
 
-    document.getElementById("content-heading").textContent =
+    document.getElementById(
+        "content-title"
+    ).textContent =
+
         `Chapter ${parsed.number}: ${title}`;
 
 
     const container =
-        document.getElementById("content-container");
+        document.getElementById(
+            "content-container"
+        );
+
 
     container.innerHTML = "";
 
 
     /*
-       quiz-data.js से chapter content खोजने की कोशिश
+       अभी objective के लिए quiz-data.js
+       से data खोजेंगे।
     */
-
-    const quiz =
-        findQuizData(
-            activeClass,
-            activeSubject,
-            activeChapterIndex
-        );
-
 
     if(activeFolder === "objective"){
 
         renderObjective(
-            quiz,
             container
         );
 
@@ -1049,7 +1481,6 @@ function renderChapterContent(){
     else if(activeFolder === "subjective"){
 
         renderSubjective(
-            quiz,
             container
         );
 
@@ -1058,7 +1489,6 @@ function renderChapterContent(){
     else{
 
         renderNotes(
-            quiz,
             container
         );
 
@@ -1068,44 +1498,55 @@ function renderChapterContent(){
 
 
 /* =====================================================
-   QUIZ DATA FINDER
+   FIND QUIZ DATA
 ===================================================== */
 
-function findQuizData(classNo,subject,index){
+function getQuizForChapter(){
 
     /*
-      यह कई common formats को support करेगा।
-
-      बाद में quiz-data.js में
-      तुम्हारा actual data रखा जा सकता है।
+       अगर quiz-data.js में quizData है
     */
 
-    if(typeof quizData !== "undefined"){
+    if(
+        typeof quizData !== "undefined"
+    ){
+
+        /*
+           Format:
+           quizData[6].science[0]
+        */
 
         if(
-            quizData[classNo] &&
-            quizData[classNo][subject] &&
-            quizData[classNo][subject][index]
+            quizData[activeClass] &&
+            quizData[activeClass][activeSubject] &&
+            quizData[activeClass][activeSubject][activeChapterIndex]
         ){
 
-            return quizData[classNo][subject][index];
+            return
+                quizData[activeClass]
+                [activeSubject]
+                [activeChapterIndex];
 
         }
 
     }
 
 
-    if(typeof objectiveData !== "undefined"){
+    /*
+       अगर chapter1Quiz जैसा पुराना format है
+    */
 
-        if(
-            objectiveData[classNo] &&
-            objectiveData[classNo][subject] &&
-            objectiveData[classNo][subject][index]
-        ){
+    if(
+        typeof chapter1Quiz !== "undefined" &&
+        activeClass === "11" &&
+        (
+            activeSubject === "bio" ||
+            activeSubject === "biology"
+        ) &&
+        activeChapterIndex === 0
+    ){
 
-            return objectiveData[classNo][subject][index];
-
-        }
+        return chapter1Quiz;
 
     }
 
@@ -1119,16 +1560,83 @@ function findQuizData(classNo,subject,index){
    OBJECTIVE
 ===================================================== */
 
-function renderObjective(data,container){
+function renderObjective(container){
 
-    if(!Array.isArray(data)){
+    const data =
+        getQuizForChapter();
+
+
+    if(!data){
+
+        container.innerHTML =
+            `<div class="content-box">
+
+                <h3>
+                    ${
+                        activeLanguage === "hi"
+                        ? "Objective Questions"
+                        : "Objective Questions"
+                    }
+                </h3>
+
+                <div class="content-text">
+
+                    ${
+                        activeLanguage === "hi"
+                        ? "इस अध्याय के MCQ अभी quiz-data.js में उपलब्ध नहीं हैं।"
+                        : "MCQs for this chapter are not available in quiz-data.js yet."
+                    }
+
+                </div>
+
+            </div>`;
+
+        return;
+
+    }
+
+
+    /*
+       data सीधे array हो सकता है
+       या data.objective array
+    */
+
+    let questions;
+
+
+    if(Array.isArray(data)){
+
+        questions = data;
+
+    }
+
+    else if(Array.isArray(data.objective)){
+
+        questions = data.objective;
+
+    }
+
+    else if(Array.isArray(data.mcqs)){
+
+        questions = data.mcqs;
+
+    }
+
+    else{
+
+        questions = [];
+
+    }
+
+
+    if(questions.length === 0){
 
         container.innerHTML =
             `<div class="content-box">
                 ${
                     activeLanguage === "hi"
-                    ? "इस अध्याय के MCQ अभी quiz-data.js में नहीं जोड़े गए हैं।"
-                    : "MCQs for this chapter have not been added to quiz-data.js yet."
+                    ? "इस अध्याय के objective questions नहीं मिले।"
+                    : "No objective questions found."
                 }
              </div>`;
 
@@ -1137,42 +1645,77 @@ function renderObjective(data,container){
     }
 
 
-    data.forEach(function(item,index){
+    questions.forEach(
+        function(item,index){
 
-        const box =
-            document.createElement("div");
+            createMCQ(
+                item,
+                index,
+                container
+            );
 
-        box.className = "content-box";
+        }
+    );
 
-
-        const question =
-            document.createElement("div");
-
-        question.className = "question";
-
-        question.textContent =
-            `${index + 1}. ${getQuestionText(item)}`;
+}
 
 
-        box.appendChild(question);
+/* =====================================================
+   CREATE MCQ
+===================================================== */
+
+function createMCQ(
+    item,
+    index,
+    container
+){
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "mcq-card";
 
 
-        if(Array.isArray(item.options)){
+    const question =
+        document.createElement("div");
 
-            item.options.forEach(function(option,optIndex){
-
-                const button =
-                    document.createElement("button");
-
-                button.className = "option";
-
-                button.textContent =
-                    `${String.fromCharCode(65 + optIndex)}. ${getOptionText(option)}`;
+    question.className =
+        "mcq-question";
 
 
-                button.onclick = function(){
+    question.textContent =
+        `${index + 1}. ${getQuestion(item)}`;
 
-                    checkAnswer(
+
+    card.appendChild(question);
+
+
+    let options =
+        item.options ||
+        item.option ||
+        [];
+
+
+    options.forEach(
+        function(option,optIndex){
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "mcq-option";
+
+
+            button.textContent =
+                `${String.fromCharCode(65 + optIndex)}. ${getOption(option)}`;
+
+
+            button.onclick =
+                function(){
+
+                    checkMCQ(
+                        card,
                         button,
                         optIndex,
                         item.correct
@@ -1181,55 +1724,190 @@ function renderObjective(data,container){
                 };
 
 
-                box.appendChild(button);
-
-            });
+            card.appendChild(button);
 
         }
+    );
 
 
-        container.appendChild(box);
+    const result =
+        document.createElement("div");
 
-    });
+    result.className =
+        "result-message";
+
+
+    card.appendChild(result);
+
+
+    container.appendChild(card);
 
 }
 
 
 /* =====================================================
-   ANSWER CHECK
+   CHECK MCQ
 ===================================================== */
 
-function checkAnswer(button,selected,correct){
-
-    const parent =
-        button.parentElement;
+function checkMCQ(
+    card,
+    selectedButton,
+    selectedIndex,
+    correctIndex
+){
 
     const buttons =
-        parent.querySelectorAll(".option");
+        card.querySelectorAll(
+            ".mcq-option"
+        );
 
 
-    buttons.forEach(function(btn){
+    /*
+       एक बार answer देने के बाद
+       दोबारा click नहीं होगा।
+    */
 
-        btn.disabled = true;
+    buttons.forEach(
+        function(button){
 
-    });
+            button.disabled = true;
+
+        }
+    );
 
 
-    if(Number(selected) === Number(correct)){
+    const result =
+        card.querySelector(
+            ".result-message"
+        );
 
-        button.classList.add("correct");
+
+    if(
+        Number(selectedIndex) ===
+        Number(correctIndex)
+    ){
+
+        selectedButton.classList.add(
+            "correct"
+        );
+
+
+        result.textContent =
+            activeLanguage === "hi"
+            ? "✓ सही उत्तर"
+            : "✓ Correct Answer";
+
+
+        result.style.color =
+            "#4ade80";
 
     }
 
     else{
 
-        button.classList.add("wrong");
+        selectedButton.classList.add(
+            "wrong"
+        );
 
-        if(buttons[correct]){
-            buttons[correct].classList.add("correct");
+
+        if(buttons[correctIndex]){
+
+            buttons[correctIndex]
+                .classList.add("correct");
+
         }
 
+
+        result.textContent =
+            activeLanguage === "hi"
+            ? "✗ गलत उत्तर"
+            : "✗ Wrong Answer";
+
+
+        result.style.color =
+            "#f87171";
+
     }
+
+}
+
+
+/* =====================================================
+   QUESTION LANGUAGE
+===================================================== */
+
+function getQuestion(item){
+
+    if(!item){
+
+        return "";
+
+    }
+
+
+    if(activeLanguage === "hi"){
+
+        return (
+            item.hi ||
+            item.questionHi ||
+            item.question_hindi ||
+            item.q_hi ||
+            item.qHindi ||
+            item.q ||
+            item.question ||
+            ""
+        );
+
+    }
+
+
+    return (
+        item.en ||
+        item.questionEn ||
+        item.question_english ||
+        item.q_en ||
+        item.qEnglish ||
+        item.q ||
+        item.question ||
+        ""
+    );
+
+}
+
+
+/* =====================================================
+   OPTION LANGUAGE
+===================================================== */
+
+function getOption(option){
+
+    if(typeof option === "string"){
+
+        return option;
+
+    }
+
+
+    if(activeLanguage === "hi"){
+
+        return (
+            option.hi ||
+            option.hindi ||
+            option.textHi ||
+            option.text ||
+            ""
+        );
+
+    }
+
+
+    return (
+        option.en ||
+        option.english ||
+        option.textEn ||
+        option.text ||
+        ""
+    );
 
 }
 
@@ -1238,70 +1916,110 @@ function checkAnswer(button,selected,correct){
    SUBJECTIVE
 ===================================================== */
 
-function renderSubjective(data,container){
+function renderSubjective(container){
 
-    if(!data){
+    const data =
+        getQuizForChapter();
+
+
+    let questions = [];
+
+
+    if(data){
+
+        if(Array.isArray(data.subjective)){
+
+            questions =
+                data.subjective;
+
+        }
+
+        else if(Array.isArray(data.questions)){
+
+            questions =
+                data.questions;
+
+        }
+
+    }
+
+
+    if(questions.length === 0){
 
         container.innerHTML =
             `<div class="content-box">
-                ${
-                    activeLanguage === "hi"
-                    ? "इस अध्याय के subjective questions अभी उपलब्ध नहीं हैं।"
-                    : "Subjective questions are not available yet."
-                }
-             </div>`;
+
+                <h3>
+                    ${
+                        activeLanguage === "hi"
+                        ? "विषयपरक प्रश्न"
+                        : "Subjective Questions"
+                    }
+                </h3>
+
+                <div class="content-text">
+
+                    ${
+                        activeLanguage === "hi"
+                        ? "इस अध्याय के subjective questions अभी उपलब्ध नहीं हैं।"
+                        : "Subjective questions are not available yet."
+                    }
+
+                </div>
+
+            </div>`;
 
         return;
 
     }
 
 
-    const questions =
-        data.subjective ||
-        data.questions ||
-        [];
+    questions.forEach(
+        function(item,index){
+
+            const box =
+                document.createElement("div");
+
+            box.className =
+                "content-box";
 
 
-    if(!Array.isArray(questions)){
-
-        container.innerHTML =
-            `<div class="content-box">
-                No subjective questions found.
-             </div>`;
-
-        return;
-
-    }
+            const question =
+                getQuestion(item);
 
 
-    questions.forEach(function(item,index){
-
-        const box =
-            document.createElement("div");
-
-        box.className = "content-box";
-
-
-        box.innerHTML =
-            `<div class="question">
-                ${index + 1}. ${escapeHTML(
-                    getQuestionText(item)
-                )}
-             </div>
-
-             <div class="answer"
-                  style="display:block">
-
-                ${escapeHTML(
-                    item.answer || ""
-                )}
-
-             </div>`;
+            const answer =
+                activeLanguage === "hi"
+                ? (
+                    item.answerHi ||
+                    item.answer_hindi ||
+                    item.answer ||
+                    ""
+                  )
+                : (
+                    item.answerEn ||
+                    item.answer_english ||
+                    item.answer ||
+                    ""
+                  );
 
 
-        container.appendChild(box);
+            box.innerHTML =
+                `
+                <h3>
+                    ${index + 1}. ${escapeHTML(question)}
+                </h3>
 
-    });
+                <div class="content-text">
+                    ${escapeHTML(answer).replace(/\n/g,"<br>")}
+                </div>
+                `;
+
+
+            container.appendChild(box);
+
+        }
+    );
 
 }
 
@@ -1310,40 +2028,70 @@ function renderSubjective(data,container){
    NOTES
 ===================================================== */
 
-function renderNotes(data,container){
+function renderNotes(container){
 
-    if(!data){
+    const data =
+        getQuizForChapter();
 
-        container.innerHTML =
-            `<div class="content-box">
-                ${
-                    activeLanguage === "hi"
-                    ? "इस अध्याय के notes अभी उपलब्ध नहीं हैं।"
-                    : "Notes are not available yet."
-                }
-             </div>`;
 
-        return;
+    let notes = "";
+
+
+    if(data){
+
+        if(activeLanguage === "hi"){
+
+            notes =
+                data.notesHi ||
+                data.noteHi ||
+                data.notes_hindi ||
+                data.note_hindi ||
+                data.notes ||
+                data.note ||
+                "";
+
+        }
+
+        else{
+
+            notes =
+                data.notesEn ||
+                data.noteEn ||
+                data.notes_english ||
+                data.note_english ||
+                data.notes ||
+                data.note ||
+                "";
+
+        }
 
     }
-
-
-    const notes =
-        data.notes ||
-        data.note ||
-        "";
 
 
     if(!notes){
 
         container.innerHTML =
             `<div class="content-box">
-                ${
-                    activeLanguage === "hi"
-                    ? "इस अध्याय के notes अभी उपलब्ध नहीं हैं।"
-                    : "Notes are not available yet."
-                }
-             </div>`;
+
+                <h3>
+                    ${
+                        activeLanguage === "hi"
+                        ? "अध्याय नोट्स"
+                        : "Chapter Notes"
+                    }
+                </h3>
+
+                <div class="content-text">
+
+                    ${
+                        activeLanguage === "hi"
+                        ? "इस अध्याय के notes अभी उपलब्ध नहीं हैं।"
+                        : "Notes for this chapter are not available yet."
+                    }
+
+                </div>
+
+            </div>`;
 
         return;
 
@@ -1353,12 +2101,14 @@ function renderNotes(data,container){
     const box =
         document.createElement("div");
 
-    box.className = "content-box";
+    box.className =
+        "content-box";
 
 
     box.innerHTML =
-        escapeHTML(notes)
-        .replace(/\n/g,"<br>");
+        `<div class="content-text">
+            ${escapeHTML(notes).replace(/\n/g,"<br>")}
+         </div>`;
 
 
     container.appendChild(box);
@@ -1367,106 +2117,47 @@ function renderNotes(data,container){
 
 
 /* =====================================================
-   QUESTION LANGUAGE
-===================================================== */
-
-function getQuestionText(item){
-
-    if(!item){
-        return "";
-    }
-
-    if(
-        activeLanguage === "hi" &&
-        item.hi
-    ){
-        return item.hi;
-    }
-
-    if(
-        activeLanguage === "hi" &&
-        item.questionHi
-    ){
-        return item.questionHi;
-    }
-
-    if(
-        activeLanguage === "en" &&
-        item.en
-    ){
-        return item.en;
-    }
-
-    if(
-        activeLanguage === "en" &&
-        item.questionEn
-    ){
-        return item.questionEn;
-    }
-
-    return item.q ||
-           item.question ||
-           "";
-
-}
-
-
-function getOptionText(option){
-
-    if(typeof option === "string"){
-        return option;
-    }
-
-    if(
-        activeLanguage === "hi" &&
-        option.hi
-    ){
-        return option.hi;
-    }
-
-    if(
-        activeLanguage === "en" &&
-        option.en
-    ){
-        return option.en;
-    }
-
-    return option.text || "";
-
-}
-
-
-/* =====================================================
    NAVIGATION
 ===================================================== */
 
-function backToFolders(){
+function backToMain(){
 
-    document.getElementById("chapter-view").style.display =
-        "none";
+    document.getElementById(
+        "content-view"
+    ).style.display = "none";
 
-    document.getElementById("content-view").style.display =
-        "none";
 
-    document.getElementById("folders-view").style.display =
-        "block";
+    document.getElementById(
+        "chapter-view"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "main-view"
+    ).style.display = "block";
 
 }
 
 
 function backToChapters(){
 
-    document.getElementById("content-view").style.display =
-        "none";
+    document.getElementById(
+        "content-view"
+    ).style.display = "none";
 
-    document.getElementById("chapter-view").style.display =
-        "block";
+
+    document.getElementById(
+        "chapter-view"
+    ).style.display = "block";
+
+
+    showChapters();
 
 }
 
 
 /* =====================================================
-   SECURITY / HTML ESCAPE
+   ESCAPE HTML
 ===================================================== */
 
 function escapeHTML(value){
@@ -1475,7 +2166,9 @@ function escapeHTML(value){
         document.createElement("div");
 
     div.textContent =
-        value == null ? "" : String(value);
+        value == null
+        ? ""
+        : String(value);
 
     return div.innerHTML;
 
