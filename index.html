@@ -260,7 +260,7 @@
     <!-- Dashboard Screen -->
     <div id="dashboard-screen" class="dashboard">
         <div class="dashboard-header">
-            <h2>Topper Study Hub - NCERT Portal</h2>
+            <h2 id="dash-title">Topper Study Hub - NCERT Portal</h2>
             <div class="header-controls">
                 <!-- Class Selection (6 to 12) -->
                 <select id="class-select" onchange="changeClass(this.value)">
@@ -273,9 +273,15 @@
                     <option value="12">Class 12</option>
                 </select>
 
-                <!-- Subject Selection (Dynamic based on Class) -->
+                <!-- Subject Selection -->
                 <select id="subject-select" onchange="changeSubject(this.value)">
-                    <!-- Populated dynamically from ncertData -->
+                    <!-- Populated dynamically -->
+                </select>
+
+                <!-- Language Selection -->
+                <select id="language-select" onchange="changeLanguage(this.value)">
+                    <option value="hi" selected>Hindi (हिंदी)</option>
+                    <option value="en">English</option>
                 </select>
 
                 <button class="logout-btn" onclick="logout()">Logout</button>
@@ -284,29 +290,29 @@
 
         <!-- Main Folders View -->
         <div id="main-folders-view">
-            <div class="section-title">EXPLORE CATEGORIES (FOLDERS)</div>
+            <div class="section-title" id="explore-title">EXPLORE CATEGORIES (FOLDERS)</div>
             <div class="folder-grid">
                 <div class="folder-card" onclick="openfolder('notes')">
                     <div class="folder-icon">📝</div>
-                    <h3>Revision Notes</h3>
-                    <p style="font-size: 13px; color: #94a3b8;">Chapter-wise summary & formulas</p>
+                    <h3 id="card-notes-title">Revision Notes</h3>
+                    <p style="font-size: 13px; color: #94a3b8;" id="card-notes-desc">Chapter-wise summary & formulas</p>
                 </div>
                 <div class="folder-card" onclick="openfolder('objective')">
                     <div class="folder-icon">🎯</div>
-                    <h3>Objective Questions (MCQs)</h3>
-                    <p style="font-size: 13px; color: #94a3b8;">Interactive quizzes & multiple choice</p>
+                    <h3 id="card-obj-title">Objective Questions (MCQs)</h3>
+                    <p style="font-size: 13px; color: #94a3b8;" id="card-obj-desc">Interactive quizzes & multiple choice</p>
                 </div>
                 <div class="folder-card" onclick="openfolder('subjective')">
                     <div class="folder-icon">📖</div>
-                    <h3>Subjective Solution</h3>
-                    <p style="font-size: 13px; color: #94a3b8;">Detailed descriptive answers</p>
+                    <h3 id="card-sub-title">Subjective Solution</h3>
+                    <p style="font-size: 13px; color: #94a3b8;" id="card-sub-desc">Detailed descriptive answers</p>
                 </div>
             </div>
         </div>
 
         <!-- Chapter View Section -->
         <div id="chapter-view-section" class="chapter-view">
-            <button class="back-btn" onclick="goBackToFolders()">← Back to Folders</button>
+            <button class="back-btn" id="back-btn-text" onclick="goBackToFolders()">← Back to Folders</button>
             <h3 id="chapter-view-title" class="chapter-title">Content View</h3>
             <div id="chapters-container"></div>
         </div>
@@ -318,15 +324,22 @@
     <script>
         let activeClass = '11';
         let activeSubject = 'bio';
+        let activeLanguage = 'hi';
 
         window.addEventListener('DOMContentLoaded', () => {
             updateSubjectsDropdown();
+            updateUIText();
         });
 
         function loginSuccess() {
-            document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('dashboard-screen').style.display = 'block';
+            let loginScreen = document.getElementById('login-screen');
+            let dashScreen = document.getElementById('dashboard-screen');
+            if (loginScreen && dashScreen) {
+                loginScreen.style.display = 'none';
+                dashScreen.style.display = 'block';
+            }
             updateSubjectsDropdown();
+            updateUIText();
         }
 
         function logout() {
@@ -339,143 +352,4 @@
             updateSubjectsDropdown();
         }
 
-        function changeSubject(sub) {
-            activeSubject = sub;
-        }
-
-        // Dropdown ko ncertData ke anusaar dynamic update karne ka function
-        function updateSubjectsDropdown() {
-            const subSelect = document.getElementById('subject-select');
-            if (!subSelect) return;
-            subSelect.innerHTML = '';
-
-            if (typeof ncertData !== 'undefined' && ncertData[activeClass]) {
-                let subjectsObj = ncertData[activeClass];
-                let firstSub = '';
-                let isFirst = true;
-
-                for (let subKey in subjectsObj) {
-                    if (isFirst) {
-                        firstSub = subKey;
-                        isFirst = false;
-                    }
-                    let opt = document.createElement('option');
-                    opt.value = subKey;
-                    // Subject name ko properly display karne ke liye
-                    opt.innerText = subKey.toUpperCase();
-                    subSelect.appendChild(opt);
-                }
-                activeSubject = firstSub;
-            }
-        }
-
-        function goBackToFolders() {
-            document.getElementById('chapter-view-section').style.display = 'none';
-            document.getElementById('main-folders-view').style.display = 'block';
-        }
-
-        function openfolder(folderType) {
-            document.getElementById("main-folders-view").style.display = "none";
-            document.getElementById("chapter-view-section").style.display = "block";
-            
-            let container = document.getElementById("chapters-container");
-            container.innerHTML = "";
-
-            if (folderType === 'objective') {
-                let titleEl = document.getElementById("chapter-view-title");
-                if(titleEl) titleEl.innerText = `Class ${activeClass} - Objective Questions (1-100 MCQs)`;
-
-                if (typeof chapter1Quiz !== 'undefined' && Array.isArray(chapter1Quiz)) {
-                    chapter1Quiz.forEach((item) => {
-                        let card = document.createElement('div');
-                        card.className = 'chapter-item';
-                        card.style.marginBottom = "20px";
-                        card.style.padding = "20px";
-                        card.style.background = "rgba(15, 23, 42, 0.9)";
-                        card.style.borderRadius = "10px";
-                        card.style.border = "1px solid #334155";
-
-                        let qTitle = document.createElement('div');
-                        qTitle.innerText = item.q;
-                        qTitle.style.fontWeight = "600";
-                        qTitle.style.fontSize = "15px";
-                        qTitle.style.marginBottom = "15px";
-                        qTitle.style.color = "#f8fafc";
-                        card.appendChild(qTitle);
-
-                        let optionsGrid = document.createElement('div');
-                        optionsGrid.style.display = "grid";
-                        optionsGrid.style.gridTemplateColumns = "1fr 1fr";
-                        optionsGrid.style.gap = "10px";
-
-                        item.options.forEach((opt, optIdx) => {
-                            let btn = document.createElement('button');
-                            btn.innerText = opt;
-                            btn.style.padding = "10px 14px";
-                            btn.style.background = "#1e293b";
-                            btn.style.border = "1px solid #475569";
-                            btn.style.color = "#cbd5e1";
-                            btn.style.borderRadius = "6px";
-                            btn.style.cursor = "pointer";
-                            btn.style.textAlign = "left";
-                            btn.style.fontSize = "14px";
-
-                            btn.onclick = function() {
-                                let allBtns = optionsGrid.querySelectorAll('button');
-                                allBtns.forEach(b => b.disabled = true);
-
-                                if (optIdx === item.correct) {
-                                    btn.style.background = "#166534";
-                                    btn.style.borderColor = "#22c55e";
-                                    btn.style.color = "#fff";
-                                    feedback.innerText = "✅ सही जवाब! (Correct)";
-                                    feedback.style.color = "#22c55e";
-                                } else {
-                                    btn.style.background = "#991b1b";
-                                    btn.style.borderColor = "#ef4444";
-                                    btn.style.color = "#fff";
-                                    feedback.innerText = "❌ गलत जवाब! सही विकल्प यह है: " + item.options[item.correct];
-                                    feedback.style.color = "#ef4444";
-                                    
-                                    allBtns[item.correct].style.background = "#166534";
-                                    allBtns[item.correct].style.borderColor = "#22c55e";
-                                    allBtns[item.correct].style.color = "#fff";
-                                }
-                            };
-                            optionsGrid.appendChild(btn);
-                        });
-
-                        card.appendChild(optionsGrid);
-
-                        let feedback = document.createElement('div');
-                        feedback.style.marginTop = "10px";
-                        feedback.style.fontSize = "13px";
-                        feedback.style.fontWeight = "bold";
-                        card.appendChild(feedback);
-
-                        container.appendChild(card);
-                    });
-                } else {
-                    container.innerHTML = "<p style='color: #ef4444;'>Quiz data load nahi ho paya hai.</p>";
-                }
-            } else {
-                // Notes ya Subjective ke liye ncertData se chapters dikhana
-                let titleEl = document.getElementById("chapter-view-title");
-                if(titleEl) titleEl.innerText = `Class ${activeClass} - Subject: ${activeSubject.toUpperCase()} (${folderType.toUpperCase()})`;
-
-                if (typeof ncertData !== 'undefined' && ncertData[activeClass] && ncertData[activeClass][activeSubject]) {
-                    let chaptersList = ncertData[activeClass][activeSubject];
-                    chaptersList.forEach((chap) => {
-                        let chapBox = document.createElement('div');
-                        chapBox.className = 'chapter-item';
-                        chapBox.innerHTML = `<strong>${chap}</strong><p style="margin-top:8px; color:#94a3b8; font-size:13px;">${folderType.toUpperCase()} content for this chapter will appear here.</p>`;
-                        container.appendChild(chapBox);
-                    });
-                } else {
-                    container.innerHTML = "<p>Is class ya subject ke chapters available nahi hain.</p>";
-                }
-            }
-        }
-    </script>
-</body>
-</html>
+        function changeSubject(
