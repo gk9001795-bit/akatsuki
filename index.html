@@ -105,11 +105,6 @@
             color: #fff;
             font-size: 15px;
             outline: none;
-            transition: border-color 0.3s;
-        }
-        .input-group input:focus {
-            border-color: #38bdf8;
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
         }
         .btn {
             width: 100%;
@@ -121,13 +116,7 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
             margin-top: 10px;
-        }
-        .btn:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
         }
         /* Dashboard Styles */
         .dashboard {
@@ -272,13 +261,9 @@
         <div class="dashboard-header">
             <h2 id="dash-title">Topper Study Hub - NCERT Portal</h2>
             <div class="header-controls">
-                <select id="subject-select" onchange="changeSubject()">
+                <select id="subject-select">
                     <option value="science">Science (विज्ञान)</option>
                     <option value="math">Mathematics (गणित)</option>
-                </select>
-                <select id="language-select" onchange="changeLanguage()">
-                    <option value="hi">Hindi (हिंदी)</option>
-                    <option value="en">English</option>
                 </select>
                 <button class="logout-btn" onclick="logout()">Logout</button>
             </div>
@@ -296,4 +281,146 @@
                 <div class="folder-card" onclick="openfolder('objective')">
                     <div class="folder-icon">🎯</div>
                     <h3>Objective Questions (MCQs)</h3>
-                    <
+                    <p style="font-size: 13px; color: #94a3b8;">Interactive quizzes & multiple choice</p>
+                </div>
+                <div class="folder-card" onclick="openfolder('subjective')">
+                    <div class="folder-icon">📖</div>
+                    <h3>Subjective Solution</h3>
+                    <p style="font-size: 13px; color: #94a3b8;">Detailed descriptive answers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter View Section -->
+        <div id="chapter-view-section" class="chapter-view">
+            <button class="back-btn" onclick="goBackToFolders()">← Back to Folders</button>
+            <h3 id="chapter-view-title" class="chapter-title">Content View</h3>
+            <div id="chapters-container"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="quiz-data.js"></script>
+    <script src="data.js"></script>
+    <script>
+        function loginSuccess() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('dashboard-screen').style.display = 'block';
+        }
+
+        function logout() {
+            document.getElementById('dashboard-screen').style.display = 'none';
+            document.getElementById('login-screen').style.display = 'flex';
+        }
+
+        function goBackToFolders() {
+            document.getElementById('chapter-view-section').style.display = 'none';
+            document.getElementById('main-folders-view').style.display = 'block';
+        }
+
+        function openfolder(folderType) {
+            document.getElementById("main-folders-view").style.display = "none";
+            document.getElementById("chapter-view-section").style.display = "block";
+            
+            let container = document.getElementById("chapters-container");
+            container.innerHTML = "";
+
+            if (folderType === 'objective') {
+                let titleEl = document.getElementById("chapter-view-title");
+                if(titleEl) titleEl.innerText = "Class 11 Biology - Chapter 1: Objective Questions (1-100 MCQs)";
+
+                if (typeof chapter1Quiz !== 'undefined' && Array.isArray(chapter1Quiz)) {
+                    chapter1Quiz.forEach((item) => {
+                        let card = document.createElement('div');
+                        card.className = 'chapter-item';
+                        card.style.marginBottom = "20px";
+                        card.style.padding = "20px";
+                        card.style.background = "rgba(15, 23, 42, 0.9)";
+                        card.style.borderRadius = "10px";
+                        card.style.border = "1px solid #334155";
+
+                        let qTitle = document.createElement('div');
+                        qTitle.innerText = item.q;
+                        qTitle.style.fontWeight = "600";
+                        qTitle.style.fontSize = "15px";
+                        qTitle.style.marginBottom = "15px";
+                        qTitle.style.color = "#f8fafc";
+                        card.appendChild(qTitle);
+
+                        let optionsGrid = document.createElement('div');
+                        optionsGrid.style.display = "grid";
+                        optionsGrid.style.gridTemplateColumns = "1fr 1fr";
+                        optionsGrid.style.gap = "10px";
+
+                        item.options.forEach((opt, optIdx) => {
+                            let btn = document.createElement('button');
+                            btn.innerText = opt;
+                            btn.style.padding = "10px 14px";
+                            btn.style.background = "#1e293b";
+                            btn.style.border = "1px solid #475569";
+                            btn.style.color = "#cbd5e1";
+                            btn.style.borderRadius = "6px";
+                            btn.style.cursor = "pointer";
+                            btn.style.textAlign = "left";
+                            btn.style.fontSize = "14px";
+
+                            btn.onclick = function() {
+                                let allBtns = optionsGrid.querySelectorAll('button');
+                                allBtns.forEach(b => b.disabled = true);
+
+                                if (optIdx === item.correct) {
+                                    btn.style.background = "#166534";
+                                    btn.style.borderColor = "#22c55e";
+                                    btn.style.color = "#fff";
+                                    feedback.innerText = "✅ Sahi Jawab! (Correct)";
+                                    feedback.style.color = "#22c55e";
+                                } else {
+                                    btn.style.background = "#991b1b";
+                                    btn.style.borderColor = "#ef4444";
+                                    btn.style.color = "#fff";
+                                    feedback.innerText = "❌ Galat Jawab! Sahi option yeh hai: " + item.options[item.correct];
+                                    feedback.style.color = "#ef4444";
+                                    
+                                    allBtns[item.correct].style.background = "#166534";
+                                    allBtns[item.correct].style.borderColor = "#22c55e";
+                                    allBtns[item.correct].style.color = "#fff";
+                                }
+                            };
+                            optionsGrid.appendChild(btn);
+                        });
+
+                        card.appendChild(optionsGrid);
+
+                        let feedback = document.createElement('div');
+                        feedback.style.marginTop = "10px";
+                        feedback.style.fontSize = "13px";
+                        feedback.style.fontWeight = "bold";
+                        card.appendChild(feedback);
+
+                        container.appendChild(card);
+                    });
+                } else {
+                    container.innerHTML = "<p style='color: #ef4444;'>Quiz data load nahi ho paya hai.</p>";
+                }
+            } else {
+                if (typeof ncertData !== 'undefined' && ncertData['science'] && ncertData['science']['Chapter 1']) {
+                    let data = ncertData['science']['Chapter 1'][folderType];
+                    if (data) {
+                        let titleEl = document.getElementById("chapter-view-title");
+                        if(titleEl) titleEl.innerText = `Chapter 1 - ${folderType.toUpperCase()}`;
+                        
+                        let contentBox = document.createElement('div');
+                        contentBox.className = 'chapter-item';
+                        contentBox.innerHTML = `<strong>${folderType.toUpperCase()} Content:</strong><p style="margin-top:10px;">${data}</p>`;
+                        container.appendChild(contentBox);
+                    } else {
+                        container.innerHTML = "<p>Content not available yet.</p>";
+                    }
+                } else {
+                    container.innerHTML = "<p>Data not found.</p>";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
