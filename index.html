@@ -244,7 +244,7 @@
             color: #94a3b8;
         }
 
-        /* Chapter & Content View (Hidden by default) */
+        /* Chapter & Content View */
         .chapter-view {
             display: none;
             background: rgba(30, 41, 59, 0.5);
@@ -299,33 +299,6 @@
             color: #cbd5e1;
             line-height: 1.6;
         }
-
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        .option-btn {
-            background: #334155;
-            border: none;
-            padding: 10px 14px;
-            border-radius: 6px;
-            color: #fff;
-            text-align: left;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .option-btn:hover {
-            background: #475569;
-        }
-
-        #quiz-result {
-            margin-top: 12px;
-            font-weight: 600;
-        }
     </style>
 </head>
 <body>
@@ -376,7 +349,7 @@
         <!-- Subject Filter -->
         <div class="subject-filter">
             <label id="lbl-subject" style="color: #94a3b8; font-weight: 600;">Subject:</label>
-            <select id="subject-select">
+            <select id="subject-select" onchange="onSubjectChange()">
                 <option value="bio">Biology / Vigyan</option>
                 <option value="physics">Physics</option>
                 <option value="chemistry">Chemistry</option>
@@ -384,7 +357,7 @@
             </select>
         </div>
 
-        <!-- Folder View (Main Categories) -->
+        <!-- Folder View -->
         <div id="main-folders-view">
             <div class="section-title" id="title-explore">EXPLORE CATEGORIES (FOLDERS)</div>
             <div class="folder-grid">
@@ -392,7 +365,7 @@
                     <div class="folder-icon">📂</div>
                     <div class="folder-info">
                         <h3 id="folder-notes-title">NCERT Revision Notes</h3>
-                        <p id="folder-notes-desc">Chapter-wise summary, formulas & definitions</p>
+                        <p id="folder-notes-desc">Chapter-wise summary & formulas</p>
                     </div>
                 </div>
 
@@ -400,7 +373,7 @@
                     <div class="folder-icon">🎯</div>
                     <div class="folder-info">
                         <h3 id="folder-obj-title">Objective Questions (MCQs)</h3>
-                        <p id="folder-obj-desc">Interactive quizzes & multiple choice sets</p>
+                        <p id="folder-obj-desc">Interactive quizzes & multiple choice</p>
                     </div>
                 </div>
 
@@ -408,20 +381,18 @@
                     <div class="folder-icon">✍️</div>
                     <div class="folder-info">
                         <h3 id="folder-subj-title">Subjective Questions</h3>
-                        <p id="folder-subj-desc">Short & long answer questions with solutions</p>
+                        <p id="folder-subj-desc">Short & long answer questions</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Chapter & Step-by-Step View (Initially Hidden) -->
+        <!-- Chapter & Step-by-Step View -->
         <div class="chapter-view" id="chapter-view-section">
             <button class="back-btn" onclick="goBackToFolders()" id="back-btn-text">← Back to Folders</button>
             <h3 class="chapter-title" id="active-folder-title">Folder Name</h3>
             
-            <div id="chapters-container">
-                <!-- Chapters will load dynamically here -->
-            </div>
+            <div id="chapters-container"></div>
         </div>
     </div>
 
@@ -432,7 +403,43 @@
         let currentClass = 11;
         let activeFolderType = '';
 
-        // Check persistent login
+        // NCERT Chapter Database for Class 11 Biology (Expandable for others)
+        const ncertData = {
+            11: {
+                bio: [
+                    "Chapter 1: The Living World (जीव जगत)",
+                    "Chapter 2: Biological Classification (जीव जगत का वर्गीकरण)",
+                    "Chapter 3: Plant Kingdom (वनस्पति जगत)",
+                    "Chapter 4: Animal Kingdom (प्राणि जगत)",
+                    "Chapter 5: Morphology of Flowering Plants (पुष्पी पापादपों की आकारिकी)",
+                    "Chapter 6: Anatomy of Flowering Plants (पुष्पी पादपों का शरीर)",
+                    "Chapter 7: Structural Organisation in Animals (प्राणियों में संरचनात्मक संगठन)",
+                    "Chapter 8: Cell: The Unit of Life (कोशिका: जीवन की इकाई)",
+                    "Chapter 9: Biomolecules (जैव अणु)",
+                    "Chapter 10: Cell Cycle and Cell Division (कोशिका चक्र और कोशिका विभाजन)",
+                    "Chapter 11: Photosynthesis in Higher Plants (उच्च पापादपों में प्रकाश संश्लेषण)",
+                    "Chapter 12: Respiration in Plants (पादपों में श्वसन)",
+                    "Chapter 13: Plant Growth and Development (पादप वृद्धि एवं परिवर्धन)",
+                    "Chapter 14: Breathing and Exchange of Gases (श्वसन और गैसों का विनिमय)",
+                    "Chapter 15: Body Fluids and Circulation (शरीर द्रव तथा परिसंचरण)",
+                    "Chapter 16: Excretory Products and Their Elimination (उत्सर्जी उत्पाद एवं उनका निष्कासन)",
+                    "Chapter 17: Locomotion and Movement (गանդन एवं संचलन)",
+                    "Chapter 18: Neural Control and Coordination (तंत्रिकीय नियंत्रण एवं समन्वय)",
+                    "Chapter 19: Chemical Coordination and Integration (रासायनिक समन्वय तथा इंटीग्रेशन)",
+                    "Chapter 20: Reproduction in Organisms",
+                    "Chapter 21: Sexual Reproduction in Flowering Plants",
+                    "Chapter 22: Human Reproduction"
+                ],
+                physics: [
+                    "Chapter 1: Physical World", "Chapter 2: Units and Measurements", "Chapter 3: Motion in a Straight Line",
+                    "Chapter 4: Motion in a Plane", "Chapter 5: Laws of Motion", "Chapter 6: Work, Energy and Power",
+                    "Chapter 7: System of Particles and Rotational Motion", "Chapter 8: Gravitation", "Chapter 9: Mechanical Properties of Solids",
+                    "Chapter 10: Mechanical Properties of Fluids", "Chapter 11: Thermal Properties of Matter", "Chapter 12: Thermodynamics",
+                    "Chapter 13: Kinetic Theory", "Chapter 14: Oscillations", "Chapter 15: Waves"
+                ]
+            }
+        };
+
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('isLoggedIn') === 'true') {
                 loginScreen.style.display = 'none';
@@ -455,24 +462,28 @@
             document.getElementById('password').value = '';
         }
 
-        // Stylish Class selection
         function selectClass(cls) {
             currentClass = cls;
             document.querySelectorAll('.class-pill').forEach(pill => pill.classList.remove('active'));
             event.target.classList.add('active');
-            // If inside chapter view, refresh chapters for new class
             if(activeFolderType) {
                 openFolder(activeFolderType);
             }
         }
 
-        // Folder Navigation Logic
+        function onSubjectChange() {
+            if(activeFolderType) {
+                openFolder(activeFolderType);
+            }
+        }
+
         function openFolder(type) {
             activeFolderType = type;
             document.getElementById('main-folders-view').style.display = 'none';
             document.getElementById('chapter-view-section').style.display = 'block';
 
             const lang = document.getElementById('lang-selector').value;
+            const subject = document.getElementById('subject-select').value;
             const titleEl = document.getElementById('active-folder-title');
             const container = document.getElementById('chapters-container');
             container.innerHTML = '';
@@ -484,44 +495,40 @@
             
             titleEl.innerText = folderName;
 
-            // Generate Step-by-Step Chapters (Mock Structure ready for your custom data)
-            for(let i = 1; i <= 3; i++) {
+            // Fetch chapters based on class and subject
+            let chapters = (ncertData[currentClass] && ncertData[currentClass][subject]) || [
+                "Chapter 1: Introduction", "Chapter 2: Basic Concepts", "Chapter 3: Advanced Topics"
+            ];
+
+            chapters.forEach((chapTitle, index) => {
                 let itemDiv = document.createElement('div');
                 itemDiv.className = 'chapter-item';
                 
-                let heading = lang === 'hi' ? `अध्याय ${i}: महत्वपूर्ण एनसीईआरटी टॉपिक` : `Chapter ${i}: Important NCERT Topic`;
-                
                 if(type === 'notes') {
                     itemDiv.innerHTML = `
-                        <div onclick="toggleContent(this)">📌 ${heading} (Click to open Notes)</div>
+                        <div onclick="toggleContent(this)">📌 ${chapTitle}</div>
                         <div class="chapter-content-box">
-                            <strong>Summary:</strong> Complete step-by-step summary and key formulas for Chapter ${i} of Class ${currentClass}.
+                            <strong>Notes:</strong> Detailed NCERT notes for ${chapTitle} will appear here. (Aap apne notes yahan daal sakte hain!)
                         </div>
                     `;
                 } else if(type === 'objective') {
                     itemDiv.innerHTML = `
-                        <div onclick="toggleContent(this)">🎯 ${heading} (Click to open Quiz)</div>
+                        <div onclick="toggleContent(this)">🎯 ${chapTitle} (MCQs)</div>
                         <div class="chapter-content-box">
-                            <p><strong>Q: What is the core concept of Chapter ${i}?</strong></p>
-                            <div class="quiz-options">
-                                <button class="option-btn" onclick="checkAnswer(event, false)">A) Option One</button>
-                                <button class="option-btn" onclick="checkAnswer(event, true)">B) Correct NCERT Answer</button>
-                                <button class="option-btn" onclick="checkAnswer(event, false)">C) Option Three</button>
-                            </div>
-                            <p class="quiz-res" style="margin-top:10px; font-weight:600;"></p>
+                            <p><strong>Q1: Sample question for ${chapTitle}?</strong></p>
+                            <div style="margin-top:8px; color: #38bdf8;">(Aapke custom objective questions yahan set kiye jayenge!)</div>
                         </div>
                     `;
                 } else if(type === 'subjective') {
                     itemDiv.innerHTML = `
-                        <div onclick="toggleContent(this)">✍️ ${heading} (Click to open Questions & Answers)</div>
+                        <div onclick="toggleContent(this)">✍️ ${chapTitle} (Q & A)</div>
                         <div class="chapter-content-box">
-                            <strong>Question:</strong> Explain the primary principles and derivations of Chapter ${i}.<br><br>
-                            <strong>Answer:</strong> Detailed step-by-step descriptive solution according to the NCERT curriculum standards.
+                            <strong>Subjective Solution:</strong> Detailed descriptive questions and answers for ${chapTitle}.
                         </div>
                     `;
                 }
                 container.appendChild(itemDiv);
-            }
+            });
         }
 
         function goBackToFolders() {
@@ -532,27 +539,9 @@
 
         function toggleContent(el) {
             const contentBox = el.nextElementSibling;
-            if(contentBox.style.display === 'block') {
-                contentBox.style.display = 'none';
-            } else {
-                contentBox.style.display = 'block';
-            }
+            contentBox.style.display = (contentBox.style.display === 'block') ? 'none' : 'block';
         }
 
-        function checkAnswer(e, isCorrect) {
-            e.stopPropagation();
-            const resEl = e.target.parentElement.nextElementSibling;
-            const lang = document.getElementById('lang-selector').value;
-            if(isCorrect) {
-                resEl.style.color = '#4ade80';
-                resEl.innerText = lang === 'hi' ? 'सही जवाब! 🎉 बहुत बढ़िया।' : 'Correct! 🎉 Great job.';
-            } else {
-                resEl.style.color = '#f87171';
-                resEl.innerText = lang === 'hi' ? 'गलत जवाब। फिर से कोशिश करें! ❌' : 'Incorrect. Try again! ❌';
-            }
-        }
-
-        // Language Dictionary
         const texts = {
             en: {
                 loginTitle: "Topper Study - Login",
@@ -565,11 +554,11 @@
                 lblSubject: "Subject:",
                 titleExplore: "EXPLORE CATEGORIES (FOLDERS)",
                 folderNotesTitle: "NCERT Revision Notes",
-                folderNotesDesc: "Chapter-wise summary, formulas & definitions",
+                folderNotesDesc: "Chapter-wise summary & formulas",
                 folderObjTitle: "Objective Questions (MCQs)",
-                folderObjDesc: "Interactive quizzes & multiple choice sets",
+                folderObjDesc: "Interactive quizzes & multiple choice",
                 folderSubjTitle: "Subjective Questions",
-                folderSubjDesc: "Short & long answer questions with solutions",
+                folderSubjDesc: "Short & long answer questions",
                 backBtnText: "← Back to Folders"
             },
             hi: {
@@ -583,11 +572,11 @@
                 lblSubject: "विषय:",
                 titleExplore: "कैटेगरी चुनें (FOLDERS)",
                 folderNotesTitle: "एनसीईआरटी रिविजन नोट्स",
-                folderNotesDesc: "अध्याय-वार सारांश, सूत्र और परिभाषाएं",
+                folderNotesDesc: "अध्याय-वार सारांश और सूत्र",
                 folderObjTitle: "वस्तुनिष्ठ प्रश्न (MCQs)",
-                folderObjDesc: "क्विज़ और बहुविकल्पीय प्रश्न सेट",
+                folderObjDesc: "क्विज़ और बहुविकल्पीय प्रश्न",
                 folderSubjTitle: "सब्जेक्टिव प्रश्न",
-                folderSubjDesc: "लघु एवं दीर्घ उत्तरीय प्रश्न और उत्तर",
+                folderSubjDesc: "लघु एवं दीर्घ उत्तरीय प्रश्न",
                 backBtnText: "← वापस फोल्डर पर जाएं"
             }
         };
