@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Topper Study - Portal</title>
-    <!-- Google verification tag -->
+    <title>Topper Study - NCERT Hub</title>
     <meta name="google-site-verification" content="kwWf-UwqtbjnhoZjiQqc07R3UaZwznP_SaNIku51jh0" />
     <style>
         * {
@@ -17,19 +16,18 @@
         body {
             background: linear-gradient(135deg, #0f172a, #1e1b4b);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             color: #fff;
         }
 
-        .container {
+        /* Login Container */
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             width: 100%;
-            max-width: 450px;
-            padding: 20px;
         }
 
-        /* Card Styling */
         .card {
             background: rgba(30, 41, 59, 0.7);
             padding: 40px;
@@ -38,6 +36,7 @@
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             width: 100%;
+            max-width: 450px;
         }
 
         .card h2 {
@@ -45,7 +44,6 @@
             font-size: 26px;
             text-align: center;
             color: #f8fafc;
-            letter-spacing: 1px;
         }
 
         .input-group {
@@ -68,11 +66,6 @@
             color: #fff;
             font-size: 16px;
             outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .input-group input:focus {
-            border-color: #6366f1;
         }
 
         .btn {
@@ -86,82 +79,135 @@
             font-weight: 600;
             cursor: pointer;
             transition: opacity 0.3s;
-            margin-top: 10px;
         }
 
         .btn:hover {
             opacity: 0.9;
         }
 
-        /* Dashboard Styles */
+        /* Full Screen Dashboard Styles */
         .dashboard {
             display: none;
-            max-width: 700px;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px 40px;
         }
 
         .dashboard-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 15px;
+            margin-bottom: 25px;
         }
 
         .dashboard-header h2 {
-            margin: 0;
-            font-size: 22px;
             color: #6366f1;
+            font-size: 24px;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        select {
+            background: #1e293b;
+            color: #fff;
+            padding: 8px 12px;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
         }
 
         .logout-btn {
             background: #ef4444;
-            padding: 6px 14px;
+            padding: 8px 16px;
             font-size: 14px;
             width: auto;
-            margin: 0;
         }
 
-        .section-title {
-            font-size: 18px;
+        /* Filter Row for Class Selection */
+        .filter-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filter-box {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-box label {
+            display: block;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+        }
+
+        .filter-box select {
+            width: 100%;
+        }
+
+        /* Main Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .content-card {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(6px);
+        }
+
+        .content-card h3 {
             color: #38bdf8;
-            margin-bottom: 12px;
-            margin-top: 20px;
-        }
-
-        .note-box {
-            background: rgba(15, 23, 42, 0.5);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #6366f1;
             margin-bottom: 15px;
-            font-size: 15px;
-            color: #cbd5e1;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .quiz-box {
+        .item-box {
             background: rgba(15, 23, 42, 0.5);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #cbd5e1;
+            border-left: 3px solid #6366f1;
         }
 
         .quiz-options {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 12px;
+            gap: 8px;
+            margin-top: 10px;
         }
 
         .option-btn {
             background: #334155;
             border: none;
-            padding: 10px;
+            padding: 8px 12px;
             border-radius: 6px;
             color: #fff;
             text-align: left;
             cursor: pointer;
-            transition: background 0.2s;
+            font-size: 14px;
         }
 
         .option-btn:hover {
@@ -169,48 +215,84 @@
         }
 
         #quiz-result {
-            margin-top: 12px;
+            margin-top: 10px;
             font-weight: 600;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Login Card -->
-        <div id="login-card" class="card">
-            <h2>Topper Study</h2>
+    <!-- Login Screen -->
+    <div class="login-wrapper" id="login-screen">
+        <div class="card">
+            <h2 id="login-title-text">Topper Study - Login</h2>
             <form id="login-form">
                 <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" placeholder="Enter any username" required>
+                    <label id="lbl-user" for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required>
                 </div>
                 <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter any password" required>
+                    <label id="lbl-pass" for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
                 </div>
-                <button type="submit" class="btn">Login to Vault</button>
+                <button type="submit" class="btn" id="login-btn-text">Login to Hub</button>
             </form>
         </div>
+    </div>
 
-        <!-- Dashboard / Study Vault -->
-        <div id="dashboard-card" class="card dashboard">
-            <div class="dashboard-header">
-                <h2>📚 Topper Study Hub</h2>
-                <button class="btn logout-btn" id="logout-btn">Logout</button>
+    <!-- Full Screen Dashboard -->
+    <div class="dashboard" id="dashboard-screen">
+        <div class="dashboard-header">
+            <h2 id="dash-title">📚 Topper Study - NCERT Portal</h2>
+            <div class="header-controls">
+                <!-- Language Selector -->
+                <select id="lang-selector" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                </select>
+                <button class="btn logout-btn" id="logout-btn-text" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <!-- Class & Subject Selection -->
+        <div class="filter-section">
+            <div class="filter-box">
+                <label id="lbl-class">Select Class (Kaksha)</label>
+                <select id="class-select">
+                    <option value="6">Class 6</option>
+                    <option value="7">Class 7</option>
+                    <option value="8">Class 8</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                    <option value="11" selected>Class 11 (Science)</option>
+                    <option value="12">Class 12 (Science)</option>
+                </select>
+            </div>
+            <div class="filter-box">
+                <label id="lbl-subject">Select Subject</label>
+                <select id="subject-select">
+                    <option value="bio">Biology / Vigyan</option>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="math">Mathematics</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Content Grid (Notes, Objectives, Subjective, Quiz) -->
+        <div class="content-grid">
+            <!-- Notes Section -->
+            <div class="content-card">
+                <h3 id="sec-notes">📖 NCERT Revision Notes</h3>
+                <div class="item-box" id="note-1">📌 Quick summary of selected chapter and key formulas.</div>
+                <div class="item-box" id="note-2">📌 Important definitions highlighted for exams.</div>
             </div>
 
-            <div class="section-title">📖 Quick Study Notes</div>
-            <div class="note-box">
-                <strong>Tip of the Day:</strong> Consistent revision and writing down concepts helps retain memory up to 2x faster!
-            </div>
-            <div class="note-box">
-                <strong>Core Subject Focus:</strong> Keep your formulas and important definitions organized right here for quick access.
-            </div>
-
-            <div class="section-title">🧠 Practice Quiz Corner</div>
-            <div class="quiz-box">
-                <p><strong>Q: What is the powerhouse of the cell?</strong></p>
+            <!-- Objective Questions -->
+            <div class="content-card">
+                <h3 id="sec-obj">🎯 Objective Questions (MCQs)</h3>
+                <div class="item-box" id="obj-text">Q1: Which cell organelle is known as the powerhouse?</div>
                 <div class="quiz-options">
                     <button class="option-btn" onclick="checkAnswer(false)">A) Nucleus</button>
                     <button class="option-btn" onclick="checkAnswer(true)">B) Mitochondria</button>
@@ -218,41 +300,111 @@
                 </div>
                 <p id="quiz-result"></p>
             </div>
+
+            <!-- Subjective Questions -->
+            <div class="content-card">
+                <h3 id="sec-subj">✍️ Subjective Questions (Long/Short)</h3>
+                <div class="item-box" id="subj-1">Q: Explain the structural and functional unit of life with diagram guidelines.</div>
+                <div class="item-box" id="subj-2">Q: State the fundamental laws associated with this chapter.</div>
+            </div>
         </div>
     </div>
 
     <script>
+        const loginScreen = document.getElementById('login-screen');
+        const dashboardScreen = document.getElementById('dashboard-screen');
         const loginForm = document.getElementById('login-form');
-        const loginCard = document.getElementById('login-card');
-        const dashboardCard = document.getElementById('dashboard-card');
-        const logoutBtn = document.getElementById('logout-btn');
 
-        // Login Action
+        // Login handle
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            loginCard.style.display = 'none';
-            dashboardCard.style.display = 'block';
+            loginScreen.style.display = 'none';
+            dashboardScreen.style.display = 'block';
         });
 
-        // Logout Action
-        logoutBtn.addEventListener('click', function() {
-            dashboardCard.style.display = 'none';
-            loginCard.style.display = 'block';
+        // Logout handle
+        function logout() {
+            dashboardScreen.style.display = 'none';
+            loginScreen.style.display = 'flex';
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
             document.getElementById('quiz-result').innerText = '';
-        });
+        }
 
-        // Quiz Logic
+        // Quiz check logic
         function checkAnswer(isCorrect) {
-            const resultText = document.getElementById('quiz-result');
+            const res = document.getElementById('quiz-result');
+            const lang = document.getElementById('lang-selector').value;
             if (isCorrect) {
-                resultText.style.color = '#4ade80';
-                resultText.innerText = 'Correct! 🎉 Great job.';
+                res.style.color = '#4ade80';
+                res.innerText = lang === 'hi' ? 'Sahi jawab! 🎉 Badhai ho.' : 'Correct! 🎉 Great job.';
             } else {
-                resultText.style.color = '#f87171';
-                resultText.innerText = 'Incorrect. Try again! ❌';
+                res.style.color = '#f87171';
+                res.innerText = lang === 'hi' ? 'Galat jawab. Phir se koshish karein! ❌' : 'Incorrect. Try again! ❌';
             }
+        }
+
+        // Language Translation Dictionary
+        const texts = {
+            en: {
+                loginTitle: "Topper Study - Login",
+                lblUser: "Username",
+                lblPass: "Password",
+                loginBtn: "Login to Hub",
+                dashTitle: "📚 Topper Study - NCERT Portal",
+                logoutBtn: "Logout",
+                lblClass: "Select Class (Kaksha)",
+                lblSubject: "Select Subject",
+                secNotes: "📖 NCERT Revision Notes",
+                secObj: "🎯 Objective Questions (MCQs)",
+                secSubj: "✍️ Subjective Questions (Long/Short)",
+                note1: "📌 Quick summary of selected chapter and key formulas.",
+                note2: "📌 Important definitions highlighted for exams.",
+                objText: "Q1: Which cell organelle is known as the powerhouse?",
+                subj1: "Q: Explain the structural and functional unit of life with diagram guidelines.",
+                subj2: "Q: State the fundamental laws associated with this chapter."
+            },
+            hi: {
+                loginTitle: "Topper Study - Login",
+                lblUser: "यूजरनेम (Username)",
+                lblPass: "पासवर्ड (Password)",
+                loginBtn: "लॉगिन करें",
+                dashTitle: "📚 टॉपर स्टडी - एनसीईआरटी पोर्टल",
+                logoutBtn: "लॉग आउट",
+                lblClass: "कक्षा चुनें (Class 6-12)",
+                lblSubject: "विषय चुनें (Subject)",
+                secNotes: "📖 एनसीईआरटी रिविजन नोट्स",
+                secObj: "🎯 वस्तुनिष्ठ प्रश्न (Objective MCQs)",
+                secSubj: "✍️ सब्जेक्टिव प्रश्न (Subjective Q&A)",
+                note1: "📌 चयनित अध्याय और मुख्य सूत्रों का त्वरित सारांश।",
+                note2: "📌 परीक्षा के लिए महत्वपूर्ण परिभाषाएं।",
+                objText: "प्रश्‍न 1: किस कोशिका अंगक को पावरहाउस कहा जाता है?",
+                subj1: "प्रश्‍न: जीवन की संरचनात्मक और कार्यात्मक इकाई को चित्र सहित समझाइए।",
+                subj2: "प्रश्‍न: इस अध्याय से जुड़े मूलभूत नियमों को लिखिए।"
+            }
+        };
+
+        // Language Change Function
+        function changeLanguage() {
+            const lang = document.getElementById('lang-selector').value;
+            const t = texts[lang];
+
+            document.getElementById('login-title-text').innerText = t.loginTitle;
+            document.getElementById('lbl-user').innerText = t.lblUser;
+            document.getElementById('lbl-pass').innerText = t.lblPass;
+            document.getElementById('login-btn-text').innerText = t.loginBtn;
+            document.getElementById('dash-title').innerText = t.dashTitle;
+            document.getElementById('logout-btn-text').innerText = t.logoutBtn;
+            document.getElementById('lbl-class').innerText = t.lblClass;
+            document.getElementById('lbl-subject').innerText = t.lblSubject;
+            document.getElementById('sec-notes').innerText = t.secNotes;
+            document.getElementById('sec-obj').innerText = t.secObj;
+            document.getElementById('sec-subj').innerText = t.secSubj;
+            document.getElementById('note-1').innerText = t.note1;
+            document.getElementById('note-2').innerText = t.note2;
+            document.getElementById('obj-text').innerText = t.objText;
+            document.getElementById('subj-1').innerText = t.subj1;
+            document.getElementById('subj-2').innerText = t.subj2;
         }
     </script>
 
