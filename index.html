@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Topper Study - NCERT Portal</title>
-    <meta name="google-site-verification" content="kwWf-UwqtbjnhoZjiQqc07R3UaZwznP_SaNIku51jh0" />
     <style>
         * {
             margin: 0;
@@ -30,7 +29,7 @@
         }
 
         .card {
-            background: rgba(30, 41, 59, 0.7);
+            background: rgba(30, 41, 59, 0.75);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(99, 102, 241, 0.2);
@@ -38,12 +37,6 @@
             border: 1px solid rgba(99, 102, 241, 0.3);
             width: 100%;
             max-width: 450px;
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .card h2 {
@@ -65,7 +58,7 @@
         /* Google Sign-In Button Style */
         .google-btn {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: #ffffff;
             color: #1e293b;
             border: none;
@@ -139,26 +132,9 @@
             box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
         }
 
-        .remember-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: #94a3b8;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-
-        .remember-row input {
-            accent-color: #6366f1;
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-        }
-
         .btn {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: linear-gradient(135deg, #6366f1, #4f46e5);
             border: none;
             border-radius: 10px;
@@ -226,7 +202,6 @@
 
         .logout-btn:hover {
             background: #dc2626;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
         }
 
         .section-title {
@@ -397,28 +372,24 @@
             <h2 id="login-title-text">Topper Study Hub</h2>
             <p class="subtitle">Secure NCERT & Bihar Board Portal</p>
             
-            <!-- Google Sign-In Simulation Button -->
-            <button type="button" class="google-btn" onclick="handleGoogleLogin()">
+            <!-- Direct Google Login Button -->
+            <button type="button" class="google-btn" onclick="directGoogleLogin()">
                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
                 Sign in with Google
             </button>
 
             <div class="divider">or login with email</div>
 
-            <form id="login-form">
-                <div class="input-group">
-                    <label id="lbl-user" for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="student@example.com" required>
-                </div>
-                <div class="input-group">
-                    <label id="lbl-pass" for="password">Password</label>
-                    <input type="password" id="password" placeholder="••••••••" required>
-                </div>
-                <label class="remember-row">
-                    <input type="checkbox" id="remember-me" checked> Remember me (Stay logged in)
-                </label>
-                <button type="submit" class="btn" id="login-btn-text">Access Portal</button>
-            </form>
+            <!-- Direct Form -->
+            <div class="input-group">
+                <label id="lbl-user" for="email">Email Address</label>
+                <input type="email" id="email" placeholder="student@gmail.com">
+            </div>
+            <div class="input-group">
+                <label id="lbl-pass" for="password">Password</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+            <button type="button" class="btn" id="login-btn-text" onclick="directEmailLogin()">Access Portal</button>
         </div>
     </div>
 
@@ -442,53 +413,4 @@
             <div class="class-pill" onclick="selectClass(8)">Class 8</div>
             <div class="class-pill" onclick="selectClass(9)">Class 9</div>
             <div class="class-pill active" onclick="selectClass(10)">Class 10</div>
-            <div class="class-pill" onclick="selectClass(11)">Class 11</div>
-            <div class="class-pill" onclick="selectClass(12)">Class 12</div>
-        </div>
-
-        <div class="subject-filter">
-            <label id="lbl-subject" style="color: #94a3b8; font-weight: 600;">Subject:</label>
-            <select id="subject-select" onchange="onSubjectChange()"></select>
-        </div>
-
-        <div id="main-folders-view">
-            <div class="section-title" id="title-explore">EXPLORE CATEGORIES (FOLDERS)</div>
-            <div class="folder-grid">
-                <div class="folder-card" onclick="openFolder('notes')">
-                    <div class="folder-icon">📂</div>
-                    <div class="folder-info">
-                        <h3 id="folder-notes-title">NCERT Revision Notes</h3>
-                        <p id="folder-notes-desc">Chapter-wise summary & formulas</p>
-                    </div>
-                </div>
-
-                <div class="folder-card" onclick="openFolder('objective')">
-                    <div class="folder-icon">🎯</div>
-                    <div class="folder-info">
-                        <h3 id="folder-obj-title">Objective Questions (MCQs)</h3>
-                        <p id="folder-obj-desc">Interactive quizzes & multiple choice</p>
-                    </div>
-                </div>
-
-                <div class="folder-card" onclick="openFolder('subjective')">
-                    <div class="folder-icon">✍️</div>
-                    <div class="folder-info">
-                        <h3 id="folder-subj-title">Subjective Questions</h3>
-                        <p id="folder-subj-desc">Short & long answer questions</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="chapter-view" id="chapter-view-section">
-            <button class="back-btn" onclick="goBackToFolders()" id="back-btn-text">← Back to Folders</button>
-            <h3 class="chapter-title" id="active-folder-title">Folder Name</h3>
-            <div id="chapters-container"></div>
-        </div>
-    </div>
-
-    <script src="data.js"></script>
-    <script>
-        const loginScreen = document.getElementById('login-screen');
-        const dashboardScreen = document.getElementById('dashboard-screen');
-        const
+            <div
