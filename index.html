@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Topper Study Hub - Bihar Portal</title>
 
 <style>
@@ -11,7 +10,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+    font-family:Segoe UI,Tahoma,sans-serif;
 }
 
 body{
@@ -32,21 +31,19 @@ body{
 
 .login-card{
     width:100%;
-    max-width:440px;
-    padding:40px;
-    border-radius:24px;
+    max-width:430px;
+    padding:38px;
     background:rgba(30,41,59,.94);
-    border:1px solid rgba(56,189,248,.25);
+    border:1px solid rgba(56,189,248,.2);
+    border-radius:24px;
     box-shadow:0 20px 50px rgba(0,0,0,.6);
 }
 
 .login-card h1{
     text-align:center;
-    font-size:30px;
+    font-size:28px;
     margin-bottom:8px;
-    background:linear-gradient(135deg,#38bdf8,#818cf8);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    color:#38bdf8;
 }
 
 .login-subtitle{
@@ -56,73 +53,25 @@ body{
     margin-bottom:28px;
 }
 
-.google-btn,
-.login-btn{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:15px;
-    font-weight:600;
-    transition:.2s;
-}
-
-.google-btn{
-    background:white;
-    color:#111827;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-}
-
-.google-btn img{
-    width:20px;
-    height:20px;
-}
-
-.google-btn:hover,
-.login-btn:hover{
-    transform:translateY(-2px);
-}
-
-.divider{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    color:#64748b;
-    margin:22px 0;
-    font-size:13px;
-}
-
-.divider:before,
-.divider:after{
-    content:"";
-    height:1px;
-    background:#334155;
-    flex:1;
-}
-
 .form-group{
-    margin-bottom:17px;
+    margin-bottom:18px;
 }
 
 .form-group label{
     display:block;
     margin-bottom:7px;
     color:#cbd5e1;
-    font-size:13px;
+    font-size:14px;
 }
 
 .form-group input{
     width:100%;
     padding:13px 15px;
-    border-radius:10px;
-    border:1px solid #334155;
-    outline:none;
     background:#0f172a;
-    color:white;
+    border:1px solid #334155;
+    border-radius:10px;
+    color:#fff;
+    outline:none;
     font-size:15px;
 }
 
@@ -132,46 +81,56 @@ body{
 }
 
 .login-btn{
-    margin-top:5px;
-    color:white;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:11px;
     background:linear-gradient(135deg,#2563eb,#6366f1);
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:5px;
 }
 
-.login-message{
-    display:none;
-    margin-top:15px;
-    padding:10px;
-    border-radius:8px;
-    background:rgba(239,68,68,.15);
-    color:#fca5a5;
+.login-btn:hover{
+    opacity:.9;
+}
+
+.login-note{
     text-align:center;
-    font-size:13px;
+    color:#64748b;
+    font-size:12px;
+    margin-top:18px;
 }
 
 /* ================= DASHBOARD ================= */
 
 #dashboard-screen{
     display:none;
-    width:100%;
     max-width:1250px;
     margin:auto;
-    padding:25px 20px 50px;
+    padding:25px;
 }
 
 .header{
+    background:rgba(30,41,59,.7);
+    border:1px solid #334155;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:25px;
+}
+
+.header-top{
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:15px;
     flex-wrap:wrap;
-    padding-bottom:20px;
-    margin-bottom:30px;
-    border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .header h2{
     color:#38bdf8;
-    font-size:24px;
 }
 
 .controls{
@@ -181,89 +140,148 @@ body{
 }
 
 select{
-    background:#1e293b;
-    color:white;
-    border:1px solid #475569;
+    background:#0f172a;
+    color:#fff;
+    border:1px solid #334155;
+    border-radius:9px;
     padding:10px 13px;
-    border-radius:8px;
-    outline:none;
+    cursor:pointer;
 }
 
-.logout{
+.logout-btn{
     background:#ef4444;
-    color:white;
-    border:0;
-    border-radius:8px;
+    border:none;
+    color:#fff;
     padding:10px 16px;
+    border-radius:9px;
     cursor:pointer;
     font-weight:600;
 }
 
-.logout:hover{
+.logout-btn:hover{
     background:#dc2626;
 }
 
-/* ================= CARDS ================= */
+/* ================= INFO ================= */
+
+.info-bar{
+    background:linear-gradient(
+        135deg,
+        rgba(37,99,235,.15),
+        rgba(56,189,248,.08)
+    );
+    border:1px solid rgba(56,189,248,.2);
+    padding:18px;
+    border-radius:15px;
+    margin-bottom:25px;
+}
+
+.info-bar h3{
+    color:#38bdf8;
+    margin-bottom:5px;
+}
+
+.info-bar p{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+/* ================= SUBJECTS ================= */
 
 .section-title{
-    font-size:19px;
-    margin-bottom:20px;
+    font-size:20px;
+    margin-bottom:17px;
+    color:#f8fafc;
 }
 
-.cards{
+.subject-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:17px;
+    margin-bottom:30px;
 }
 
-.card{
-    padding:25px;
-    border-radius:17px;
-    background:rgba(30,41,59,.75);
-    border:1px solid rgba(255,255,255,.08);
+.subject-card{
+    background:rgba(30,41,59,.78);
+    border:1px solid #334155;
+    border-radius:16px;
+    padding:22px;
     cursor:pointer;
     transition:.25s;
 }
 
-.card:hover{
-    transform:translateY(-5px);
+.subject-card:hover{
+    transform:translateY(-4px);
     border-color:#38bdf8;
-    box-shadow:0 12px 30px rgba(56,189,248,.12);
+    box-shadow:0 10px 30px rgba(56,189,248,.1);
 }
 
-.icon{
-    width:55px;
-    height:55px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:13px;
-    background:rgba(56,189,248,.1);
-    font-size:30px;
-    margin-bottom:15px;
+.subject-icon{
+    font-size:32px;
+    margin-bottom:12px;
 }
 
-.card h3{
-    margin-bottom:8px;
+.subject-card h3{
+    margin-bottom:6px;
 }
 
-.card p{
+.subject-card p{
     color:#94a3b8;
     font-size:13px;
 }
 
-/* ================= CONTENT ================= */
+/* ================= FOLDERS ================= */
 
-#content-view{
+#folder-section{
+    display:none;
+}
+
+.folder-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:18px;
+}
+
+.folder-card{
+    background:rgba(30,41,59,.78);
+    border:1px solid #334155;
+    border-radius:16px;
+    padding:25px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.folder-card:hover{
+    transform:translateY(-4px);
+    border-color:#818cf8;
+}
+
+.folder-icon{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.folder-card h3{
+    margin-bottom:7px;
+}
+
+.folder-card p{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+/* ================= CHAPTERS ================= */
+
+#chapter-section{
     display:none;
 }
 
 .back-btn{
     background:#334155;
-    color:white;
-    border:0;
+    color:#fff;
+    border:none;
+    border-radius:9px;
     padding:10px 17px;
-    border-radius:8px;
     cursor:pointer;
     margin-bottom:20px;
 }
@@ -272,117 +290,83 @@ select{
     background:#475569;
 }
 
-.content-title{
+.chapter-heading{
     color:#38bdf8;
     margin-bottom:20px;
+    font-size:23px;
 }
 
-/* ================= QUIZ ================= */
-
-.quiz-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:20px;
+.chapter-list{
+    display:grid;
+    gap:12px;
 }
 
-.score-box{
-    background:#0f172a;
-    border:1px solid #334155;
-    padding:10px 15px;
-    border-radius:9px;
-    color:#38bdf8;
-    font-weight:bold;
-}
-
-.quiz-card{
+.chapter-card{
     background:rgba(15,23,42,.9);
     border:1px solid #334155;
-    border-radius:13px;
-    padding:20px;
-    margin-bottom:17px;
-}
-
-.question{
-    font-weight:600;
-    line-height:1.6;
-    margin-bottom:15px;
-}
-
-.options{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.option{
-    padding:12px;
-    text-align:left;
-    border-radius:9px;
-    border:1px solid #475569;
-    background:#1e293b;
-    color:#cbd5e1;
+    border-radius:12px;
+    padding:17px;
     cursor:pointer;
     transition:.2s;
 }
 
-.option:hover:not(:disabled){
+.chapter-card:hover{
     border-color:#38bdf8;
-    background:#263548;
+    background:#172033;
 }
 
-.option.correct{
-    background:#166534 !important;
-    border-color:#22c55e !important;
-    color:white;
+.chapter-number{
+    color:#38bdf8;
+    font-weight:700;
+    margin-right:8px;
 }
 
-.option.wrong{
-    background:#991b1b !important;
-    border-color:#ef4444 !important;
-    color:white;
+.chapter-title{
+    color:#e2e8f0;
 }
 
-.option:disabled{
-    cursor:default;
+/* ================= CONTENT ================= */
+
+#content-section{
+    display:none;
 }
 
-.quiz-actions{
-    display:flex;
-    justify-content:center;
-    margin-top:25px;
+.content-box{
+    background:rgba(15,23,42,.9);
+    border:1px solid #334155;
+    border-radius:15px;
+    padding:22px;
+    line-height:1.7;
 }
 
-.reset-btn{
-    border:0;
-    background:linear-gradient(135deg,#2563eb,#6366f1);
-    color:white;
-    padding:12px 22px;
-    border-radius:9px;
-    cursor:pointer;
-    font-weight:600;
+.content-box h3{
+    color:#38bdf8;
+    margin-bottom:15px;
 }
 
-.empty{
+.empty-box{
+    padding:30px;
     text-align:center;
-    padding:40px;
     color:#94a3b8;
     background:#0f172a;
+    border:1px dashed #475569;
     border-radius:12px;
 }
 
 /* ================= MOBILE ================= */
 
-@media(max-width:650px){
+@media(max-width:600px){
 
-    .login-card{
-        padding:28px 20px;
+    #dashboard-screen{
+        padding:15px;
     }
 
-    .header h2{
-        font-size:20px;
+    .login-card{
+        padding:25px;
+    }
+
+    .header{
+        padding:15px;
     }
 
     .controls{
@@ -390,17 +374,13 @@ select{
     }
 
     select,
-    .logout{
+    .logout-btn{
         flex:1;
-        min-width:100px;
     }
 
-    .options{
+    .subject-grid,
+    .folder-grid{
         grid-template-columns:1fr;
-    }
-
-    .quiz-card{
-        padding:15px;
     }
 }
 </style>
@@ -408,9 +388,9 @@ select{
 
 <body>
 
-<!-- =====================================================
+<!-- ==================================================
      LOGIN SCREEN
-===================================================== -->
+================================================== -->
 
 <div id="login-screen">
 
@@ -419,19 +399,7 @@ select{
         <h1>Topper Study Hub</h1>
 
         <div class="login-subtitle">
-            Bihar & Bihar Board Study Portal
-        </div>
-
-        <button class="google-btn" type="button" onclick="demoLogin()">
-            <img
-                src="https://developers.google.com/identity/images/g-logo.png"
-                alt="Google"
-            >
-            <span>Continue with Google</span>
-        </button>
-
-        <div class="divider">
-            OR LOGIN WITH EMAIL
+            Bihar Board & NCERT Study Portal
         </div>
 
         <div class="form-group">
@@ -440,7 +408,6 @@ select{
                 type="email"
                 id="email"
                 placeholder="student@gmail.com"
-                autocomplete="username"
             >
         </div>
 
@@ -450,117 +417,170 @@ select{
                 type="password"
                 id="password"
                 placeholder="Enter password"
-                autocomplete="current-password"
             >
         </div>
 
-        <button
-            class="login-btn"
-            type="button"
-            onclick="performLogin()"
-        >
-            Access Portal
+        <button class="login-btn" onclick="performLogin()">
+            Login / Access Portal
         </button>
 
-        <div id="login-message" class="login-message"></div>
+        <div class="login-note">
+            Demo portal login — account verification not required
+        </div>
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
+<!-- ==================================================
      DASHBOARD
-===================================================== -->
+================================================== -->
 
 <div id="dashboard-screen">
 
     <div class="header">
 
-        <h2 id="dashboard-title">
-            Topper Study Hub - NCERT Portal
-        </h2>
+        <div class="header-top">
 
-        <div class="controls">
+            <h2 id="dashboard-title">
+                Topper Study Hub
+            </h2>
 
-            <select id="class-select" onchange="changeClass()">
-                <option value="6">Class 6</option>
-                <option value="7">Class 7</option>
-                <option value="8">Class 8</option>
-                <option value="9">Class 9</option>
-                <option value="10">Class 10</option>
-                <option value="11" selected>Class 11</option>
-                <option value="12">Class 12</option>
-            </select>
+            <div class="controls">
 
-            <select id="subject-select" onchange="changeSubject()">
-                <option value="biology">Biology</option>
-            </select>
+                <select
+                    id="class-select"
+                    onchange="changeClass(this.value)"
+                >
+                    <option value="6">Class 6</option>
+                    <option value="7">Class 7</option>
+                    <option value="8">Class 8</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                </select>
 
-            <select id="language-select" onchange="changeLanguage()">
-                <option value="hi">Hindi</option>
-                <option value="en">English</option>
-            </select>
+                <select
+                    id="language-select"
+                    onchange="changeLanguage(this.value)"
+                >
+                    <option value="hi">हिंदी</option>
+                    <option value="en">English</option>
+                </select>
 
-            <button class="logout" onclick="logout()">
-                Logout
-            </button>
+                <button
+                    class="logout-btn"
+                    onclick="performLogout()"
+                >
+                    Logout
+                </button>
+
+            </div>
 
         </div>
 
     </div>
 
 
-    <!-- FOLDERS -->
+    <!-- INFO -->
 
-    <div id="folders-view">
+    <div class="info-bar">
 
-        <div class="section-title" id="explore-title">
-            श्रेणियाँ देखें
+        <h3 id="class-info">
+            Class 11
+        </h3>
+
+        <p id="subject-info">
+            अपना विषय चुनें
+        </p>
+
+    </div>
+
+
+    <!-- SUBJECT VIEW -->
+
+    <div id="subject-section">
+
+        <div class="section-title" id="subjects-title">
+            📚 Subjects
         </div>
 
-        <div class="cards">
+        <div
+            class="subject-grid"
+            id="subjects-container"
+        ></div>
 
-            <div class="card" onclick="openFolder('notes')">
+    </div>
 
-                <div class="icon">📝</div>
+
+    <!-- FOLDER VIEW -->
+
+    <div id="folder-section">
+
+        <button
+            class="back-btn"
+            onclick="showSubjects()"
+        >
+            ← Back to Subjects
+        </button>
+
+        <div class="section-title" id="folder-title">
+            Study Material
+        </div>
+
+        <div class="folder-grid">
+
+            <div
+                class="folder-card"
+                onclick="openChapters('notes')"
+            >
+
+                <div class="folder-icon">📝</div>
 
                 <h3 id="notes-title">
                     Revision Notes
                 </h3>
 
                 <p id="notes-desc">
-                    Chapter-wise summary & formulas
+                    Chapter-wise notes and important points
                 </p>
 
             </div>
 
 
-            <div class="card" onclick="openFolder('objective')">
+            <div
+                class="folder-card"
+                onclick="openChapters('objective')"
+            >
 
-                <div class="icon">🎯</div>
+                <div class="folder-icon">🎯</div>
 
                 <h3 id="objective-title">
                     Objective Questions
                 </h3>
 
                 <p id="objective-desc">
-                    100 MCQs with instant answers
+                    MCQs and practice questions
                 </p>
 
             </div>
 
 
-            <div class="card" onclick="openFolder('subjective')">
+            <div
+                class="folder-card"
+                onclick="openChapters('subjective')"
+            >
 
-                <div class="icon">📖</div>
+                <div class="folder-icon">📖</div>
 
                 <h3 id="subjective-title">
-                    Subjective Solutions
+                    Subjective Solution
                 </h3>
 
                 <p id="subjective-desc">
-                    Detailed descriptive answers
+                    Long and descriptive answers
                 </p>
 
             </div>
@@ -570,1706 +590,811 @@ select{
     </div>
 
 
-    <!-- CONTENT -->
+    <!-- CHAPTER VIEW -->
 
-    <div id="content-view">
+    <div id="chapter-section">
 
-        <button class="back-btn" onclick="goBack()">
+        <button
+            class="back-btn"
+            onclick="showFolders()"
+        >
             ← Back
         </button>
 
-        <h2 class="content-title" id="content-title">
-            Content
+        <h2
+            class="chapter-heading"
+            id="chapter-heading"
+        >
+            Chapters
         </h2>
 
-        <div id="content-container"></div>
+        <div
+            class="chapter-list"
+            id="chapters-container"
+        ></div>
+
+    </div>
+
+
+    <!-- CONTENT VIEW -->
+
+    <div id="content-section">
+
+        <button
+            class="back-btn"
+            onclick="showChapters()"
+        >
+            ← Back to Chapters
+        </button>
+
+        <div
+            class="content-box"
+            id="content-container"
+        ></div>
 
     </div>
 
 </div>
 
 
+<!-- ==================================================
+     DATA FILE
+================================================== -->
+
+<script src="data.js"></script>
+
+
 <script>
 
-/* =====================================================
-   STATE
-===================================================== */
+/* ==================================================
+   GLOBAL STATE
+================================================== */
 
 let activeClass = "11";
-let activeSubject = "biology";
+let activeSubject = "";
+let activeFolder = "";
+let activeChapter = "";
 let activeLanguage = "hi";
 
-let score = 0;
-let answered = 0;
+
+/* ==================================================
+   SUBJECT ICONS
+================================================== */
+
+const subjectIcons = {
+
+    science: "🔬",
+    math: "📐",
+    maths: "📐",
+    physics: "⚛️",
+    chemistry: "🧪",
+    biology: "🧬",
+    bio: "🧬",
+    history: "🏛️",
+    geography: "🌍",
+    civics: "⚖️",
+    economics: "💰",
+    english: "📚",
+    hindi: "📝",
+    computer: "💻"
+
+};
 
 
-/* =====================================================
-   LOGIN
-===================================================== */
+/* ==================================================
+   PAGE LOAD
+================================================== */
 
-document.addEventListener("DOMContentLoaded", function(){
+window.addEventListener("DOMContentLoaded", function(){
 
-    const loggedIn = localStorage.getItem("topperStudyLoggedIn");
+    const loggedIn =
+        localStorage.getItem("isLoggedIn");
 
     if(loggedIn === "true"){
+
         showDashboard();
-    }else{
-        showLogin();
+
     }
 
-    updateLanguage();
+    renderSubjects();
+
 });
 
 
-function showLogin(){
-
-    document.getElementById("login-screen").style.display = "flex";
-
-    document.getElementById("dashboard-screen").style.display = "none";
-}
-
-
-function showDashboard(){
-
-    document.getElementById("login-screen").style.display = "none";
-
-    document.getElementById("dashboard-screen").style.display = "block";
-
-    updateSubjects();
-
-    updateLanguage();
-}
-
+/* ==================================================
+   LOGIN
+================================================== */
 
 function performLogin(){
 
-    const email = document.getElementById("email").value.trim();
+    localStorage.setItem(
+        "isLoggedIn",
+        "true"
+    );
 
-    const password = document.getElementById("password").value;
+    showDashboard();
 
-    const message = document.getElementById("login-message");
+}
 
 
-    /*
-       Demo login:
-       किसी भी non-empty email/password से portal खुलेगा।
-    */
+/* ==================================================
+   SHOW DASHBOARD
+================================================== */
 
-    if(!email || !password){
+function showDashboard(){
 
-        message.style.display = "block";
+    document.getElementById(
+        "login-screen"
+    ).style.display = "none";
 
-        message.textContent =
-            "कृपया Email और Password दोनों भरें।";
+    document.getElementById(
+        "dashboard-screen"
+    ).style.display = "block";
 
-        return;
+    renderSubjects();
+
+}
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+function performLogout(){
+
+    localStorage.removeItem(
+        "isLoggedIn"
+    );
+
+    document.getElementById(
+        "dashboard-screen"
+    ).style.display = "none";
+
+    document.getElementById(
+        "login-screen"
+    ).style.display = "flex";
+
+}
+
+
+/* ==================================================
+   CHANGE CLASS
+================================================== */
+
+function changeClass(value){
+
+    activeClass = String(value);
+
+    activeSubject = "";
+
+    showSubjects();
+
+    renderSubjects();
+
+}
+
+
+/* ==================================================
+   CHANGE LANGUAGE
+================================================== */
+
+function changeLanguage(value){
+
+    activeLanguage = value;
+
+    updateLanguage();
+
+    renderSubjects();
+
+}
+
+
+/* ==================================================
+   GET CURRENT CLASS DATA
+================================================== */
+
+function getClassData(){
+
+    if(
+        typeof ncertData === "undefined"
+    ){
+
+        return {};
+
     }
 
+    return ncertData[activeClass] || {};
 
-    localStorage.setItem(
-        "topperStudyLoggedIn",
-        "true"
-    );
-
-    localStorage.setItem(
-        "studentEmail",
-        email
-    );
-
-    message.style.display = "none";
-
-    showDashboard();
 }
 
 
-/*
-   Google button अभी demo login है।
-   Real Google OAuth/Firebase के लिए backend configuration चाहिए।
-*/
+/* ==================================================
+   RENDER SUBJECTS
+================================================== */
 
-function demoLogin(){
+function renderSubjects(){
 
-    localStorage.setItem(
-        "topperStudyLoggedIn",
-        "true"
-    );
+    const container =
+        document.getElementById(
+            "subjects-container"
+        );
 
-    localStorage.setItem(
-        "studentEmail",
-        "google-user"
-    );
+    container.innerHTML = "";
 
-    showDashboard();
-}
+    const classData =
+        getClassData();
 
-
-function logout(){
-
-    localStorage.removeItem(
-        "topperStudyLoggedIn"
-    );
-
-    localStorage.removeItem(
-        "studentEmail"
-    );
-
-    goBack();
-
-    showLogin();
-}
+    const subjects =
+        Object.keys(classData);
 
 
-/* =====================================================
-   CLASS / SUBJECT
-===================================================== */
-
-function changeClass(){
-
-    activeClass =
-        document.getElementById("class-select").value;
-
-    updateSubjects();
-
-    goBack();
-}
+    document.getElementById(
+        "class-info"
+    ).innerText =
+        getClassName();
 
 
-function changeSubject(){
+    if(subjects.length === 0){
 
-    activeSubject =
-        document.getElementById("subject-select").value;
+        container.innerHTML =
+            `<div class="empty-box">
+                इस कक्षा का data.js में कोई subject नहीं मिला।
+            </div>`;
 
-    goBack();
-}
+        return;
 
-
-function updateSubjects(){
-
-    const select =
-        document.getElementById("subject-select");
-
-    select.innerHTML = "";
-
-    let subjects = [];
-
-    if(activeClass === "11"){
-
-        subjects = [
-            ["biology","Biology"],
-            ["physics","Physics"],
-            ["chemistry","Chemistry"]
-        ];
-
-    }else if(activeClass === "12"){
-
-        subjects = [
-            ["biology","Biology"],
-            ["physics","Physics"],
-            ["chemistry","Chemistry"]
-        ];
-
-    }else{
-
-        subjects = [
-            ["science","Science"],
-            ["mathematics","Mathematics"]
-        ];
     }
 
 
     subjects.forEach(function(subject){
 
-        const option =
-            document.createElement("option");
+        const chapters =
+            Array.isArray(classData[subject])
+            ? classData[subject]
+            : [];
 
-        option.value = subject[0];
-
-        option.textContent = subject[1];
-
-        select.appendChild(option);
-    });
-
-
-    if(activeClass === "11"){
-
-        select.value = "biology";
-
-        activeSubject = "biology";
-
-    }else{
-
-        activeSubject = subjects[0][0];
-
-        select.value = activeSubject;
-    }
-}
-
-
-/* =====================================================
-   LANGUAGE
-===================================================== */
-
-function changeLanguage(){
-
-    activeLanguage =
-        document.getElementById("language-select").value;
-
-    updateLanguage();
-}
-
-
-function updateLanguage(){
-
-    const hindi =
-        activeLanguage === "hi";
-
-
-    document.getElementById("dashboard-title").textContent =
-        hindi
-        ? "टॉपर स्टडी हब - NCERT पोर्टल"
-        : "Topper Study Hub - NCERT Portal";
-
-
-    document.getElementById("explore-title").textContent =
-        hindi
-        ? "श्रेणियाँ देखें"
-        : "Explore Categories";
-
-
-    document.getElementById("notes-title").textContent =
-        hindi
-        ? "संशोधन नोट्स"
-        : "Revision Notes";
-
-
-    document.getElementById("notes-desc").textContent =
-        hindi
-        ? "अध्याय-वार सारांश और सूत्र"
-        : "Chapter-wise summary & formulas";
-
-
-    document.getElementById("objective-title").textContent =
-        hindi
-        ? "वस्तुनिष्ठ प्रश्न"
-        : "Objective Questions";
-
-
-    document.getElementById("objective-desc").textContent =
-        hindi
-        ? "100 MCQs और तुरंत उत्तर"
-        : "100 MCQs with instant answers";
-
-
-    document.getElementById("subjective-title").textContent =
-        hindi
-        ? "विषयपरक समाधान"
-        : "Subjective Solutions";
-
-
-    document.getElementById("subjective-desc").textContent =
-        hindi
-        ? "विस्तृत वर्णनात्मक उत्तर"
-        : "Detailed descriptive answers";
-}
-
-
-/* =====================================================
-   FOLDER
-===================================================== */
-
-function openFolder(type){
-
-    document.getElementById("folders-view").style.display =
-        "none";
-
-    document.getElementById("content-view").style.display =
-        "block";
-
-
-    const title =
-        document.getElementById("content-title");
-
-    const container =
-        document.getElementById("content-container");
-
-
-    container.innerHTML = "";
-
-
-    if(
-        type === "objective" &&
-        activeClass === "11" &&
-        activeSubject === "biology"
-    ){
-
-        title.textContent =
-            activeLanguage === "hi"
-            ? "कक्षा 11 जीवविज्ञान — अध्याय 1 — 100 MCQs"
-            : "Class 11 Biology — Chapter 1 — 100 MCQs";
-
-
-        renderQuiz();
-
-        return;
-    }
-
-
-    if(type === "notes"){
-
-        title.textContent =
-            activeLanguage === "hi"
-            ? "Revision Notes"
-            : "Revision Notes";
-
-
-        container.innerHTML = `
-            <div class="empty">
-                📝<br><br>
-                ${
-                    activeLanguage === "hi"
-                    ? "इस विषय के Revision Notes जल्द जोड़े जाएंगे।"
-                    : "Revision notes for this subject will be added soon."
-                }
-            </div>
-        `;
-
-        return;
-    }
-
-
-    if(type === "subjective"){
-
-        title.textContent =
-            activeLanguage === "hi"
-            ? "विषयपरक समाधान"
-            : "Subjective Solutions";
-
-
-        container.innerHTML = `
-            <div class="empty">
-                📖<br><br>
-                ${
-                    activeLanguage === "hi"
-                    ? "इस विषय के Subjective Solutions जल्द जोड़े जाएंगे।"
-                    : "Subjective solutions will be added soon."
-                }
-            </div>
-        `;
-
-        return;
-    }
-
-
-    container.innerHTML = `
-        <div class="empty">
-            Content उपलब्ध नहीं है।
-        </div>
-    `;
-}
-
-
-/* =====================================================
-   BACK
-===================================================== */
-
-function goBack(){
-
-    document.getElementById("content-view").style.display =
-        "none";
-
-    document.getElementById("folders-view").style.display =
-        "block";
-
-    document.getElementById("content-container").innerHTML =
-        "";
-}
-
-
-/* =====================================================
-   QUIZ
-===================================================== */
-
-function renderQuiz(){
-
-    const container =
-        document.getElementById("content-container");
-
-
-    score = 0;
-    answered = 0;
-
-
-    container.innerHTML = `
-
-        <div class="quiz-top">
-
-            <div>
-                ${
-                    activeLanguage === "hi"
-                    ? "सही उत्तर चुनें"
-                    : "Choose the correct answer"
-                }
-            </div>
-
-            <div class="score-box">
-                Score: <span id="score">0</span> / 100
-            </div>
-
-        </div>
-
-        <div id="quiz-list"></div>
-
-        <div class="quiz-actions">
-            <button class="reset-btn" onclick="renderQuiz()">
-                🔄 Reset Quiz
-            </button>
-        </div>
-    `;
-
-
-    const list =
-        document.getElementById("quiz-list");
-
-
-    chapter1Quiz.forEach(function(item,index){
 
         const card =
             document.createElement("div");
 
-        card.className = "quiz-card";
+        card.className =
+            "subject-card";
+
+        const icon =
+            subjectIcons[
+                subject.toLowerCase()
+            ] || "📚";
 
 
-        const question =
-            document.createElement("div");
+        card.innerHTML = `
 
-        question.className = "question";
+            <div class="subject-icon">
+                ${icon}
+            </div>
 
-        question.textContent = item.q;
+            <h3>
+                ${formatSubjectName(subject)}
+            </h3>
 
+            <p>
+                ${chapters.length} Chapters
+            </p>
 
-        const options =
-            document.createElement("div");
-
-        options.className = "options";
-
-
-        item.options.forEach(function(option,index2){
-
-            const button =
-                document.createElement("button");
-
-            button.className = "option";
-
-            button.type = "button";
-
-            button.textContent = option;
+        `;
 
 
-            button.addEventListener(
-                "click",
-                function(){
+        card.onclick =
+            function(){
 
-                    answerQuestion(
-                        item,
-                        index2,
-                        options
-                    );
+                openSubject(subject);
 
-                }
-            );
+            };
 
 
-            options.appendChild(button);
-        });
+        container.appendChild(card);
 
-
-        card.appendChild(question);
-
-        card.appendChild(options);
-
-        list.appendChild(card);
     });
+
 }
 
 
-/* =====================================================
-   ANSWER
-===================================================== */
+/* ==================================================
+   OPEN SUBJECT
+================================================== */
 
-function answerQuestion(
-    item,
-    selected,
-    optionsContainer
-){
+function openSubject(subject){
 
-    const buttons =
-        optionsContainer.querySelectorAll(
-            ".option"
+    activeSubject = subject;
+
+    document.getElementById(
+        "subject-section"
+    ).style.display = "none";
+
+    document.getElementById(
+        "folder-section"
+    ).style.display = "block";
+
+    document.getElementById(
+        "chapter-section"
+    ).style.display = "none";
+
+    document.getElementById(
+        "content-section"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "folder-title"
+    ).innerText =
+        formatSubjectName(subject);
+
+
+    document.getElementById(
+        "subject-info"
+    ).innerText =
+        getClassName()
+        + " • "
+        + formatSubjectName(subject);
+
+}
+
+
+/* ==================================================
+   OPEN CHAPTERS
+================================================== */
+
+function openChapters(folder){
+
+    activeFolder = folder;
+
+    document.getElementById(
+        "folder-section"
+    ).style.display = "none";
+
+    document.getElementById(
+        "chapter-section"
+    ).style.display = "block";
+
+    document.getElementById(
+        "content-section"
+    ).style.display = "none";
+
+
+    const heading =
+        document.getElementById(
+            "chapter-heading"
         );
 
 
-    // पहले से answer किया गया है
+    heading.innerText =
+        getFolderTitle()
+        + " - "
+        + formatSubjectName(activeSubject);
+
+
+    renderChapters();
+
+}
+
+
+/* ==================================================
+   RENDER CHAPTERS
+================================================== */
+
+function renderChapters(){
+
+    const container =
+        document.getElementById(
+            "chapters-container"
+        );
+
+    container.innerHTML = "";
+
+
+    const classData =
+        getClassData();
+
+
+    const chapters =
+        classData[activeSubject];
+
+
     if(
-        Array.from(buttons).some(
-            button => button.disabled
-        )
+        !Array.isArray(chapters)
+        || chapters.length === 0
     ){
+
+        container.innerHTML =
+            `<div class="empty-box">
+                इस विषय के chapters उपलब्ध नहीं हैं।
+            </div>`;
+
         return;
+
     }
 
 
-    answered++;
+    chapters.forEach(function(chapter,index){
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "chapter-card";
 
 
-    buttons.forEach(function(button){
-        button.disabled = true;
+        let chapterText =
+            String(chapter);
+
+
+        /*
+           Chapter number automatically
+           detect किया जाएगा।
+        */
+
+        let match =
+            chapterText.match(
+                /^Chapter\s+(\d+)\s*:\s*(.*)$/i
+            );
+
+
+        let number =
+            match
+            ? match[1]
+            : index + 1;
+
+
+        let title =
+            match
+            ? match[2]
+            : chapterText;
+
+
+        card.innerHTML = `
+
+            <span class="chapter-number">
+                Chapter ${number}
+            </span>
+
+            <span class="chapter-title">
+                ${escapeHTML(title)}
+            </span>
+
+        `;
+
+
+        card.onclick =
+            function(){
+
+                openChapter(
+                    chapterText,
+                    index
+                );
+
+            };
+
+
+        container.appendChild(card);
+
     });
 
+}
 
-    if(selected === item.correct){
 
-        buttons[selected]
-            .classList.add("correct");
+/* ==================================================
+   OPEN INDIVIDUAL CHAPTER
+================================================== */
 
-        score++;
+function openChapter(chapter,index){
+
+    activeChapter = chapter;
+
+    document.getElementById(
+        "chapter-section"
+    ).style.display = "none";
+
+    document.getElementById(
+        "content-section"
+    ).style.display = "block";
+
+
+    const container =
+        document.getElementById(
+            "content-container"
+        );
+
+
+    const title =
+        escapeHTML(chapter);
+
+
+    container.innerHTML = `
+
+        <h3>${title}</h3>
+
+        <p style="color:#94a3b8;">
+            ${getFolderTitle()}
+            • ${formatSubjectName(activeSubject)}
+        </p>
+
+        <br>
+
+        <div class="empty-box">
+
+            <h3 style="color:#38bdf8;">
+                📚 Chapter Content
+            </h3>
+
+            <p>
+                इस chapter के लिए notes,
+                MCQs और detailed solutions
+                यहाँ जोड़े जा सकते हैं।
+            </p>
+
+            <br>
+
+            <p style="font-size:13px;">
+                Chapter: ${title}
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==================================================
+   BACK TO SUBJECTS
+================================================== */
+
+function showSubjects(){
+
+    document.getElementById(
+        "subject-section"
+    ).style.display = "block";
+
+    document.getElementById(
+        "folder-section"
+    ).style.display = "none";
+
+    document.getElementById(
+        "chapter-section"
+    ).style.display = "none";
+
+    document.getElementById(
+        "content-section"
+    ).style.display = "none";
+
+    renderSubjects();
+
+}
+
+
+/* ==================================================
+   BACK TO FOLDERS
+================================================== */
+
+function showFolders(){
+
+    document.getElementById(
+        "subject-section"
+    ).style.display = "none";
+
+    document.getElementById(
+        "folder-section"
+    ).style.display = "block";
+
+    document.getElementById(
+        "chapter-section"
+    ).style.display = "none";
+
+    document.getElementById(
+        "content-section"
+    ).style.display = "none";
+
+}
+
+
+/* ==================================================
+   BACK TO CHAPTERS
+================================================== */
+
+function showChapters(){
+
+    document.getElementById(
+        "folder-section"
+    ).style.display = "none";
+
+    document.getElementById(
+        "chapter-section"
+    ).style.display = "block";
+
+    document.getElementById(
+        "content-section"
+    ).style.display = "none";
+
+}
+
+
+/* ==================================================
+   SUBJECT NAME
+================================================== */
+
+function formatSubjectName(subject){
+
+    const names = {
+
+        science: "Science",
+        math: "Mathematics",
+        maths: "Mathematics",
+        physics: "Physics",
+        chemistry: "Chemistry",
+        biology: "Biology",
+        bio: "Biology",
+        history: "History",
+        geography: "Geography",
+        civics: "Civics",
+        economics: "Economics",
+        english: "English",
+        hindi: "Hindi",
+        computer: "Computer Science"
+
+    };
+
+    return names[
+        subject.toLowerCase()
+    ] || (
+        subject.charAt(0).toUpperCase()
+        + subject.slice(1)
+    );
+
+}
+
+
+/* ==================================================
+   CLASS NAME
+================================================== */
+
+function getClassName(){
+
+    return "Class " + activeClass;
+
+}
+
+
+/* ==================================================
+   FOLDER TITLE
+================================================== */
+
+function getFolderTitle(){
+
+    if(activeLanguage === "hi"){
+
+        if(activeFolder === "notes")
+            return "संशोधन नोट्स";
+
+        if(activeFolder === "objective")
+            return "वस्तुनिष्ठ प्रश्न";
+
+        if(activeFolder === "subjective")
+            return "विषयपरक समाधान";
+
+    }
+
+    if(activeFolder === "notes")
+        return "Revision Notes";
+
+    if(activeFolder === "objective")
+        return "Objective Questions";
+
+    if(activeFolder === "subjective")
+        return "Subjective Solution";
+
+    return "Study Material";
+
+}
+
+
+/* ==================================================
+   LANGUAGE UI
+================================================== */
+
+function updateLanguage(){
+
+    if(activeLanguage === "hi"){
+
+        document.getElementById(
+            "subjects-title"
+        ).innerText =
+            "📚 विषय चुनें";
+
+        document.getElementById(
+            "notes-title"
+        ).innerText =
+            "संशोधन नोट्स";
+
+        document.getElementById(
+            "notes-desc"
+        ).innerText =
+            "अध्याय-वार नोट्स और महत्वपूर्ण बिंदु";
+
+        document.getElementById(
+            "objective-title"
+        ).innerText =
+            "वस्तुनिष्ठ प्रश्न";
+
+        document.getElementById(
+            "objective-desc"
+        ).innerText =
+            "MCQs और अभ्यास प्रश्न";
+
+        document.getElementById(
+            "subjective-title"
+        ).innerText =
+            "विषयपरक समाधान";
+
+        document.getElementById(
+            "subjective-desc"
+        ).innerText =
+            "विस्तृत एवं वर्णनात्मक उत्तर";
 
     }else{
 
-        buttons[selected]
-            .classList.add("wrong");
+        document.getElementById(
+            "subjects-title"
+        ).innerText =
+            "📚 Select Subject";
 
-        buttons[item.correct]
-            .classList.add("correct");
+        document.getElementById(
+            "notes-title"
+        ).innerText =
+            "Revision Notes";
+
+        document.getElementById(
+            "notes-desc"
+        ).innerText =
+            "Chapter-wise notes and important points";
+
+        document.getElementById(
+            "objective-title"
+        ).innerText =
+            "Objective Questions";
+
+        document.getElementById(
+            "objective-desc"
+        ).innerText =
+            "MCQs and practice questions";
+
+        document.getElementById(
+            "subjective-title"
+        ).innerText =
+            "Subjective Solution";
+
+        document.getElementById(
+            "subjective-desc"
+        ).innerText =
+            "Detailed descriptive answers";
+
     }
 
-
-    document.getElementById("score").textContent =
-        score;
-
-
-    // सभी प्रश्न answer होने पर result
-    if(answered === chapter1Quiz.length){
-
-        setTimeout(function(){
-
-            alert(
-                activeLanguage === "hi"
-                ? `Quiz पूरा हुआ!\nआपका Score: ${score}/${chapter1Quiz.length}`
-                : `Quiz completed!\nYour Score: ${score}/${chapter1Quiz.length}`
-            );
-
-        },300);
-    }
 }
 
 
-/* =====================================================
-   100 BIOLOGY MCQs
-===================================================== */
+/* ==================================================
+   HTML ESCAPE
+================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
-const chapter1Quiz = [
-
-{
-q:"1. 'Systema Naturae' is written by whom? / 'सिस्टेमा नेचुराए' किसके द्वारा लिखी गई है?",
-options:[
-"Carl Linnaeus (कार्ल लीनियस)",
-"Ernst Mayr (अर्नस्ट मेयर)",
-"Aristotle (अरस्तू)",
-"Theophrastus (थियोफ्रेस्टस)"
-],
-correct:0
-},
-
-{
-q:"2. The term 'Biodiversity' was popularized by: / 'जैव विविधता' शब्द को किसने लोकप्रिय बनाया था?",
-options:[
-"Walter G. Rosen (वाल्टर जी. रोसेन)",
-"Edward Wilson (एडवर्ड विल्सन)",
-"Alexander von Humboldt (अलेक्जेंडर वॉन हम्बोल्ट)",
-"Robert May (रॉबर्ट मे)"
-],
-correct:1
-},
-
-{
-q:"3. Basic unit of classification is: / वर्गीकरण की सबसे छोटी इकाई क्या है?",
-options:[
-"Species (जाति)",
-"Genus (वंश)",
-"Family (कुल)",
-"Order (गण)"
-],
-correct:0
-},
-
-{
-q:"4. Binomial nomenclature was given by: / द्विपद नामपद्धति किसने दी थी?",
-options:[
-"John Ray (जॉन रे)",
-"Carolus Linnaeus (कैरोलस लीनियस)",
-"Darwin (डार्विन)",
-"Lamarck (लामार्च)"
-],
-correct:1
-},
-
-{
-q:"5. ICBN stands for: / ICBN का पूरा नाम क्या है?",
-options:[
-"International Code of Botanical Nomenclature",
-"International Congress of Biological Names",
-"Indian Code of Botany Nomenclature",
-"International Class of Botanical Names"
-],
-correct:0
-},
-
-{
-q:"6. Herbarium is a: / हर्बेरियम क्या है?",
-options:[
-"A garden where live plants are grown",
-"A storehouse of collected plant specimens",
-"A museum of animal fossils",
-"A book containing plant descriptions"
-],
-correct:1
-},
-
-{
-q:"7. Taxonomic hierarchy includes which sequence? / वर्गीकीय पदानुक्रम में सही क्रम कौन सा है?",
-options:[
-"Species → Genus → Family → Order → Class → Phylum → Kingdom",
-"Kingdom → Phylum → Class → Order → Family → Genus → Species",
-"Species → Family → Genus → Order → Class → Kingdom",
-"Kingdom → Class → Order → Family → Genus → Species"
-],
-correct:1
-},
-
-{
-q:"8. Botanical gardens are mainly used for: / वानस्पतिक उद्यानों का मुख्य उपयोग किस लिए होता है?",
-options:[
-"Ex-situ conservation of living plants",
-"Collection of dried specimens",
-"Study of animal behavior",
-"Storing seeds"
-],
-correct:0
-},
-
-{
-q:"9. Keys are based on contrasting characters generally in a pair called: / कुंजियाँ सामान्यतः किस जोड़े पर आधारित होती हैं?",
-options:[
-"Couplet (कप्लेट)",
-"Lead (लीड)",
-"Catalog (कैटलॉग)",
-"Manual (मैनुअल)"
-],
-correct:0
-},
-
-{
-q:"10. Which is a defining property of living organisms? / सजीवों की परिभाषित विशेषता कौन सी है?",
-options:[
-"Growth",
-"Reproduction",
-"Consciousness",
-"Increase in mass"
-],
-correct:2
-},
-
-{
-q:"11. Taxonomic category Order is an assemblage of families which exhibit: / Order किनका समूह है?",
-options:[
-"Similar genera",
-"Similar characters",
-"Similar species",
-"Different kingdoms"
-],
-correct:1
-},
-
-{
-q:"12. Scientific name of housefly is: / घरेलू मक्खी का वैज्ञानिक नाम क्या है?",
-options:[
-"Musca domestica",
-"Mangifera indica",
-"Homo sapiens",
-"Triticum aestivum"
-],
-correct:0
-},
-
-{
-q:"13. Families are characterized mainly on: / कुल का निर्धारण मुख्यतः किस आधार पर किया जाता है?",
-options:[
-"Vegetative features",
-"Reproductive features",
-"Both vegetative and reproductive features",
-"Only genetic makeup"
-],
-correct:2
-},
-
-{
-q:"14. National Botanical Research Institute is located at: / NBRI कहाँ स्थित है?",
-options:[
-"Lucknow",
-"Kolkata",
-"Mumbai",
-"New Delhi"
-],
-correct:0
-},
-
-{
-q:"15. The word systematics is derived from systema meaning: / systema का अर्थ क्या है?",
-options:[
-"New classification",
-"Systematic arrangement",
-"Evolutionary history",
-"Identification of plants"
-],
-correct:1
-},
-
-{
-q:"16. Suffix used for Family in plants is: / पौधों में Family के लिए suffix क्या है?",
-options:[
-"-aceae",
-"-ales",
-"-idae",
-"-inae"
-],
-correct:0
-},
-
-{
-q:"17. Two plants belong to same species if they: / दो पौधे एक ही species के कब माने जाते हैं?",
-options:[
-"Have same chromosome number",
-"Can reproduce freely with each other",
-"Look morphologically similar",
-"Grow in same habitat"
-],
-correct:1
-},
-
-{
-q:"18. Manuals are useful for: / Manuals किसके लिए उपयोगी हैं?",
-options:[
-"Identification of species found in an area",
-"Index of plant species",
-"Description of one taxon",
-"Photographs of fossils"
-],
-correct:0
-},
-
-{
-q:"19. Biological concept of species was proposed by: / Biological species concept किसने दिया?",
-options:[
-"Ernst Mayr",
-"Linnaeus",
-"Darwin",
-"Aristotle"
-],
-correct:0
-},
-
-{
-q:"20. Standard size of a herbarium sheet is: / हर्बेरियम शीट का standard size क्या है?",
-options:[
-"41 × 29 cm",
-"29 × 19 cm",
-"50 × 30 cm",
-"30 × 20 cm"
-],
-correct:0
-},
-
-{
-q:"21. Taxonomic key is used for: / Taxonomic key किसके लिए है?",
-options:[
-"Identification of unknown organisms",
-"Naming new species",
-"Storing organisms",
-"Studying evolution"
-],
-correct:0
-},
-
-{
-q:"22. Highest taxonomic category among these is: / इनमें highest taxonomic category कौन सी है?",
-options:[
-"Kingdom",
-"Phylum",
-"Class",
-"Species"
-],
-correct:0
-},
-
-{
-q:"23. From species to kingdom, common characteristics: / Species से Kingdom की ओर common characters:",
-options:[
-"Increase",
-"Decrease",
-"Remain constant",
-"First increase then decrease"
-],
-correct:1
-},
-
-{
-q:"24. Author name in scientific nomenclature is written: / Author name कैसे लिखा जाता है?",
-options:[
-"Abbreviated at the end",
-"At the beginning",
-"In italics",
-"In bold"
-],
-correct:0
-},
-
-{
-q:"25. Correctly matched taxonomic category is:",
-options:[
-"Housefly - Musca, order - Diptera",
-"Tiger - tigris, species - Carnivora",
-"Humans - primate, family - Mammalia",
-"Wheat - Triticum, class - Dicot"
-],
-correct:0
-},
-
-{
-q:"26. Famous botanical garden Kew is located in:",
-options:[
-"England",
-"India",
-"Germany",
-"France"
-],
-correct:0
-},
-
-{
-q:"27. Monograph contains information on:",
-options:[
-"Any one taxon",
-"All species of an area",
-"Alphabetical listing of species",
-"Periodic journals"
-],
-correct:0
-},
-
-{
-q:"28. Phylum in animals is equivalent to which category in plants?",
-options:[
-"Division",
-"Class",
-"Order",
-"Family"
-],
-correct:0
-},
-
-{
-q:"29. Which organisms do not reproduce?",
-options:[
-"Mule",
-"Worker bee",
-"Infertile human couples",
-"All of the above"
-],
-correct:3
-},
-
-{
-q:"30. Living beings are distinguished from non-living things on the basis of:",
-options:[
-"Responsiveness to external stimuli",
-"Movement",
-"Shape and size",
-"Chemical composition"
-],
-correct:0
-},
-
-{
-q:"31. Taxonomic studies are useful in:",
-options:[
-"Agriculture and forestry",
-"Industry",
-"Knowing bio-resources",
-"All of the above"
-],
-correct:3
-},
-
-{
-q:"32. Scientific name of wheat is:",
-options:[
-"Triticum aestivum",
-"Mangifera indica",
-"Solanum tuberosum",
-"Panthera leo"
-],
-correct:0
-},
-
-{
-q:"33. Ernst Mayr gave biological definition of species in:",
-options:[
-"1942",
-"1964",
-"1930",
-"1859"
-],
-correct:0
-},
-
-{
-q:"34. Taxonomic aid providing index/list of plants of an area:",
-options:[
-"Flora",
-"Manual",
-"Monograph",
-"Catalogue"
-],
-correct:0
-},
-
-{
-q:"35. Cat and Dog belong to different:",
-options:[
-"Families",
-"Classes",
-"Phyla",
-"Kingdoms"
-],
-correct:0
-},
-
-{
-q:"36. Potato and brinjal belong to genus:",
-options:[
-"Solanum",
-"Panthera",
-"Homo",
-"Felis"
-],
-correct:0
-},
-
-{
-q:"37. Order Polymoniales includes families:",
-options:[
-"Convolvulaceae and Solanaceae",
-"Felidae and Canidae",
-"Hominidae and Muscidae",
-"Anacardiaceae and Poaceae"
-],
-correct:0
-},
-
-{
-q:"38. Classification means:",
-options:[
-"Grouping into convenient categories based on characters",
-"Naming organisms",
-"Determining genetic code",
-"Studying fossils"
-],
-correct:0
-},
-
-{
-q:"39. Suffix used for subfamily is:",
-options:[
-"-oideae",
-"-aceae",
-"-inae",
-"-ales"
-],
-correct:0
-},
-
-{
-q:"40. Classes with similar characters are assigned to higher category called:",
-options:[
-"Division",
-"Order",
-"Family",
-"Genus"
-],
-correct:0
-},
-
-{
-q:"41. Correct statement regarding growth:",
-options:[
-"Plants grow continuously",
-"Animals grow up to a certain age",
-"Cell division occurs in both",
-"All of the above"
-],
-correct:3
-},
-
-{
-q:"42. Panthera tigris is:",
-options:[
-"Tiger",
-"Lion",
-"Leopard",
-"Cat"
-],
-correct:0
-},
-
-{
-q:"43. First step in taxonomy is:",
-options:[
-"Identification",
-"Nomenclature",
-"Classification",
-"Characterisation"
-],
-correct:3
-},
-
-{
-q:"44. Scientific naming ensures:",
-options:[
-"Each organism has one name",
-"Same name is not used for different organisms",
-"Name is universally accepted",
-"All of the above"
-],
-correct:3
-},
-
-{
-q:"45. Handwritten scientific names should be:",
-options:[
-"Underlined separately",
-"Written in bold",
-"Capitalized",
-"Not underlined"
-],
-correct:0
-},
-
-{
-q:"46. Non-defining property of living organisms is:",
-options:[
-"Reproduction and Growth",
-"Metabolism",
-"Cellular organization",
-"Consciousness"
-],
-correct:0
-},
-
-{
-q:"47. Indian Botanical Garden is situated at:",
-options:[
-"Howrah, Kolkata",
-"Lucknow",
-"New Delhi",
-"Dehradun"
-],
-correct:0
-},
-
-{
-q:"48. Taxonomic studies help in:",
-options:[
-"Knowing biodiversity and conservation",
-"Destroying harmful species",
-"Creating synthetic life",
-"Increasing population"
-],
-correct:0
-},
-
-{
-q:"49. Category containing most similar organisms:",
-options:[
-"Species",
-"Genus",
-"Family",
-"Kingdom"
-],
-correct:0
-},
-
-{
-q:"50. Darwin of the 20th Century is:",
-options:[
-"Ernst Mayr",
-"Carl Linnaeus",
-"Gregor Mendel",
-"Watson and Crick"
-],
-correct:0
-},
-
-{
-q:"51. ICZN stands for:",
-options:[
-"International Code of Zoological Nomenclature",
-"Indian Code of Zoological Names",
-"International Class of Zoological Nomenclature",
-"International Committee of Zoo Nutrition"
-],
-correct:0
-},
-
-{
-q:"52. Each unit of classification is called:",
-options:[
-"Taxon",
-"Rank",
-"Domain",
-"Stage"
-],
-correct:0
-},
-
-{
-q:"53. Systematics term was introduced by:",
-options:[
-"Carolus Linnaeus",
-"Aristotle",
-"John Ray",
-"Huxley"
-],
-correct:0
-},
-
-{
-q:"54. Maximum biodiversity is found in:",
-options:[
-"Tropical rain forests",
-"Temperate forests",
-"Deserts",
-"Tundra"
-],
-correct:0
-},
-
-{
-q:"55. Incorrectly matched pair:",
-options:[
-"Human - Primata",
-"Housefly - Muscidae",
-"Mango - Poaceae",
-"Wheat - Poaceae"
-],
-correct:2
-},
-
-{
-q:"56. First word in binomial nomenclature denotes:",
-options:[
-"Genus",
-"Species",
-"Family",
-"Order"
-],
-correct:0
-},
-
-{
-q:"57. Second component of scientific name represents:",
-options:[
-"Specific epithet",
-"Generic name",
-"Family name",
-"Author name"
-],
-correct:0
-},
-
-{
-q:"58. Defining characteristic of all living forms:",
-options:[
-"Metabolism",
-"Growth",
-"Reproduction",
-"Ability to walk"
-],
-correct:0
-},
-
-{
-q:"59. Dead organisms in museums are preserved in:",
-options:[
-"Preservative solutions",
-"Pure water",
-"Acid solution",
-"Alcohol only"
-],
-correct:0
-},
-
-{
-q:"60. Zoological parks are places where:",
-options:[
-"Wild animals are kept under human care",
-"Dead animals are stuffed",
-"Dried plants are kept",
-"Aquatic plants are grown"
-],
-correct:0
-},
-
-{
-q:"61. Scientific name of mango:",
-options:[
-"Mangifera indica",
-"Solanum tuberosum",
-"Panthera leo",
-"Homo sapiens"
-],
-correct:0
-},
-
-{
-q:"62. Solanum, Panthera and Felis are:",
-options:[
-"Genera",
-"Species",
-"Families",
-"Orders"
-],
-correct:0
-},
-
-{
-q:"63. Convolvulaceae and Solanaceae belong to:",
-options:[
-"Polymoniales",
-"Sapindales",
-"Diptera",
-"Carnivora"
-],
-correct:0
-},
-
-{
-q:"64. Carnivora includes:",
-options:[
-"Felidae and Canidae",
-"Solanaceae and Convolvulaceae",
-"Hominidae and Primata",
-"Anacardiaceae and Poaceae"
-],
-correct:0
-},
-
-{
-q:"65. Primata and Carnivora belong to class:",
-options:[
-"Mammalia",
-"Insecta",
-"Reptilia",
-"Aves"
-],
-correct:0
-},
-
-{
-q:"66. Mammalia includes orders:",
-options:[
-"Primata and Carnivora",
-"Diptera and Poaceae",
-"Sapindales and Polymoniales",
-"Monocot and Dicot"
-],
-correct:0
-},
-
-{
-q:"67. Plants, animals, fungi and bacteria all exhibit:",
-options:[
-"Metabolism",
-"Photosynthesis",
-"Asexual reproduction",
-"Movement"
-],
-correct:0
-},
-
-{
-q:"68. Isolated metabolic reactions in vitro are:",
-options:[
-"Living reactions, but not living things",
-"Non-living reactions",
-"Living organisms",
-"Always non-functional"
-],
-correct:0
-},
-
-{
-q:"69. Consciousness is defining because:",
-options:[
-"Organisms respond to surroundings",
-"Only humans have it",
-"It depends on weight",
-"It never changes"
-],
-correct:0
-},
-
-{
-q:"70. Known and described species range approximately:",
-options:[
-"1.7–1.8 million",
-"0.5–1.0 million",
-"3–5 million",
-"10–50 million"
-],
-correct:0
-},
-
-{
-q:"71. Nomenclature is possible when organism is:",
-options:[
-"Correctly identified",
-"Dead",
-"Photographed",
-"Genetically modified"
-],
-correct:0
-},
-
-{
-q:"72. Scientific names are generally derived from:",
-options:[
-"Latin",
-"Greek",
-"English",
-"Hindi"
-],
-correct:0
-},
-
-{
-q:"73. Genus name starts with:",
-options:[
-"Capital letter",
-"Small letter",
-"Any letter",
-"Numerical value"
-],
-correct:0
-},
-
-{
-q:"74. Specific epithet starts with:",
-options:[
-"Small letter",
-"Capital letter",
-"Number",
-"Roman numeral"
-],
-correct:0
-},
-
-{
-q:"75. Author name appears after:",
-options:[
-"Specific epithet",
-"Generic name",
-"Family name",
-"Kingdom name"
-],
-correct:0
-},
-
-{
-q:"76. Correct author citation for mango:",
-options:[
-"Mangifera indica Linn.",
-"Mangifera indica Darwin",
-"Mangifera indica Aristotle",
-"Mangifera indica Ray"
-],
-correct:0
-},
-
-{
-q:"77. Linn. stands for:",
-options:[
-"Linnaeus",
-"Lamarck",
-"Leeuwenhoek",
-"Lindley"
-],
-correct:0
-},
-
-{
-q:"78. Taxonomic hierarchy refers to:",
-options:[
-"Step-wise arrangement of classification categories",
-"Only animal classification",
-"Study of plant diseases",
-"Evolutionary charts"
-],
-correct:0
-},
-
-{
-q:"79. Each taxonomic category represents a:",
-options:[
-"Rank or category",
-"Only species",
-"Only kingdom",
-"Chemical compound"
-],
-correct:0
-},
-
-{
-q:"80. Group of related species is called:",
-options:[
-"Genus",
-"Family",
-"Order",
-"Class"
-],
-correct:0
-},
-
-{
-q:"81. Genera are aggregates of closely related:",
-options:[
-"Species",
-"Families",
-"Orders",
-"Classes"
-],
-correct:0
-},
-
-{
-q:"82. Potato and brinjal belong to how many common genera?",
-options:[
-"One (Solanum)",
-"Two",
-"Three",
-"Zero"
-],
-correct:0
-},
-
-{
-q:"83. Lion, Leopard and Tiger belong to genus:",
-options:[
-"Panthera",
-"Felis",
-"Canis",
-"Homo"
-],
-correct:0
-},
-
-{
-q:"84. Felis includes:",
-options:[
-"Cats",
-"Dogs",
-"Lions",
-"Tigers"
-],
-correct:0
-},
-
-{
-q:"85. Convolvulaceae and Solanaceae are placed in Polymoniales mainly based on:",
-options:[
-"Floral characters",
-"Root system",
-"Stem anatomy",
-"Seed coat"
-],
-correct:0
-},
-
-{
-q:"86. Carnivora includes Felidae and:",
-options:[
-"Canidae",
-"Muscidae",
-"Hominidae",
-"Poaceae"
-],
-correct:0
-},
-
-{
-q:"87. Fish, amphibians, reptiles, birds and mammals belong to phylum:",
-options:[
-"Chordata",
-"Arthropoda",
-"Annelida",
-"Mollusca"
-],
-correct:0
-},
-
-{
-q:"88. Various phyla are assigned to highest category called:",
-options:[
-"Kingdom",
-"Division",
-"Class",
-"Order"
-],
-correct:0
-},
-
-{
-q:"89. Kingdom Plantae comprises:",
-options:[
-"All plants",
-"All animals",
-"All bacteria",
-"All viruses"
-],
-correct:0
-},
-
-{
-q:"90. Kingdom Animalia comprises:",
-options:[
-"All animals",
-"All green plants",
-"Fungi",
-"Algae"
-],
-correct:0
-},
-
-{
-q:"91. From species to kingdom, shared characters:",
-options:[
-"Decrease",
-"Increase",
-"Remain constant",
-"Become zero immediately"
-],
-correct:0
-},
-
-{
-q:"92. Lower the taxa, shared characteristics are:",
-options:[
-"More",
-"Less",
-"Zero",
-"Random"
-],
-correct:0
-},
-
-{
-q:"93. Higher the category, determining relationship with other taxa is:",
-options:[
-"More difficult",
-"Easier",
-"Impossible",
-"No change"
-],
-correct:0
-},
-
-{
-q:"94. Herbarium acts as quick referral system in:",
-options:[
-"Taxonomical studies",
-"Medical prescriptions",
-"Weather forecasting",
-"Soil testing"
-],
-correct:0
-},
-
-{
-q:"95. Insects are preserved in insect boxes after:",
-options:[
-"Collecting and pinning",
-"Boiling in water",
-"Freezing only",
-"Feeding them"
-],
-correct:0
-},
-
-{
-q:"96. Birds and mammals are stuffed in museums to:",
-options:[
-"Preserve body shape",
-"Cook them",
-"Sell them",
-"Study flight"
-],
-correct:0
-},
-
-{
-q:"97. Taxonomic key is based on:",
-options:[
-"Similarities and dissimilarities",
-"DNA sequencing only",
-"Flower color",
-"Plant height"
-],
-correct:0
-},
-
-{
-q:"98. Each statement in taxonomic key is called:",
-options:[
-"Lead",
-"Couplet",
-"Catalog",
-"Manual"
-],
-correct:0
-},
-
-{
-q:"99. Flora contains account of habitat and distribution of:",
-options:[
-"Plants of a given area",
-"Animals of a given area",
-"Fossils",
-"Microbes"
-],
-correct:0
-},
-
-{
-q:"100. Catalogues provide:",
-options:[
-"Alphabetical listing of species",
-"Detailed drawings",
-"Historical stories",
-"Chemical formulas"
-],
-correct:0
 }
-
-];
 
 </script>
 
