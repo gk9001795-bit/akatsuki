@@ -12,74 +12,128 @@
             padding: 0;
         }
         .container {
-            max-width: 600px;
-            margin: 50px auto;
+            max-width: 650px;
+            margin: 40px auto;
             background: #ffffff;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         .screen {
             display: none;
         }
-        .active-screen {
-            display: block;
-        }
-        h2 {
+        h2, h3 {
             color: #333;
         }
         button {
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 20px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
-            margin-top: 15px;
+            width: 100%;
+            margin-top: 10px;
+            font-weight: bold;
         }
         button:hover {
             background-color: #0056b3;
         }
+        .google-btn {
+            background-color: #db4437;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .google-btn:hover {
+            background-color: #c23321;
+        }
+        .logout-btn {
+            background-color: #dc3545;
+            width: auto;
+            padding: 8px 15px;
+            font-size: 14px;
+            margin-top: 0;
+        }
+        .logout-btn:hover {
+            background-color: #b02a37;
+        }
         select, input {
             width: 100%;
-            padding: 10px;
-            margin-top: 10px;
+            padding: 12px;
+            margin-top: 8px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 16px;
+            box-sizing: border-box;
         }
         .header-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        .divider {
+            text-align: center;
+            margin: 15px 0;
+            color: #777;
+            position: relative;
+        }
+        .content-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .back-btn {
+            background-color: #6c757d;
+            width: auto;
+            padding: 6px 12px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- लॉगिन स्क्रीन -->
+        
+        <!-- 1. लॉगिन स्क्रीन (Login Screen) -->
         <div id="login-screen" class="screen">
-            <h2>पोर्टल पर लॉगिन करें</h2>
-            <p>जारी रखने के लिए कृपया लॉगिन करें:</p>
-            <label for="username">यूज़रनेम:</label>
-            <input type="text" id="username" placeholder="अपना नाम दर्ज करें">
+            <h2>टॉपर स्टडी हब - लॉगिन</h2>
+            <p>पोर्टल का उपयोग करने के लिए कृपया लॉगिन करें:</p>
             
-            <button id="login-btn">लॉग इन करें (Login)</button>
+            <label for="email">ईमेल एड्रेस (Email):</label>
+            <input type="email" id="email" placeholder="example@gmail.com">
+            
+            <label for="password">पासवर्ड (Password):</label>
+            <input type="password" id="password" placeholder="********">
+            
+            <button id="login-btn">ईमेल से लॉगिन करें</button>
+
+            <div class="divider">या (OR)</div>
+
+            <button class="google-btn" onclick="performLogin()">
+                <span>🌐 Google से लॉगिन करें (Google Sign-In)</span>
+            </button>
         </div>
 
-        <!-- डैशबोर्ड स्क्रीन -->
+        <!-- 2. डैशबोर्ड / मुख्य स्क्रीन (Dashboard Screen) -->
         <div id="dashboard-screen" class="screen">
             <div class="header-flex">
-                <h2 id="dash-title">टॉपर स्टडी हब - NCERT पोर्टल</h2>
-                <button id="logout-btn" onclick="performLogout()">
+                <h2 id="dash-title" style="margin: 0; font-size: 20px;">टॉपर स्टडी हब - NCERT पोर्टल</h2>
+                <button class="logout-btn" onclick="performLogout()">
                     <span id="logout-btn-text">लॉग आउट</span>
                 </button>
             </div>
 
-            <hr>
+            <hr style="margin: 15px 0;">
 
             <!-- भाषा बदलने का विकल्प -->
             <label for="language-select">भाषा चुनें (Language):</label>
@@ -95,14 +149,34 @@
                 <option value="12">कक्षा 12 (Class 12)</option>
             </select>
 
-            <h3 id="explore-title">श्रेणियाँ (फोल्डर) देखें</h3>
+            <h3 id="explore-title" style="margin-top: 20px;">विषय और सामग्री (Subjects & Content)</h3>
             
             <!-- सब्जेक्ट्स ड्रॉपडाउन -->
             <label for="subject-select">विषय चुनें (Subject):</label>
             <select id="subject-select" onchange="onSubjectChange(this.value)">
                 <!-- डायनेमिक रूप से यहाँ सब्जेक्ट्स लोड होंगे -->
             </select>
+
+            <!-- चैप्टर / स्टडी मटेरियल सेक्शन -->
+            <div class="content-box">
+                <h3 id="material-heading" style="margin-top: 0; color: #007bff;">चयनित विषय की सामग्री</h3>
+                <p id="material-subtext">नीचे दिए गए विकल्पों से नोट्स या प्रश्न चुनें:</p>
+                
+                <button onclick="openSection('notes')" style="background-color: #28a745;">📄 नोट्स (Notes) देखें</button>
+                <button onclick="openSection('objective')" style="background-color: #17a2b8;">❓ ऑब्जेक्टिव प्रश्न (Objective Questions)</button>
+                <button onclick="openSection('subjective')" style="background-color: #ffc107; color: #000;">📝 सब्जेक्टिव प्रश्न (Subjective Questions)</button>
+            </div>
         </div>
+
+        <!-- 3. मटीरियल डिटेल्स स्क्रीन (Notes / Questions View) -->
+        <div id="content-screen" class="screen">
+            <button class="back-btn" onclick="goBackToDashboard()">← वापस जाएं (Back)</button>
+            <h2 id="section-title">शीर्षक</h2>
+            <div class="content-box" id="section-content-body">
+                <!-- यहाँ नोट्स या क्विज लोड होंगे -->
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -110,16 +184,46 @@
         let activeSubject = '';
         let activeLanguage = 'hi';
 
-        // सैंपल NCERT डेटा (आप इसे अपने हिसाब से बड़ा या बदल सकते हैं)
+        // NCERT डेटा और उनके अंदर के नोट्स/प्रश्न
         const ncertData = {
             '11': {
-                physics: ['भौतिकी अध्याय 1', 'भौतिकी अध्याय 2'],
-                chemistry: ['रसायन विज्ञान अध्याय 1', 'रसायन विज्ञान अध्याय 2'],
-                biology: ['जीव विज्ञान अध्याय 1', 'जीव विज्ञान अध्याय 2']
+                physics: {
+                    nameHi: 'भौतिकी (Physics)',
+                    nameEn: 'Physics',
+                    notes: 'अध्याय 1: भौतिक जगत और मापन के संपूर्ण नोट्स यहाँ उपलब्ध हैं।',
+                    objective: '1. प्रकाश की चाल क्या है? (MCQs)\n2. मात्रक कितने प्रकार के होते हैं?',
+                    subjective: '1. बीमा (Dimensions) किसे कहते हैं? उदाहरण दें।'
+                },
+                chemistry: {
+                    nameHi: 'रसायन विज्ञान (Chemistry)',
+                    nameEn: 'Chemistry',
+                    notes: 'अध्याय 1: रसायन विज्ञान की कुछ मूल अवधारणाएँ नोट्स।',
+                    objective: '1. मोल संकल्पना से संबंधित बहुविकल्पीय प्रश्न।',
+                    subjective: '1. सीमान्त अभिकर्मक को परिभाषित करें।'
+                },
+                biology: {
+                    nameHi: 'जीव विज्ञान (Biology)',
+                    nameEn: 'Biology',
+                    notes: 'अध्याय 1: जीव जगत (The Living World) विस्तृत नोट्स।',
+                    objective: '1. वर्गीकी पदानुक्रम में सबसे बड़ी इकाई क्या है?',
+                    subjective: '1. द्विपद नामकरण पद्धति के नियम लिखें।'
+                }
             },
             '12': {
-                physics: ['Class 12 Physics Ch 1'],
-                math: ['गणित अध्याय 1']
+                physics: {
+                    nameHi: 'कक्षा 12 भौतिकी',
+                    nameEn: 'Class 12 Physics',
+                    notes: 'स्थिर विद्युतकी (Electrostatics) के मुख्य बिंदु।',
+                    objective: '1. कूलॉम का नियम क्या दर्शाता है?',
+                    subjective: '1. विद्युत द्विध्रुव आघूर्ण को समझाइए।'
+                },
+                math: {
+                    nameHi: 'गणित (Math)',
+                    nameEn: 'Mathematics',
+                    notes: 'संबंद्ध और फलन (Relations and Functions) नोट्स।',
+                    objective: '1. तुल्यता संबंध के लिए क्या आवश्यक है?',
+                    subjective: '1. सिद्ध कीजिए कि दिया गया फलन एकैकी है।'
+                }
             }
         };
 
@@ -134,10 +238,17 @@
                 document.getElementById('login-screen').style.display = 'block';
             }
 
-            // लॉगिन बटन पर क्लिक इवेंट जोड़ना
+            // ईमेल लॉगिन बटन क्लिक इवेंट
             const loginBtn = document.getElementById('login-btn');
             if (loginBtn) {
-                loginBtn.addEventListener('click', performLogin);
+                loginBtn.addEventListener('click', function() {
+                    const email = document.getElementById('email').value;
+                    if(email) {
+                        performLogin();
+                    } else {
+                        alert('कृपया अपना ईमेल दर्ज करें!');
+                    }
+                });
             }
         });
 
@@ -147,11 +258,9 @@
         }
 
         function showDashboard() {
-            const loginScreen = document.getElementById('login-screen');
-            const dashboardScreen = document.getElementById('dashboard-screen');
-
-            if (loginScreen) loginScreen.style.display = 'none';
-            if (dashboardScreen) dashboardScreen.style.display = 'block';
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('content-screen').style.display = 'none';
+            document.getElementById('dashboard-screen').style.display = 'block';
 
             populateSubjectsDropdown();
             updateUIStrings();
@@ -159,12 +268,9 @@
 
         function performLogout() {
             localStorage.removeItem('isLoggedIn');
-
-            const dashboardScreen = document.getElementById('dashboard-screen');
-            const loginScreen = document.getElementById('login-screen');
-
-            if (dashboardScreen) dashboardScreen.style.display = 'none';
-            if (loginScreen) loginScreen.style.display = 'block';
+            document.getElementById('dashboard-screen').style.display = 'none';
+            document.getElementById('content-screen').style.display = 'none';
+            document.getElementById('login-screen').style.display = 'flex';
         }
 
         function onClassChange(value) {
@@ -187,16 +293,7 @@
 
             subSelect.innerHTML = '';
 
-            const fallback = {
-                science: ['Chapter 1'],
-                math: ['Chapter 1']
-            };
-
-            const classMap =
-                (typeof ncertData !== 'undefined' && ncertData[activeClass])
-                ? ncertData[activeClass]
-                : fallback;
-
+            const classMap = ncertData[activeClass] || {};
             let firstSubject = '';
 
             for (const subKey in classMap) {
@@ -206,32 +303,65 @@
 
                 const option = document.createElement('option');
                 option.value = subKey;
-                option.textContent = subKey.toUpperCase();
+                option.textContent = (activeLanguage === 'hi') ? classMap[subKey].nameHi : classMap[subKey].nameEn;
 
                 subSelect.appendChild(option);
             }
 
             activeSubject = firstSubject;
-            subSelect.value = firstSubject; // ड्रॉपडाउन UI को सिंक करने के लिए
+            subSelect.value = firstSubject;
+        }
+
+        function openSection(type) {
+            const dashScreen = document.getElementById('dashboard-screen');
+            const contentScreen = document.getElementById('content-screen');
+            const titleEl = document.getElementById('section-title');
+            const bodyEl = document.getElementById('section-content-body');
+
+            dashScreen.style.display = 'none';
+            contentScreen.style.display = 'block';
+
+            const classMap = ncertData[activeClass] || {};
+            const subjectData = classMap[activeSubject];
+
+            if (!subjectData) {
+                bodyEl.innerHTML = '<p>डेटा उपलब्ध नहीं है।</p>';
+                return;
+            }
+
+            let subName = (activeLanguage === 'hi') ? subjectData.nameHi : subjectData.nameEn;
+
+            if (type === 'notes') {
+                titleEl.textContent = `📄 ${subName} - नोट्स`;
+                bodyEl.innerHTML = `<p style="white-space: pre-line; line-height: 1.6;">${subjectData.notes}</p>`;
+            } else if (type === 'objective') {
+                titleEl.textContent = `❓ ${subName} - ऑब्जेक्टिव प्रश्न`;
+                bodyEl.innerHTML = `<p style="white-space: pre-line; line-height: 1.6;">${subjectData.objective}</p>`;
+            } else if (type === 'subjective') {
+                titleEl.textContent = `📝 ${subName} - सब्जेक्टिव प्रश्न`;
+                bodyEl.innerHTML = `<p style="white-space: pre-line; line-height: 1.6;">${subjectData.subjective}</p>`;
+            }
+        }
+
+        function goBackToDashboard() {
+            document.getElementById('content-screen').style.display = 'none';
+            document.getElementById('dashboard-screen').style.display = 'block';
         }
 
         function updateUIStrings() {
             const hi = activeLanguage === 'hi';
 
             const dashTitle = document.getElementById('dash-title');
-            if (dashTitle) {
-                dashTitle.textContent = hi ? 'टॉपर स्टडी हब - NCERT पोर्टल' : 'Topper Study Hub - NCERT Portal';
-            }
+            if (dashTitle) dashTitle.textContent = hi ? 'टॉपर स्टडी हब - NCERT पोर्टल' : 'Topper Study Hub - NCERT Portal';
 
             const exploreTitle = document.getElementById('explore-title');
-            if (exploreTitle) {
-                exploreTitle.textContent = hi ? 'श्रेणियाँ (फोल्डर) देखें' : 'EXPLORE CATEGORIES (FOLDERS)';
-            }
+            if (exploreTitle) exploreTitle.textContent = hi ? 'विषय और सामग्री (Subjects & Content)' : 'Subjects & Content';
 
             const logoutBtnText = document.getElementById('logout-btn-text');
-            if (logoutBtnText) {
-                logoutBtnText.textContent = hi ? 'लॉग आउट' : 'Logout';
-            }
+            if (logoutBtnText) logoutBtnText.textContent = hi ? 'लॉग आउट' : 'Logout';
+
+            // भाषा बदलने पर ड्रॉपडाउन के नाम भी अपडेट करें
+            populateSubjectsDropdown();
         }
     </script>
 </body>
