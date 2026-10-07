@@ -1,98 +1,238 @@
-<script>
-let activeClass = '11';
-let activeSubject = '';
-let activeLanguage = 'hi';
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>टॉपर स्टडी हब - NCERT पोर्टल</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .screen {
+            display: none;
+        }
+        .active-screen {
+            display: block;
+        }
+        h2 {
+            color: #333;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
 
-window.addEventListener('DOMContentLoaded', function () {
-    populateSubjectsDropdown();
-    updateUIStrings();
+    <div class="container">
+        <!-- लॉगिन स्क्रीन -->
+        <div id="login-screen" class="screen">
+            <h2>पोर्टल पर लॉगिन करें</h2>
+            <p>जारी रखने के लिए कृपया लॉगिन करें:</p>
+            <label for="username">यूज़रनेम:</label>
+            <input type="text" id="username" placeholder="अपना नाम दर्ज करें">
+            
+            <button id="login-btn">लॉग इन करें (Login)</button>
+        </div>
 
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-        showDashboard();
-    }
-});
+        <!-- डैशबोर्ड स्क्रीन -->
+        <div id="dashboard-screen" class="screen">
+            <div class="header-flex">
+                <h2 id="dash-title">टॉपर स्टडी हब - NCERT पोर्टल</h2>
+                <button id="logout-btn" onclick="performLogout()">
+                    <span id="logout-btn-text">लॉग आउट</span>
+                </button>
+            </div>
 
-function performLogin() {
-    localStorage.setItem('isLoggedIn', 'true');
-    showDashboard();
-}
+            <hr>
 
-function showDashboard() {
-    const loginScreen = document.getElementById('login-screen');
-    const dashboardScreen = document.getElementById('dashboard-screen');
+            <!-- भाषा बदलने का विकल्प -->
+            <label for="language-select">भाषा चुनें (Language):</label>
+            <select id="language-select" onchange="onLanguageChange(this.value)">
+                <option value="hi" selected>हिंदी (Hindi)</option>
+                <option value="en">English</option>
+            </select>
 
-    loginScreen.style.display = 'none';
-    dashboardScreen.style.display = 'block';
+            <!-- क्लास चुनने का विकल्प -->
+            <label for="class-select">कक्षा चुनें (Class):</label>
+            <select id="class-select" onchange="onClassChange(this.value)">
+                <option value="11" selected>कक्षा 11 (Class 11)</option>
+                <option value="12">कक्षा 12 (Class 12)</option>
+            </select>
 
-    populateSubjectsDropdown();
-    updateUIStrings();
-}
+            <h3 id="explore-title">श्रेणियाँ (फोल्डर) देखें</h3>
+            
+            <!-- सब्जेक्ट्स ड्रॉपडाउन -->
+            <label for="subject-select">विषय चुनें (Subject):</label>
+            <select id="subject-select" onchange="onSubjectChange(this.value)">
+                <!-- डायनेमिक रूप से यहाँ सब्जेक्ट्स लोड होंगे -->
+            </select>
+        </div>
+    </div>
 
-function performLogout() {
-    localStorage.removeItem('isLoggedIn');
+    <script>
+        let activeClass = '11';
+        let activeSubject = '';
+        let activeLanguage = 'hi';
 
-    document.getElementById('dashboard-screen').style.display = 'none';
-    document.getElementById('login-screen').style.display = 'flex';
-}
+        // सैंपल NCERT डेटा (आप इसे अपने हिसाब से बड़ा या बदल सकते हैं)
+        const ncertData = {
+            '11': {
+                physics: ['भौतिकी अध्याय 1', 'भौतिकी अध्याय 2'],
+                chemistry: ['रसायन विज्ञान अध्याय 1', 'रसायन विज्ञान अध्याय 2'],
+                biology: ['जीव विज्ञान अध्याय 1', 'जीव विज्ञान अध्याय 2']
+            },
+            '12': {
+                physics: ['Class 12 Physics Ch 1'],
+                math: ['गणित अध्याय 1']
+            }
+        };
 
-function onClassChange(value) {
-    activeClass = value;
-    populateSubjectsDropdown();
-}
+        window.addEventListener('DOMContentLoaded', function () {
+            populateSubjectsDropdown();
+            updateUIStrings();
 
-function onSubjectChange(value) {
-    activeSubject = value;
-}
+            // जाँचें कि यूज़र पहले से लॉग इन है या नहीं
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                showDashboard();
+            } else {
+                document.getElementById('login-screen').style.display = 'block';
+            }
 
-function onLanguageChange(value) {
-    activeLanguage = value;
-    updateUIStrings();
-}
+            // लॉगिन बटन पर क्लिक इवेंट जोड़ना
+            const loginBtn = document.getElementById('login-btn');
+            if (loginBtn) {
+                loginBtn.addEventListener('click', performLogin);
+            }
+        });
 
-function populateSubjectsDropdown() {
-    const subSelect = document.getElementById('subject-select');
-
-    if (!subSelect) return;
-
-    subSelect.innerHTML = '';
-
-    const fallback = {
-        science: ['Chapter 1'],
-        math: ['Chapter 1']
-    };
-
-    const classMap =
-        (typeof ncertData !== 'undefined' && ncertData[activeClass])
-        ? ncertData[activeClass]
-        : fallback;
-
-    let firstSubject = '';
-
-    for (const subKey in classMap) {
-        if (!firstSubject) {
-            firstSubject = subKey;
+        function performLogin() {
+            localStorage.setItem('isLoggedIn', 'true');
+            showDashboard();
         }
 
-        const option = document.createElement('option');
-        option.value = subKey;
-        option.textContent = subKey.toUpperCase();
+        function showDashboard() {
+            const loginScreen = document.getElementById('login-screen');
+            const dashboardScreen = document.getElementById('dashboard-screen');
 
-        subSelect.appendChild(option);
-    }
+            if (loginScreen) loginScreen.style.display = 'none';
+            if (dashboardScreen) dashboardScreen.style.display = 'block';
 
-    activeSubject = firstSubject;
-}
+            populateSubjectsDropdown();
+            updateUIStrings();
+        }
 
-function updateUIStrings() {
-    const hi = activeLanguage === 'hi';
+        function performLogout() {
+            localStorage.removeItem('isLoggedIn');
 
-    document.getElementById('dash-title').textContent =
-        hi ? 'टॉपर स्टडी हब - NCERT पोर्टल' : 'Topper Study Hub - NCERT Portal';
+            const dashboardScreen = document.getElementById('dashboard-screen');
+            const loginScreen = document.getElementById('login-screen');
 
-    document.getElementById('explore-title').textContent =
-        hi ? 'श्रेणियाँ (फोल्डर) देखें' : 'EXPLORE CATEGORIES (FOLDERS)';
+            if (dashboardScreen) dashboardScreen.style.display = 'none';
+            if (loginScreen) loginScreen.style.display = 'block';
+        }
 
-    document.getElementById('logout-btn-text').textContent =
-        hi ? 'लॉग आउट' : 'Logout';
-}
-</script>
+        function onClassChange(value) {
+            activeClass = value;
+            populateSubjectsDropdown();
+        }
+
+        function onSubjectChange(value) {
+            activeSubject = value;
+        }
+
+        function onLanguageChange(value) {
+            activeLanguage = value;
+            updateUIStrings();
+        }
+
+        function populateSubjectsDropdown() {
+            const subSelect = document.getElementById('subject-select');
+            if (!subSelect) return;
+
+            subSelect.innerHTML = '';
+
+            const fallback = {
+                science: ['Chapter 1'],
+                math: ['Chapter 1']
+            };
+
+            const classMap =
+                (typeof ncertData !== 'undefined' && ncertData[activeClass])
+                ? ncertData[activeClass]
+                : fallback;
+
+            let firstSubject = '';
+
+            for (const subKey in classMap) {
+                if (!firstSubject) {
+                    firstSubject = subKey;
+                }
+
+                const option = document.createElement('option');
+                option.value = subKey;
+                option.textContent = subKey.toUpperCase();
+
+                subSelect.appendChild(option);
+            }
+
+            activeSubject = firstSubject;
+            subSelect.value = firstSubject; // ड्रॉपडाउन UI को सिंक करने के लिए
+        }
+
+        function updateUIStrings() {
+            const hi = activeLanguage === 'hi';
+
+            const dashTitle = document.getElementById('dash-title');
+            if (dashTitle) {
+                dashTitle.textContent = hi ? 'टॉपर स्टडी हब - NCERT पोर्टल' : 'Topper Study Hub - NCERT Portal';
+            }
+
+            const exploreTitle = document.getElementById('explore-title');
+            if (exploreTitle) {
+                exploreTitle.textContent = hi ? 'श्रेणियाँ (फोल्डर) देखें' : 'EXPLORE CATEGORIES (FOLDERS)';
+            }
+
+            const logoutBtnText = document.getElementById('logout-btn-text');
+            if (logoutBtnText) {
+                logoutBtnText.textContent = hi ? 'लॉग आउट' : 'Logout';
+            }
+        }
+    </script>
+</body>
+</html>
