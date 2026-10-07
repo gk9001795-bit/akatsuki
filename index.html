@@ -1,157 +1,151 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Topper Study Hub - Neon Portal</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #0d0f18; color: #ffffff; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
-       .container { width: 100%; max-width: 600px; background: rgba(18, 22, 38, 0.85); padding: 35px; border-radius: 16px; box-shadow: 0 0 25px rgba(0, 243, 255, 0.2); border: 1px solid rgba(0, 243, 255, 0.4); backdrop-filter: blur(12px); }
-       .screen { display: none; }
-       .active-screen { display: block; }
-        h2 { color: #00f3ff; margin-bottom: 8px; font-size: 28px; text-align: center; text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
-       .subtitle { color: #a0aec0; font-size: 14px; text-align: center; margin-bottom: 25px; }
-        label { display: block; margin-bottom: 6px; color: #00f3ff; font-weight: 600; font-size: 14px; }
-        input, select { width: 100%; padding: 12px 15px; margin-bottom: 20px; border: 1px solid rgba(0, 243, 255, 0.3); border-radius: 8px; font-size: 15px; background: #1a1f35; color: #fff; transition: all 0.3s; }
-        input:focus, select:focus { border-color: #00f3ff; outline: none; box-shadow: 0 0 10px rgba(0, 243, 255, 0.4); }
-        button { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
-       .btn-neon { background: linear-gradient(135deg, #00f3ff 0%, #0066ff 100%); color: #000; font-weight: bold; box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); margin-bottom: 15px; }
-       .btn-neon:hover { box-shadow: 0 0 25px rgba(0, 243, 255, 0.8); transform: translateY(-2px); }
-       .google-btn { background: #1a1f35; color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; gap: 12px; }
-       .google-btn:hover { background: #252b48; border-color: #fff; }
-       .divider { text-align: center; margin: 20px 0; color: #64748b; position: relative; font-size: 14px; }
-       .divider::before,.divider::after { content: ""; position: absolute; top: 50%; width: 42%; height: 1px; background: rgba(255, 255, 255, 0.1); }
-       .divider::before { left: 0; }.divider::after { right: 0; }
-       .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 15px; }
-       .logout-btn { background: #ff3366; color: white; width: auto; padding: 8px 16px; font-size: 13px; box-shadow: 0 0 10px rgba(255, 51, 102, 0.4); }
-       .content-box { background: #1a1f35; border: 1px solid rgba(0, 243, 255, 0.2); padding: 20px; border-radius: 10px; margin-top: 20px; }
-       .action-btns button { margin-top: 12px; color: #fff; }
-       .btn-notes { background: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.3); }
-       .btn-obj { background: #0984e3; box-shadow: 0 0 10px rgba(9, 132, 227, 0.3); }
-       .btn-sub { background: #e17055; box-shadow: 0 0 10px rgba(225, 112, 85, 0.3); }
-       .back-btn { background: #636e72; color: white; width: auto; padding: 6px 14px; font-size: 13px; margin-bottom: 15px; }
-        ul.chapter-list { list-style: none; padding: 0; max-height: 350px; overflow-y: auto; }
-        ul.chapter-list li { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; color: #cbd5e1; background: rgba(255,255,255,0.02); margin-bottom: 6px; border-radius: 6px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topper Study Hub - Card Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif}
+body{background:#f5f7fb;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+.container{width:100%;max-width:900px}
+.screen{display:none}.active{display:block}
+
+/* LOGIN CARD */
+.login-card{background:#fff;width:100%;max-width:420px;margin:0 auto;padding:32px;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.08)}
+.login-card.logo{width:56px;height:56px;background:linear-gradient(135deg,#6a5af9,#8a7cff);border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:700;margin:0 auto 16px}
+.login-card h2{text-align:center;font-size:22px;font-weight:700;color:#1a1c25}
+.login-card p.sub{text-align:center;color:#8a8fa3;font-size:13px;margin:6px 0 24px}
+.input-group{margin-bottom:16px}
+.input-group label{font-size:13px;font-weight:500;color:#4b4f63;margin-bottom:6px;display:block}
+.input-group input{width:100%;padding:12px 14px;border:1.5px solid #e8eaf1;border-radius:10px;background:#f9fafb;outline:none;font-size:14px}
+.input-group input:focus{border-color:#6a5af9;background:#fff}
+.btn-primary{width:100%;padding:13px;background:#1a1c25;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;margin-top:8px}
+.btn-primary:hover{background:#000}
+.google-btn{width:100%;padding:12px;background:#fff;border:1.5px solid #e8eaf1;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:14px;font-weight:500;cursor:pointer;margin-top:16px}
+.divider{text-align:center;color:#a0a5b8;font-size:12px;margin:18px 0;position:relative}
+.divider span{background:#fff;padding:0 10px;position:relative;z-index:1}
+.divider::before{content:"";position:absolute;top:50%;left:0;right:0;height:1px;background:#e8eaf1}
+
+/* DASHBOARD */
+.dash-header{background:#fff;padding:18px 22px;border-radius:16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,0.05);margin-bottom:20px}
+.dash-header h3{font-size:18px;color:#1a1c25}
+.dash-header span{font-size:12px;color:#8a8fa3}
+.logout{background:#ffebee;color:#e53935;padding:8px 14px;border-radius:8px;border:none;font-size:12px;font-weight:600;cursor:pointer}
+.section-title{font-size:15px;font-weight:600;color:#1a1c25;margin:18px 4px 10px}
+.class-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
+.class-card{min-width:90px;padding:14px 10px;background:#fff;border-radius:12px;text-align:center;cursor:pointer;border:2px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,0.05);transition:0.2s}
+.class-card.active{border-color:#6a5af9;background:#f0efff;color:#6a5af9;font-weight:600}
+.subject-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.sub-card{background:#fff;padding:18px 14px;border-radius:14px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,0.05);border:1.5px solid transparent;transition:0.2s;text-align:left}
+.sub-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.08)}
+.sub-card.active{border-color:#6a5af9;background:#f5f3ff}
+.sub-card.icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px}
+.sub-card h4{font-size:13px;font-weight:600;color:#1a1c25}
+
+.material-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+.mat-card{padding:20px;border-radius:16px;color:#fff;cursor:pointer;transition:0.2s}
+.mat-card:hover{transform:translateY(-3px)}
+.mat-card h4{font-size:14px;margin-bottom:4px}
+.mat-card p{font-size:11px;opacity:0.9}
+.mat-1{background:linear-gradient(135deg,#00c6a0,#00a884)}
+.mat-2{background:linear-gradient(135deg,#5b7cfa,#6a5af9)}
+.mat-3{background:linear-gradient(135deg,#ff8a4c,#ff6b6b)}
+
+.content-area{background:#fff;padding:22px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.05)}
+.back{border:none;background:#f0f1f5;padding:7px 12px;border-radius:8px;font-size:12px;cursor:pointer;margin-bottom:14px}
+.ch-list{list-style:none}
+.ch-list li{padding:12px 14px;background:#f9fafb;border-radius:10px;margin-bottom:8px;font-size:13px;color:#333;display:flex;gap:10px;align-items:center}
+@media(max-width:600px){.material-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div id="login-screen" class="screen">
-            <h2>TOPPER STUDY HUB</h2>
-            <p class="subtitle">⚡ NCERT Advanced Neon Portal ⚡</p>
-            <label for="email">Email ID</label>
-            <input type="email" id="email" placeholder="student@gmail.com">
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="••••••••">
-            <button class="btn-neon" id="login-btn">LOGIN</button>
-            <div class="divider">OR</div>
-            <button class="google-btn" onclick="performLogin()">
-                <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.49h4.84c-.21 1.12-.86 2.07-1.83 2.71v2.26h2.96c1.73-1.59 2.73-3.93 2.73-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.96-2.26c-.82.55-1.87.88-3.88-2.32 0-4.28-1.57-4.99-3.68H1.01v2.33C2.51 15.96 5.51 18 9 18z"/><path fill="#FBBC05" d="M4.01 10.76c-.19-.55-.29-1.14-.29-1.76s.1-1.21.29-1.76V4.91H1.01C.37 6.18 0 7.55 0 9s.37 2.82 1.01 4.09l3-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.59C13.47.89 11.43 0 9 0 5.51 0 2.51 2.04 1.01 4.91l3 2.33c.71-2.11 2.67-3.66 4.99-3.66z"/></svg>
-                Sign in with Google
-            </button>
-        </div>
+<div class="container">
 
-        <div id="dashboard-screen" class="screen">
-            <div class="header-flex">
-                <h3 style="color: #00f3ff; font-size: 18px;" id="dash-title">NCERT Portal</h3>
-                <button class="logout-btn" onclick="performLogout()">Logout</button>
-            </div>
-            <label for="class-select">कक्षा चुनें (Select Class):</label>
-            <select id="class-select" onchange="onClassChange(this.value)">
-                <option value="6">Class 6</option><option value="7">Class 7</option><option value="8">Class 8</option><option value="9">Class 9</option><option value="10">Class 10</option><option value="11" selected>Class 11</option><option value="12">Class 12</option>
-            </select>
-            <label for="subject-select">विषय चुनें (Select Subject):</label>
-            <select id="subject-select" onchange="onSubjectChange(this.value)"></select>
-            <div class="content-box action-btns">
-                <h4 style="margin-bottom: 12px; color: #00f3ff;">अध्ययन सामग्री (Study Material)</h4>
-                <button class="btn-notes" onclick="openSection('notes')">📄 Chapters & Notes</button>
-                <button class="btn-obj" onclick="openSection('objective')">❓ Objective Questions</button>
-                <button class="btn-sub" onclick="openSection('subjective')">📝 Subjective Questions</button>
-            </div>
-        </div>
+<div id="login" class="screen active">
+  <div class="login-card">
+    <div class="logo">T</div>
+    <h2>Topper Study Hub</h2>
+    <p class="sub">Apni taiyari shuru karein</p>
+    <div class="input-group"><label>Email Address</label><input type="email" id="email" placeholder="name@example.com"></div>
+    <div class="input-group"><label>Password</label><input type="password" id="pass" placeholder="••••••••"></div>
+    <button class="btn-primary" id="loginBtn">Email se Login karein →</button>
+    <div class="divider"><span>YA</span></div>
+    <button class="google-btn" onclick="doLogin()"><img src="https://www.svgrepo.com/show/475656/google-color.svg" width="18"> Google se continue karein</button>
+  </div>
+</div>
 
-        <div id="content-screen" class="screen">
-            <button class="back-btn" onclick="goBackToDashboard()">← Back</button>
-            <h3 id="section-title" style="color: #00f3ff; margin-bottom: 12px;">Title</h3>
-            <div class="content-box" id="section-content-body" style="line-height: 1.6; color: #fff;"></div>
-        </div>
-    </div>
+<div id="dashboard" class="screen">
+  <div class="dash-header">
+    <div><h3 id="welcome">Hi, Topper 👋</h3><span>Class <span id="cLabel">11</span> • Dashboard</span></div>
+    <button class="logout" onclick="doLogout()">Logout</button>
+  </div>
+
+  <p class="section-title">1. Class Chuniye</p>
+  <div class="class-scroll" id="classScroll"></div>
+
+  <p class="section-title">2. Subject Chuniye</p>
+  <div class="subject-grid" id="subGrid"></div>
+
+  <p class="section-title">3. Study Material</p>
+  <div class="material-grid">
+    <div class="mat-card mat-1" onclick="openMat('notes')"><h4>📄 Notes</h4><p>Chapters & Complete Notes</p></div>
+    <div class="mat-card mat-2" onclick="openMat('objective')"><h4>❓ Objective</h4><p>MCQs & Quiz</p></div>
+    <div class="mat-card mat-3" onclick="openMat('subjective')"><h4>📝 Subjective</h4><p>Long & Short Questions</p></div>
+  </div>
+</div>
+
+<div id="content" class="screen">
+  <div class="content-area">
+    <button class="back" onclick="showScreen('dashboard')">← Dashboard</button>
+    <h3 id="cTitle" style="font-size:16px;margin-bottom:14px;color:#1a1c25"></h3>
+    <div id="cBody"></div>
+  </div>
+</div>
+
+</div>
 
 <script>
-const ncertData = {
-    6: { science: ["Chapter 1: Food: Where Does It Come From?", "Chapter 2: Components of Food", "Chapter 3: Fibre to Fabric"], mathematics: ["Chapter 1: Knowing Our Numbers", "Chapter 2: Whole Numbers"], social_science: ["History Ch 1: What, Where, How and When?"], hindi: ["Chapter 1: कलम का सिपाही"], english: ["Chapter 1: Who Did Patrick's Homework?"] },
-    7: { science: ["Chapter 1: Nutrition in Plants"], mathematics: ["Chapter 1: Integers"], social_science: ["History Ch 1: Tracing Changes"], hindi: ["Chapter 1: हम पंछी उन्मुक्त गगन के"], english: ["Chapter 1: Three Questions"] },
-    8: { science: ["Chapter 1: Crop Production"], mathematics: ["Chapter 1: Rational Numbers"], social_science: ["History Ch 1: How, When and Where"], hindi: ["Chapter 1: ध्वनि"], english: ["Chapter 1: The Best Christmas Present"] },
-    9: { science: ["Chapter 1: Matter in Our Surroundings"], mathematics: ["Chapter 1: Number Systems"], social_science: ["History Ch 1: The French Revolution"], hindi: ["Chapter 1: दो बैलों की कथा"], english: ["Chapter 1: The Fun They Had"] },
-    10: { science: ["Chapter 1: Chemical Reactions and Equations"], mathematics: ["Chapter 1: Real Numbers"], social_science: ["History Ch 1: The Rise of Nationalism"], hindi: ["Chapter 1: सूरदास – पद"], english: ["Chapter 1: A Letter to God"] },
-    11: { physics: ["Chapter 1: Physical World", "Chapter 2: Units and Measurements", "Chapter 3: Motion in a Straight Line"], chemistry: ["Chapter 1: Some Basic Concepts", "Chapter 2: Structure of Atom"], biology: ["Chapter 1: The Living World"], mathematics: ["Chapter 1: Sets"], english: ["Chapter 1: The Portrait of a Lady"], hindi: ["Chapter 1: नमक का दारोगा"] },
-    12: { physics: ["Chapter 1: Electric Charges and Fields"], chemistry: ["Chapter 1: Solutions"], biology: ["Chapter 1: Reproduction in Organisms"], mathematics: ["Chapter 1: Relations and Functions"], english: ["Chapter 1: The Last Lesson"], hindi: ["Chapter 1: भक्तिन"] }
+const data={
+6:{science:["Food: Where Does It Come From?","Components of Food"],mathematics:["Knowing Our Numbers"],social_science:["History - What, Where"],hindi:["कलम का सिपाही"],english:["Who Did Patrick's Homework?"]},
+7:{science:["Nutrition in Plants"],mathematics:["Integers"],social_science:["Tracing Changes"],hindi:["हम पंछी उन्मुक्त"],english:["Three Questions"]},
+11:{physics:["Physical World","Units and Measurements","Motion in Straight Line"],chemistry:["Some Basic Concepts","Structure of Atom"],biology:["The Living World"],mathematics:["Sets","Relations and Functions"],english:["The Portrait of a Lady"],hindi:["नमक का दारोगा"]},
+12:{physics:["Electric Charges and Fields","Electrostatic Potential"],chemistry:["Solutions","Electrochemistry"],biology:["Reproduction in Organisms"],mathematics:["Relations and Functions"],english:["The Last Lesson"],hindi:["भक्तिन"]}
 };
+const icons={physics:"⚛️",chemistry:"🧪",biology:"🧬",mathematics:"📐",english:"📖",hindi:"✍️",science:"🔬",social_science:"🌍"};
+let curClass="11",curSub="physics";
 
-let activeClass = '11';
-let activeSubject = '';
-
-window.addEventListener('DOMContentLoaded', function () {
-    populateSubjectsDropdown();
-    if (localStorage.getItem('isLoggedIn') === 'true') { showDashboard(); }
-    else { switchScreen('login-screen'); }
-    document.getElementById('login-btn').addEventListener('click', function() {
-        const email = document.getElementById('email').value;
-        if(email) { performLogin(); } else { alert('Please enter your email!'); }
-    });
-});
-
-function switchScreen(screenId) {
-    document.querySelectorAll('.screen').forEach(el => el.classList.remove('active-screen'));
-    document.getElementById(screenId).classList.add('active-screen');
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function doLogin(){if(!document.getElementById('email').value){alert("Email daliye");return}localStorage.setItem('login','true');localStorage.setItem('email',document.getElementById('email').value);initDash();showScreen('dashboard')}
+function doLogout(){localStorage.clear();showScreen('login')}
+function initDash(){
+  document.getElementById('welcome').innerText="Hi, "+(localStorage.getItem('email')||'Topper').split('@')[0]+" 👋";
+  const cs=document.getElementById('classScroll');cs.innerHTML="";
+  [6,7,8,9,10,11,12].forEach(c=>{
+    let d=document.createElement('div');d.className=`class-card ${c==curClass?'active':''}`;d.innerHTML=`Class ${c}`;d.onclick=()=>{curClass=c;document.getElementById('cLabel').innerText=c;initDash()};cs.appendChild(d)
+  });
+  const sg=document.getElementById('subGrid');sg.innerHTML="";
+  const subs=data[curClass]||data[11];
+  let first=true;
+  for(let k in subs){
+    if(first){curSub=k;first=false}
+    let card=document.createElement('div');card.className=`sub-card ${k==curSub?'active':''}`;
+    card.innerHTML=`<div class="icon" style="background:${k==curSub?'#e9e6ff':'#f0f1f5'}">${icons[k]||'📚'}</div><h4>${k.toUpperCase()}</h4><p style="font-size:11px;color:#8a8fa3">${subs[k].length} Chapters</p>`;
+    card.onclick=()=>{curSub=k;initDash()};sg.appendChild(card)
+  }
 }
-function performLogin() { localStorage.setItem('isLoggedIn', 'true'); showDashboard(); }
-function showDashboard() { switchScreen('dashboard-screen'); populateSubjectsDropdown(); }
-function performLogout() { localStorage.removeItem('isLoggedIn'); switchScreen('login-screen'); }
-function onClassChange(value) { activeClass = value; populateSubjectsDropdown(); }
-function onSubjectChange(value) { activeSubject = value; }
-
-function populateSubjectsDropdown() {
-    const subSelect = document.getElementById('subject-select');
-    if (!subSelect) return;
-    subSelect.innerHTML = '';
-    const classSubjects = ncertData[activeClass] || {};
-    let firstSub = '';
-    for (const subKey in classSubjects) {
-        if (!firstSub) firstSub = subKey;
-        const option = document.createElement('option');
-        option.value = subKey;
-        option.textContent = subKey.toUpperCase();
-        subSelect.appendChild(option);
-    }
-    activeSubject = firstSub;
-    subSelect.value = firstSub;
-    document.getElementById('dash-title').innerText = `Class ${activeClass} Portal`;
+function openMat(type){
+  showScreen('content');
+  const ch=data[curClass]?.[curSub]||[];
+  document.getElementById('cTitle').innerText=`${curSub.toUpperCase()} - ${type.toUpperCase()} (Class ${curClass})`;
+  let html="";
+  if(type==='notes'){html=`<ul class="ch-list">${ch.map(c=>`<li>📘 ${c}</li>`).join('')}</ul>`}
+  if(type==='objective'){html=`<ul class="ch-list"><li>Q1. ${curSub} ka pehla chapter kaun sa hai? - MCQ</li><li>Q2. SI unit kya hota hai? - MCQ</li><li>Q3. Sample Objective Question</li></ul>`}
+  if(type==='subjective'){html=`<ul class="ch-list"><li>Q1. ${ch[0]||curSub} ko detail me samjhaye?</li><li>Q2. 5 marks ka prashn - ${curSub}</li></ul>`}
+  document.getElementById('cBody').innerHTML=html;
 }
-
-function openSection(type) {
-    switchScreen('content-screen');
-    const titleEl = document.getElementById('section-title');
-    const bodyEl = document.getElementById('section-content-body');
-    const chapters = ncertData[activeClass]?.[activeSubject] || [];
-
-    if (type === 'notes') {
-        titleEl.innerText = `${activeSubject.toUpperCase()} - Chapters & Notes (Class ${activeClass})`;
-        let html = `<ul class="chapter-list">`;
-        chapters.forEach(ch => { html += `<li>📘 ${ch}</li>`; });
-        html += `</ul><p style="margin-top:15px; color:#a0aec0; font-size:13px;">Total ${chapters.length} chapters loaded</p>`;
-        bodyEl.innerHTML = html;
-    } else if (type === 'objective') {
-        titleEl.innerText = `${activeSubject.toUpperCase()} - Objective Questions`;
-        bodyEl.innerHTML = `<p>✅ Class ${activeClass} ${activeSubject} ke liye 100+ MCQs jaldi add kiye jayenge.</p><ul class="chapter-list" style="margin-top:12px"><li>Q1. Sample Objective Question 1?</li><li>Q2. Sample Objective Question 2?</li><li>Q3. Sample Objective Question 3?</li></ul>`;
-    } else if (type === 'subjective') {
-        titleEl.innerText = `${activeSubject.toUpperCase()} - Subjective Questions`;
-        bodyEl.innerHTML = `<p>📝 Long / Short answer questions for Class ${activeClass} ${activeSubject}</p><ul class="chapter-list" style="margin-top:12px"><li>Q1. Define and explain with example?</li><li>Q2. Write short note on ${chapters[0] || 'this topic'}?</li></ul>`;
-    }
-}
-
-function goBackToDashboard() { switchScreen('dashboard-screen'); }
+document.getElementById('loginBtn').addEventListener('click',doLogin);
+if(localStorage.getItem('login')==='true'){initDash();showScreen('dashboard')}
 </script>
 </body>
 </html>
