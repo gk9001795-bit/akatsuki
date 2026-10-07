@@ -185,8 +185,8 @@
 
     <div class="container">
         
-        <!-- 1. NEON LOGIN SCREEN -->
-        <div id="login-screen" class="screen active-screen">
+        <!-- 1. NEON LOGIN SCREEN (First View) -->
+        <div id="login-screen" class="screen">
             <h2>TOPPER STUDY HUB</h2>
             <p class="subtitle">⚡ NCERT Advanced Neon Portal ⚡</p>
             
@@ -206,7 +206,7 @@
             </button>
         </div>
 
-        <!-- 2. DASHBOARD SCREEN -->
+        <!-- 2. DASHBOARD SCREEN (Visible After Login) -->
         <div id="dashboard-screen" class="screen">
             <div class="header-flex">
                 <h3 style="color: #00f3ff; font-size: 18px;" id="dash-title">NCERT Portal</h3>
@@ -249,7 +249,6 @@
     </div>
 
     <script>
-        // Aapka pura ncertData yahan integrated hai
         const ncertData = {
             6: {
                 science: ["Chapter 1: Food: Where Does It Come From?", "Chapter 2: Components of Food", "Chapter 3: Fibre to Fabric"],
@@ -310,10 +309,11 @@
         window.addEventListener('DOMContentLoaded', function () {
             populateSubjectsDropdown();
 
+            // चेक करें कि यूज़र पहले से लॉग इन है या नहीं
             if (localStorage.getItem('isLoggedIn') === 'true') {
                 showDashboard();
             } else {
-                switchScreen('login-screen');
+                switchScreen('login-screen'); // सबसे पहले लॉगिन स्क्रीन दिखेगी
             }
 
             document.getElementById('login-btn').addEventListener('click', function() {
@@ -377,31 +377,4 @@
         function openSection(type) {
             switchScreen('content-screen');
             const titleEl = document.getElementById('section-title');
-            const bodyEl = document.getElementById('section-content-body');
-
-            const classSubjects = ncertData[activeClass] || {};
-            const chapters = classSubjects[activeSubject] || [];
-
-            if (type === 'notes') {
-                titleEl.textContent = `📄 ${activeSubject.toUpperCase()} - Chapters & Notes`;
-                let htmlList = '<ul class="chapter-list">';
-                chapters.forEach(ch => {
-                    htmlList += `<li>📚 ${ch}</li>`;
-                });
-                htmlList += '</ul>';
-                bodyEl.innerHTML = htmlList;
-            } else if (type === 'objective') {
-                titleEl.textContent = `❓ ${activeSubject.toUpperCase()} - Objective Questions`;
-                bodyEl.innerHTML = `<p>1. Sample MCQ 1 for ${activeSubject}? <br>2. Sample MCQ 2 for ${activeSubject}?</p>`;
-            } else if (type === 'subjective') {
-                titleEl.textContent = `📝 ${activeSubject.toUpperCase()} - Subjective Questions`;
-                bodyEl.innerHTML = `<p>1. Define key concepts and derivations for ${activeSubject}.</p>`;
-            }
-        }
-
-        function goBackToDashboard() {
-            switchScreen('dashboard-screen');
-        }
-    </script>
-</body>
-</html>
+            const bodyEl = document.getElementById('section
